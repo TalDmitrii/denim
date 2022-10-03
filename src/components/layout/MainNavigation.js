@@ -1,29 +1,49 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
+import { ReactComponent as IconLogo } from "../../images/svg/logo.svg";
+import { ReactComponent as IconSearch } from "../../images/svg/search.svg";
+import { ReactComponent as IconBasket } from "../../images/svg/basket.svg";
 
 const MainNavigation = () => {
     return (
-        <nav>
+        <>
+            <nav>
+                <ul>
+                    <Route path="/" exact>
+                        <li>
+                            <button type="button" arial-label="Toggle menu">
+                                Menu
+                            </button>
+                        </li>
+                    </Route>
+                    <li>
+                        <NavLink to="/">
+                            <IconLogo />
+                        </NavLink>
+                    </li>
+                    <li>
+                        <button type="button">
+                            <IconSearch />
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button">
+                            <IconBasket />
+                        </button>
+                    </li>
+                </ul>
+            </nav>
             <ul>
                 <li>
-                    <NavLink to="/">Main page</NavLink>
+                    <NavLink to="/catalog">Woman</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/catalog">Catalog</NavLink>
+                    <NavLink to="/catalog">Man</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/product">Product</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/catalog/woman">Woman</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/catalog/man">Man</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/catalog/new">New</NavLink>
+                    <NavLink to="/catalog">New</NavLink>
                 </li>
             </ul>
-        </nav>
+        </>
     );
 };
 

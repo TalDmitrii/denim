@@ -3,7 +3,9 @@ import { Switch } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
-import "./App.css";
+import classes from "./App.module.css";
+
+import Footer from "./components/layout/Footer";
 
 const MainNavigation = React.lazy(() =>
     import("./components/layout/MainNavigation")
@@ -15,24 +17,29 @@ const ProductCard = React.lazy(() => import("./pages/ProductCard"));
 
 function App() {
     return (
-        <div className="App">
-            <MainNavigation />
-            <Suspense fallback="loading">
-                <Switch>
-                    <Route path="/" exact>
-                        <MainPage />
-                    </Route>
-                    <Route path="/catalog" exact>
-                        <Catalog />
-                    </Route>
-                    <Route path="/product">
-                        <ProductCard />
-                    </Route>
-                    <Route path="*">
-                        <NotFound />
-                    </Route>
-                </Switch>
-            </Suspense>
+        <div className={classes.app}>
+            <header>
+                <MainNavigation />
+            </header>
+            <main className={classes.main}>
+                <Suspense fallback="loading">
+                    <Switch>
+                        <Route path="/" exact>
+                            <MainPage />
+                        </Route>
+                        <Route path="/catalog" exact>
+                            <Catalog />
+                        </Route>
+                        <Route path="/product/:productID">
+                            <ProductCard />
+                        </Route>
+                        <Route path="*">
+                            <NotFound />
+                        </Route>
+                    </Switch>
+                </Suspense>
+            </main>
+            <Footer />
         </div>
     );
 }
