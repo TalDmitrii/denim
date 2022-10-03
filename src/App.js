@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 
 import classes from "./App.module.css";
 
+import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 
 const MainNavigation = React.lazy(() =>
@@ -18,9 +19,7 @@ const ProductCard = React.lazy(() => import("./pages/ProductCard"));
 function App() {
     return (
         <div className={classes.app}>
-            <header>
-                <MainNavigation />
-            </header>
+            <Header />
             <main className={classes.main}>
                 <Suspense fallback="loading">
                     <Switch>
