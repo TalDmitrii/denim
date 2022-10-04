@@ -1,19 +1,30 @@
 import { Route, NavLink } from "react-router-dom";
-import Logo from "../UI/Logo";
+
 import MainNavigation from "./MainNavigation";
 import UserNavigation from "./UserNavigation";
 
+import classes from "./Header.module.css";
+import Logo from "../UI/Logo";
+import BurgerMenu from "../UI/BurgerMenu";
+
 const Header = () => {
     return (
-        <header>
+        <header className={classes.header}>
             <Route path={["/catalog", "/product/:productID"]}>
-                <MainNavigation />
+                <div className={classes["header__nav-wrap"]}>
+                    <BurgerMenu />
+                    <MainNavigation headerNav={true} />
+                </div>
             </Route>
-            <NavLink to="/">
-                <Logo />
-            </NavLink>
+            <div className={classes["header__logo"]}>
+                <NavLink to="/">
+                    <Logo />
+                </NavLink>
+            </div>
             <Route path={["/catalog", "/product/:productID"]}>
-                <UserNavigation />
+                <div className={classes["header__user-nav"]}>
+                    <UserNavigation />
+                </div>
             </Route>
         </header>
     );

@@ -4,7 +4,7 @@ const MainPage = () => {
     return (
         <>
             <h1>Mainpage</h1>
-            <MainNavigation />
+            <MainNavigation pageNav={true} />
         </>
     );
 };
