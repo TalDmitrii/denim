@@ -1,0 +1,19 @@
+.burger {
+    display: flex;
+    align-items: center;
+    padding: 26px 12px;
+}
+
+@media (min-width: 768px) {
+    .burger {
+        display: none;
+    }
+}
+
+.burger::before {
+    content: "";
+    width: 20px;
+    height: 2px;
+    background-color: black;
+    box-shadow: 0 -5px black, 0 5px black;
+}

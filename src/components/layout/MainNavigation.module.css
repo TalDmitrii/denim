@@ -1,17 +1,14 @@
 .main-navigation {
-    /*  */
+  /*  */
 }
-
 @media (max-width: 767px) {
-    .main-navigation--header {
-        display: none;
-    }
+  .main-navigation--header {
+    display: none;
+  }
 }
-
 .main-navigation a {
-    display: block;
+  display: block;
 }
-
 .main-navigation ul {
-    display: flex;
+  display: flex;
 }
