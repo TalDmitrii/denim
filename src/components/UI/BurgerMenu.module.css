@@ -4,6 +4,12 @@
     padding: 26px 12px;
 }
 
+@media (min-width: 768px) {
+    .burger {
+        display: none;
+    }
+}
+
 .burger::before {
     content: "";
     width: 20px;

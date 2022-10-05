@@ -1,11 +1,12 @@
 import classes from "./BurgerMenu.module.css";
 
-const BurgerMenu = () => {
+const BurgerMenu = (props) => {
     return (
         <button
             className={classes.burger}
             type="button"
-            aria-label="Toggle menu"
+            aria-label="Open menu"
+            onClick={props.onBurgerClick}
         ></button>
     );
 };
