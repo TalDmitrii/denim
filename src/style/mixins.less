@@ -1,0 +1,103 @@
+.from(@min_width, @content) {
+    @media (min-width: @min_width) {
+        @content();
+    }
+}
+
+.to(@max_width, @content) {
+    @media (max-width: @max_width - 0.02px) {
+        @content();
+    }
+}
+
+.from-to(@min_width, @max_width, @content) {
+    @media (min-width: @min_width) and (max-width: @max_width - 0.02px) {
+        @content();
+    }
+}
+
+.m-aspect-ratio(@height, @width) {
+    padding-top: ~"calc(100% * (@{height}/@{width}))";
+}
+
+.m-visually-hidden() {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+}
+
+.m-text-long() {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.m-auto-wrap-by-words() {
+    word-wrap: break-word; // FF
+    overflow-wrap: break-word; // IE
+    word-break: break-word; // Chrome etc
+}
+
+.m-horizontal-snap-scroll() {
+    .m-hide-scrollbar();
+    overflow-x: auto;
+    -ms-scroll-snap-type: mandatory;
+    scroll-snap-type: x mandatory;
+
+    & > * {
+        scroll-snap-align: start;
+    }
+}
+
+.m-hide-scrollbar() {
+    //Scrollbar
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    //For FF
+    scrollbar-width: none;
+}
+
+.m-pointer-only(@content) {
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { // for ie
+        @content();
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        @content();
+    }
+}
+
+.m-scroll(@width-scrollbar: 6px, @height-thumb: 30px, @border-radius: 3px) {
+    overflow-y: auto;
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: @width-scrollbar;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        height: @height-thumb;
+        background-color: @gray-4;
+        border-radius: @border-radius;
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: @gray-9;
+    }
+
+    //For FF
+    scrollbar-color: @gray-4 transparent;
+    scrollbar-width: thin;
+}

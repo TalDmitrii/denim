@@ -1,14 +1,17 @@
+@import "./style/config.less";
+
 .app {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    // width: @desktop-width-lg;
+
+    // .to(@desktop-width-lg, {
+    //     display: none;
+    // });
 }
 
 .main {
     flex-grow: 1;
     padding: 0 16px;
-
-    &::after {
-        content: "2";
-    }
 }
