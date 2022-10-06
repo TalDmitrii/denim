@@ -5,12 +5,9 @@ import { Redirect } from "react-router-dom";
 
 import classes from "./App.module.css";
 
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
+import Header from "./components/layout/Header/Header";
+import Footer from "./components/layout/Footer/Footer";
 
-const MainNavigation = React.lazy(() =>
-    import("./components/layout/MainNavigation")
-);
 const Catalog = React.lazy(() => import("./pages/Catalog"));
 const MainPage = React.lazy(() => import("./pages/MainPage"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));

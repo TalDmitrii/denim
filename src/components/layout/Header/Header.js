@@ -1,12 +1,12 @@
 import { Route, NavLink } from "react-router-dom";
 import { useState } from "react";
 
-import MainNavigation from "./MainNavigation";
-import UserNavigation from "./UserNavigation";
-import Menu from "./Menu";
-import BurgerMenu from "../UI/BurgerMenu";
-import Popup from "../UI/Popup";
-import Logo from "../UI/Logo";
+import MainNavigation from "../MainNavigation/MainNavigation";
+import UserNavigation from "../UserNavigation/UserNavigation";
+import Menu from "../Menu/Menu";
+import BurgerMenu from "../../UI/BurgerMenu/BurgerMenu";
+import Popup from "../../UI/Popup/Popup";
+import Logo from "../../UI/Icons/Logo";
 
 import classes from "./Header.module.css";
 
@@ -26,7 +26,7 @@ const Header = () => {
             <Route path={["/catalog", "/product/:productID"]}>
                 <div className={classes["header__nav-wrap"]}>
                     <BurgerMenu onBurgerClick={openModal} />
-                    <MainNavigation headerNav={true} />
+                    <MainNavigation addClass={"main-navigation--header"} />
                 </div>
             </Route>
             <div className={classes["header__logo"]}>
@@ -36,7 +36,7 @@ const Header = () => {
             </div>
             <Route path={["/catalog", "/product/:productID"]}>
                 <div className={classes["header__user-nav"]}>
-                    <UserNavigation />
+                    <UserNavigation addClass={"user-navigation--header"} />
                 </div>
             </Route>
             {showMenu && (

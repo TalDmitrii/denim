@@ -2,12 +2,9 @@ import { NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = (props) => {
-    const headerNav = props.headerNav;
-    const pageNav = props.pageNav;
     const navClasses = `
         ${classes["main-navigation"]} 
-        ${headerNav ? classes["main-navigation--header"] : ""}
-        ${pageNav ? classes["main-navigation--page"] : ""}`;
+        ${props.addClass ? classes[`${props.addClass}`] : ""}`;
 
     return (
         <nav className={navClasses}>

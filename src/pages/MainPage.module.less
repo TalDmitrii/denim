@@ -1,0 +1,46 @@
+@import "../style/config.less";
+
+.main-page {
+
+}
+
+.main-page__wrap {
+    background-color: @grey;
+}
+
+.main-page__content {
+    max-width: @max-width;
+    padding: 0 @padding;
+    margin: 0 auto;
+
+    .from(@break-tablet, {
+        padding: 0 @padding-tablet;
+    });
+
+    .from(@break-desktop-lg, {
+        padding: 0 @padding-desktop-lg;
+    });
+}
+
+.main-page__grid {
+    display: grid;
+    grid-template-areas: "main-nav user-nav"
+                         "new new";
+}
+
+.main-page__main-nav {
+    grid-area: main-nav;
+    margin-top: 6px;
+    margin-left: -12px;
+}
+
+.main-page__user-nav {
+    grid-area: user-nav;
+    margin-right: -12px;
+}
+
+.main-page__new {
+    grid-area: new;
+    margin-top: 18px;
+}
+

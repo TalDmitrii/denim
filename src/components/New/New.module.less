@@ -1,0 +1,66 @@
+@import "../../style/config.less";
+
+.gradient(@angle) {
+    background-image: repeating-linear-gradient(
+        @angle,
+        transparent,
+        transparent 2px,
+        @black 2px,
+        @black 2px,
+        transparent 3px,
+        transparent 4px
+        );
+}
+
+.new {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.new__img-wrap {
+    position: relative;
+    display: flex;
+    padding: 20px;
+    margin-bottom: 30px;
+
+    &::before,
+    &::after {
+        content: "";
+        width: 109px;
+        height: 80px;
+        position: absolute;
+        z-index: 1;
+    }
+
+    &::before {
+        top: 0;
+        left: 0;
+        .gradient(45deg);
+    }
+
+    &::after {
+        right: 0;
+        bottom: 0;
+        .gradient(135deg);
+    }
+}
+
+.new__img-wrap img {
+    width: 202px;
+    position: relative;
+    z-index: 2;
+}
+
+.new__text {
+    font-size: 18px;
+    line-height: 24px;
+    color: @grey-dark;
+    margin-bottom: 16px;
+}
+
+.new__logo-wrap {
+    display: flex;
+    margin-bottom: 40px;
+}

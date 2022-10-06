@@ -1,9 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { ReactComponent as IconFB } from "../../images/svg/social/fb.svg";
-import { ReactComponent as IconInst } from "../../images/svg/social/inst.svg";
-import { ReactComponent as IconPint } from "../../images/svg/social/pint.svg";
-import { ReactComponent as IconTw } from "../../images/svg/social/tw.svg";
-import Logo from "../UI/Logo";
+
+// Move from here
+import { ReactComponent as IconFB } from "../../../images/svg/social/fb.svg";
+import { ReactComponent as IconInst } from "../../../images/svg/social/inst.svg";
+import { ReactComponent as IconPint } from "../../../images/svg/social/pint.svg";
+import { ReactComponent as IconTw } from "../../../images/svg/social/tw.svg";
+
+import Logo from "../../UI/Icons/Logo";
 
 import classes from "./Footer.module.css";
 
