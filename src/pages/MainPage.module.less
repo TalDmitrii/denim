@@ -14,7 +14,11 @@
     margin: 0 auto;
 
     .from(@break-tablet, {
-        padding: 0 @padding-tablet;
+        padding: 0 @padding-tablet 40px;
+    });
+
+    .from(@break-desktop, {
+        padding-bottom: 0;
     });
 
     .from(@break-desktop-lg, {
@@ -33,17 +37,41 @@
                              "quick-nav social";
         padding-top: 16px;
     });
+
+    .from(@break-desktop, {
+        grid-template-columns: 170px 1fr 120px;
+        grid-template-areas: "main-nav new user-nav"
+                             "quick-nav new social";
+        padding-top: 0;
+    });
 }
 
 .main-page__main-nav {
     grid-area: main-nav;
     margin-top: 6px;
     margin-left: -12px;
+
+    .from(@break-desktop, {
+        margin-top: 18px;
+    });
+
+    .from(@break-desktop-lg, {
+        margin-top: 38px;
+    });
 }
 
 .main-page__user-nav {
     grid-area: user-nav;
     margin-right: -12px;
+
+    .from(@break-desktop, {
+        justify-self: end;
+        margin-top: 14px;
+    });
+
+    .from(@break-desktop-lg, {
+        margin-top: 34px;
+    });
 }
 
 .main-page__new {
@@ -52,6 +80,12 @@
 
     .from(@break-tablet, {
         margin-top: -14px;
+    });
+
+    .from(@break-desktop, {
+        justify-self: center;
+        align-self: center;
+        margin-top: 0;
     });
 }
 
@@ -62,6 +96,19 @@
     height: 40px;
     position: relative;
     transform: translateX(-14px);
+
+    .to(@break-tablet, {
+        display: none;
+    });
+
+    .from(@break-desktop, {
+        align-self: flex-end;
+        margin-bottom: 25px;
+    });
+
+    .from(@break-desktop-lg, {
+        margin-bottom: 45px;
+    });
 
     .m-pointer-only({
         &:hover span {
@@ -107,18 +154,23 @@
             transform-origin: center;
         }
     }
-
-    .to(@break-tablet, {
-        display: none;
-    });
 }
 
 .main-page__social {
     grid-area: social;
     justify-self: end;
+    align-self: flex-end;
     
     .to(@break-tablet, {
         display: none;
+    });
+
+    .from(@break-desktop, {
+        margin-bottom: 22px;
+    });
+
+    .from(@break-desktop, {
+        margin-bottom: 42px;
     });
 }
 
@@ -127,6 +179,11 @@
 .social {
     display: flex;
     margin-right: -@side-link-padding;
+
+    .from(@break-desktop, {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+    });
 }
 
 .social li {
@@ -143,7 +200,7 @@
     color: @black;
     
     &:hover::before,
-    &:focus::before {
+    &:focus-visible::before {
         transform: scale(1);
     }
     

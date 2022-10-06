@@ -18,8 +18,19 @@
   display: flex;
   flex-wrap: wrap;
 }
+@media (min-width: 1024px) {
+  .main-navigation--page ul {
+    flex-direction: column;
+  }
+}
 @media (min-width: 768px) {
   .main-navigation--page li {
     margin-right: 12px;
+  }
+}
+@media (min-width: 1024px) {
+  .main-navigation--page li {
+    margin-right: 0;
+    margin-bottom: 8px;
   }
 }

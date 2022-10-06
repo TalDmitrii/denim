@@ -8,6 +8,8 @@ const New = () => {
         <section className={classes["new"]}>
             <h2 className={"hide-vis"}>New Denim collection</h2>
             <div className={classes["new__img-wrap"]}>
+                <span className={classes["new__img-decor"]}></span>
+                <span className={classes["new__img-decor"]}></span>
                 <img
                     src={newImg}
                     width="202"

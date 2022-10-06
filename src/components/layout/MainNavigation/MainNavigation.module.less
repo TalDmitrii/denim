@@ -24,8 +24,22 @@
     flex-wrap: wrap;
 }
 
-.main-navigation--page li {
-    .from(@break-tablet, {
-        margin-right: 12px;
-    });
+.main-navigation--page {
+    ul {
+        .from(@break-desktop, {
+            flex-direction: column;
+        });
+    }
+
+    li {
+        .from(@break-tablet, {
+            margin-right: 12px;
+        });
+
+        .from(@break-desktop, {
+            margin-right: 0;
+            margin-bottom: 8px;
+        });
+    }
 }
+

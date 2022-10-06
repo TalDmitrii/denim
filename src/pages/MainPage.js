@@ -35,6 +35,7 @@ const MainPage = () => {
                                 <a
                                     href="https://www.instagram.com/"
                                     target="_blank"
+                                    rel="noreferrer"
                                 >
                                     Instagram
                                 </a>
@@ -43,6 +44,7 @@ const MainPage = () => {
                                 <a
                                     href="https://www.facebook.com/"
                                     target="_blank"
+                                    rel="noreferrer"
                                 >
                                     Facebook
                                 </a>

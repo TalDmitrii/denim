@@ -18,3 +18,16 @@
         }
     });
 }
+
+.user-navigation--main-page {
+    .from(@break-desktop, {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+    });
+
+    button {
+        .from(@break-desktop, {
+            padding: 16px 12px;
+        });
+    }
+}

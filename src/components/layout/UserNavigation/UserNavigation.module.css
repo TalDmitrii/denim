@@ -18,3 +18,14 @@
     stroke: #FFB400;
   }
 }
+@media (min-width: 1024px) {
+  .user-navigation--main-page {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+}
+@media (min-width: 1024px) {
+  .user-navigation--main-page button {
+    padding: 16px 12px;
+  }
+}
