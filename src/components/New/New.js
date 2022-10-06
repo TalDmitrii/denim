@@ -11,16 +11,17 @@ const New = () => {
                 <img
                     src={newImg}
                     width="202"
-                    height="249"
-                    className=""
+                    height="243"
                     alt="Gorgeous jacket from new collection"
                 />
             </div>
-            <p className={classes["new__text"]}>The quality you deserve</p>
-            <div className={classes["new__logo-wrap"]}>
-                <LogoDenim />
+            <div className={classes["new__text-wrap"]}>
+                <p className={classes["new__text"]}>The quality you deserve</p>
+                <div className={classes["new__logo-wrap"]}>
+                    <LogoDenim />
+                </div>
+                <UILink to="/catalog/new">Check new collection</UILink>
             </div>
-            <UILink to="/catalog/new">Check new collection</UILink>
         </section>
     );
 };

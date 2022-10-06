@@ -26,6 +26,13 @@
     display: grid;
     grid-template-areas: "main-nav user-nav"
                          "new new";
+    
+    .from(@break-tablet, {
+        grid-template-areas: "main-nav user-nav"
+                             "new new"
+                             "quick-nav social";
+        padding-top: 16px;
+    });
 }
 
 .main-page__main-nav {
@@ -42,5 +49,114 @@
 .main-page__new {
     grid-area: new;
     margin-top: 18px;
+
+    .from(@break-tablet, {
+        margin-top: -14px;
+    });
 }
 
+.main-page__quick-nav {
+    grid-area: quick-nav;
+    justify-self: start;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    transform: translateX(-14px);
+
+    .m-pointer-only({
+        &:hover span {
+            &::before {
+                background-color: @orange;
+            }
+    
+            &::after {
+                border-color: @orange;
+            }
+        }
+    });
+
+    span {
+        display: flex;
+        width: 10px;
+        height: 27px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        &::before {
+            content: "";
+            width: 2px;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: @black;
+        }
+
+        &::after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            bottom: 0;
+            border-right: 2px solid @black;
+            border-bottom: 2px solid @black;
+            transform: rotate(45deg);
+            transform-origin: center;
+        }
+    }
+
+    .to(@break-tablet, {
+        display: none;
+    });
+}
+
+.main-page__social {
+    grid-area: social;
+    justify-self: end;
+    
+    .to(@break-tablet, {
+        display: none;
+    });
+}
+
+@side-link-padding: 10px;
+
+.social {
+    display: flex;
+    margin-right: -@side-link-padding;
+}
+
+.social li {
+    margin-left: 14px;
+}
+
+.social a {
+    position: relative;
+    display: block;
+    padding: 3px @side-link-padding 5px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: @black;
+    
+    &:hover::before,
+    &:focus::before {
+        transform: scale(1);
+    }
+    
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: @side-link-padding;
+        transform: scale(0);
+        display: block;
+        width: calc(100% - 2*@side-link-padding);
+        height: 2px;
+        background-color: @black;
+        transition: transform 0.2s ease-out;
+    }
+}

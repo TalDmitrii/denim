@@ -22,6 +22,33 @@ const MainPage = () => {
                     <div className={`${classes["main-page__new"]}`}>
                         <New />
                     </div>
+                    <button
+                        className={`${classes["main-page__quick-nav"]}`}
+                        type="button"
+                        aria-label="Scroll to next section"
+                    >
+                        <span></span>
+                    </button>
+                    <div className={`${classes["main-page__social"]}`}>
+                        <ul className={`${classes["social"]}`}>
+                            <li>
+                                <a
+                                    href="https://www.instagram.com/"
+                                    target="_blank"
+                                >
+                                    Instagram
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.facebook.com/"
+                                    target="_blank"
+                                >
+                                    Facebook
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

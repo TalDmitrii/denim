@@ -18,3 +18,8 @@
   display: flex;
   flex-wrap: wrap;
 }
+@media (min-width: 768px) {
+  .main-navigation--page li {
+    margin-right: 12px;
+  }
+}

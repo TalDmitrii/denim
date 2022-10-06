@@ -4,11 +4,25 @@
   align-items: center;
   padding-bottom: 50px;
 }
+@media (min-width: 768px) {
+  .new {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding-bottom: 20px;
+  }
+}
 .new__img-wrap {
   position: relative;
   display: flex;
   padding: 20px;
   margin-bottom: 30px;
+}
+@media (min-width: 768px) {
+  .new__img-wrap {
+    padding: 30px;
+    margin-bottom: 0;
+  }
 }
 .new__img-wrap::before,
 .new__img-wrap::after {
@@ -18,20 +32,54 @@
   position: absolute;
   z-index: 1;
 }
+@media (min-width: 768px) {
+  .new__img-wrap::before,
+  .new__img-wrap::after {
+    width: 141px;
+    height: 104px;
+  }
+}
 .new__img-wrap::before {
   top: 0;
   left: 0;
   background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, #151C22 2px, #151C22 2px, transparent 3px, transparent 4px);
+}
+@media (min-width: 768px) {
+  .new__img-wrap::before {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, #151C22 4px, #151C22 4px, transparent 5px, transparent 6px);
+  }
 }
 .new__img-wrap::after {
   right: 0;
   bottom: 0;
   background-image: repeating-linear-gradient(135deg, transparent, transparent 2px, #151C22 2px, #151C22 2px, transparent 3px, transparent 4px);
 }
+@media (min-width: 768px) {
+  .new__img-wrap::after {
+    background-image: repeating-linear-gradient(135deg, transparent, transparent 4px, #151C22 4px, #151C22 4px, transparent 5px, transparent 6px);
+  }
+}
 .new__img-wrap img {
   width: 202px;
   position: relative;
   z-index: 2;
+}
+@media (min-width: 768px) {
+  .new__img-wrap img {
+    width: 264px;
+  }
+}
+.new__text-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .new__text-wrap {
+    margin-right: 36px;
+    margin-bottom: 30px;
+    align-items: stretch;
+  }
 }
 .new__text {
   font-size: 18px;
@@ -42,4 +90,15 @@
 .new__logo-wrap {
   display: flex;
   margin-bottom: 40px;
+}
+@media (min-width: 768px) {
+  .new__logo-wrap {
+    margin-bottom: 60px;
+  }
+}
+@media (min-width: 768px) {
+  .new__logo-wrap svg {
+    width: 220px;
+    height: 82px;
+  }
 }

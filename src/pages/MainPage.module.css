@@ -20,6 +20,12 @@
   display: grid;
   grid-template-areas: "main-nav user-nav" "new new";
 }
+@media (min-width: 768px) {
+  .main-page__grid {
+    grid-template-areas: "main-nav user-nav" "new new" "quick-nav social";
+    padding-top: 16px;
+  }
+}
 .main-page__main-nav {
   grid-area: main-nav;
   margin-top: 6px;
@@ -32,4 +38,109 @@
 .main-page__new {
   grid-area: new;
   margin-top: 18px;
+}
+@media (min-width: 768px) {
+  .main-page__new {
+    margin-top: -14px;
+  }
+}
+.main-page__quick-nav {
+  grid-area: quick-nav;
+  justify-self: start;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  transform: translateX(-14px);
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .main-page__quick-nav:hover span::before {
+    background-color: #FFB400;
+  }
+  .main-page__quick-nav:hover span::after {
+    border-color: #FFB400;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .main-page__quick-nav:hover span::before {
+    background-color: #FFB400;
+  }
+  .main-page__quick-nav:hover span::after {
+    border-color: #FFB400;
+  }
+}
+.main-page__quick-nav span {
+  display: flex;
+  width: 10px;
+  height: 27px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.main-page__quick-nav span::before {
+  content: "";
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #151C22;
+}
+.main-page__quick-nav span::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  bottom: 0;
+  border-right: 2px solid #151C22;
+  border-bottom: 2px solid #151C22;
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+@media (max-width: 767.98px) {
+  .main-page__quick-nav {
+    display: none;
+  }
+}
+.main-page__social {
+  grid-area: social;
+  justify-self: end;
+}
+@media (max-width: 767.98px) {
+  .main-page__social {
+    display: none;
+  }
+}
+.social {
+  display: flex;
+  margin-right: -10px;
+}
+.social li {
+  margin-left: 14px;
+}
+.social a {
+  position: relative;
+  display: block;
+  padding: 3px 10px 5px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #151C22;
+}
+.social a:hover::before,
+.social a:focus::before {
+  transform: scale(1);
+}
+.social a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  transform: scale(0);
+  display: block;
+  width: calc(100% - 2*10px);
+  height: 2px;
+  background-color: #151C22;
+  transition: transform 0.2s ease-out;
 }
