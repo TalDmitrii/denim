@@ -16,7 +16,9 @@ const ProductCard = React.lazy(() => import("./pages/ProductCard"));
 function App() {
     return (
         <div className={classes.app}>
-            <Header />
+            <div className={"page-container"}>
+                <Header />
+            </div>
             <main className={classes.main}>
                 <Suspense fallback="loading">
                     <Switch>

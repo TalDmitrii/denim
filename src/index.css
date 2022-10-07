@@ -57,3 +57,22 @@ img {
     padding: 21px 24px;
   }
 }
+.page-container {
+  width: 100%;
+  max-width: 1366px;
+  padding-right: 16px;
+  padding-left: 16px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .page-container {
+    padding-right: 44px;
+    padding-left: 44px;
+  }
+}
+@media (min-width: 1366px) {
+  .page-container {
+    padding-right: 98px;
+    padding-left: 98px;
+  }
+}

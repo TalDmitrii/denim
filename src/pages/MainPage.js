@@ -4,11 +4,12 @@ import UserNavigation from "../components/layout/UserNavigation/UserNavigation";
 import classes from "./MainPage.module.css";
 
 import New from "../components/New/New";
+import Social from "../components/Social/Social";
 
 const MainPage = () => {
     return (
         <div className={classes["main-page__wrap"]}>
-            <div className={classes["main-page__content"]}>
+            <div className={`page-container ${classes["main-page__content"]}`}>
                 <h1 className={"hide-vis"}>Online market Nimes</h1>
                 <div className={classes["main-page__grid"]}>
                     <div className={classes["main-page__main-nav"]}>
@@ -30,26 +31,7 @@ const MainPage = () => {
                         <span></span>
                     </button>
                     <div className={`${classes["main-page__social"]}`}>
-                        <ul className={`${classes["social"]}`}>
-                            <li>
-                                <a
-                                    href="https://www.instagram.com/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    Instagram
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://www.facebook.com/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    Facebook
-                                </a>
-                            </li>
-                        </ul>
+                        <Social />
                     </div>
                 </div>
             </div>

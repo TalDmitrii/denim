@@ -1,0 +1,38 @@
+.social {
+  display: flex;
+  margin-right: -10px;
+}
+@media (min-width: 1024px) {
+  .social {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+}
+.social li {
+  margin-left: 14px;
+}
+.social a {
+  position: relative;
+  display: block;
+  padding: 3px 10px 5px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #151C22;
+}
+.social a:hover::before,
+.social a:focus-visible::before {
+  transform: scale(1);
+}
+.social a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  transform: scale(0);
+  display: block;
+  width: calc(100% - 2*10px);
+  height: 2px;
+  background-color: #151C22;
+  transition: transform 0.2s ease-out;
+}

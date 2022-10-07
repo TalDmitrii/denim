@@ -68,3 +68,21 @@ img {
       padding: 21px 24px;
   });
 }
+
+.page-container {
+  width: 100%;
+  max-width: @max-width;
+  padding-right: @padding;
+  padding-left: @padding;
+  margin: 0 auto;
+
+  .from(@break-tablet, {
+      padding-right: @padding-tablet ;
+      padding-left: @padding-tablet ;
+  });
+
+  .from(@break-desktop-lg, {
+      padding-right: @padding-desktop-lg;
+      padding-left: @padding-desktop-lg;
+  });
+}
