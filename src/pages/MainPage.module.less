@@ -20,6 +20,7 @@
 
 .main-page__grid {
     display: grid;
+    grid-template-columns: 2fr 1fr;
     grid-template-areas: "main-nav user-nav"
                          "new new";
     
@@ -163,5 +164,15 @@
 
     .from(@break-desktop-lg, {
         margin-bottom: 42px;
+    });
+}
+
+.main-page__bestsellers {
+    margin-top: 32px;
+    margin-bottom: 32px;
+
+    .from(@break-desktop, {
+        margin-top: 72px;
+        margin-bottom: 72px;
     });
 }

@@ -20,8 +20,7 @@
   font-weight: 500;
   color: #151C22;
 }
-.social a:hover::before,
-.social a:focus-visible::before {
+.social a:hover::before {
   transform: scale(1);
 }
 .social a::before {

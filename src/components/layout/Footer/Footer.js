@@ -13,50 +13,52 @@ import classes from "./Footer.module.css";
 const Footer = () => {
     return (
         <footer className={classes.footer}>
-            <ul className={classes.navigation}>
-                <li>
-                    <NavLink to="/">
-                        <Logo />
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="">Sitemap</NavLink>
-                </li>
-                <li>
-                    <NavLink to="">Shop</NavLink>
-                </li>
-                <li>
-                    <NavLink to="">Service</NavLink>
-                </li>
-                <li>
-                    <NavLink to="">Delivery</NavLink>
-                </li>
-                <li>
-                    <NavLink to="">Contacts</NavLink>
-                </li>
-            </ul>
-            <ul className={classes.social}>
-                <li>
-                    <a href="">
-                        <IconFB />
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <IconInst />
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <IconPint />
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <IconTw />
-                    </a>
-                </li>
-            </ul>
+            <div className={"page-container"}>
+                <ul className={classes.navigation}>
+                    <li>
+                        <NavLink to="/">
+                            <Logo />
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="">Sitemap</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="">Shop</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="">Service</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="">Delivery</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="">Contacts</NavLink>
+                    </li>
+                </ul>
+                <ul className={classes.social}>
+                    <li>
+                        <a href="">
+                            <IconFB />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <IconInst />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <IconPint />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <IconTw />
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </footer>
     );
 };

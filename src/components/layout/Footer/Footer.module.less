@@ -1,21 +1,38 @@
 @import "../../../style/config.less";
 
 .footer {
-    color: white;
-    background-color: black;
-    padding: 50px @padding 40px;
-    // width: @width;
+    color: @white;
+    background-color: @black;
+    padding-top: 50px;
+    padding-bottom: 40px;
 }
 
 .navigation {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 10px;
+
+    .from(@break-tablet, {
+        justify-content: center;
+    });
 }
 
 .navigation li {
     width: 50%;
     flex-shrink: 0;
+
+    .from(@break-tablet, {
+        width: auto;        
+    });
+
+    &:first-of-type {
+        .from(@break-tablet, {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 8px;
+        });
+    }
 }
 
 .navigation a {
@@ -24,15 +41,32 @@
     font-size: 18px;
     line-height: 22px;
     font-weight: 500;
-    color: white;
+    color: @white;
+
+    .from(@break-tablet, {
+        padding-left: 16px;
+    });
 }
 
 .navigation path {
-    fill: white;
+    fill: @white;
 }
 
 .social {
     display: flex;
+    margin-left: -14px;
+
+    .from(@break-tablet, {
+        justify-content: center;
+        margin-top: 8px;
+        margin-left: 0;
+    });
+}
+
+.social li {
+    .from(@break-tablet, {
+        margin: 0 6px;
+    });
 }
 
 .social a {
