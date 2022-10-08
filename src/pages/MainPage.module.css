@@ -166,11 +166,26 @@
   }
 }
 .main-page__bestsellers {
-  margin-top: 32px;
-  margin-bottom: 32px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 @media (min-width: 1024px) {
   .main-page__bestsellers {
+    margin-top: 72px;
+    margin-bottom: 72px;
+  }
+}
+.main-page__collection {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+@media (max-width: 767.98px) {
+  .main-page__collection {
+    padding: 0;
+  }
+}
+@media (min-width: 1024px) {
+  .main-page__collection {
     margin-top: 72px;
     margin-bottom: 72px;
   }

@@ -1,5 +1,8 @@
 @import "../style/config.less";
 
+@section-margin: 40px;
+@section-margin-d: 72px;
+
 .main-page {
 
 }
@@ -168,11 +171,25 @@
 }
 
 .main-page__bestsellers {
-    margin-top: 32px;
-    margin-bottom: 32px;
+    margin-top: @section-margin;
+    margin-bottom: @section-margin;
 
     .from(@break-desktop, {
-        margin-top: 72px;
-        margin-bottom: 72px;
+        margin-top: @section-margin-d;
+        margin-bottom: @section-margin-d;
+    });
+}
+
+.main-page__collection {
+    margin-top: @section-margin;
+    margin-bottom: @section-margin;
+
+    .to(@break-tablet, {
+        padding: 0;
+    });
+
+    .from(@break-desktop, {
+        margin-top: @section-margin-d;
+        margin-bottom: @section-margin-d;
     });
 }

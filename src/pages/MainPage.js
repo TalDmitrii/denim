@@ -6,6 +6,7 @@ import classes from "./MainPage.module.css";
 import New from "../components/New/New";
 import Social from "../components/Social/Social";
 import ProductsList from "../components/ProductsList/ProductsList";
+import Colloection from "../components/Collection/Collection";
 
 const bestsellers = [
     {
@@ -89,6 +90,11 @@ const MainPage = () => {
                     viewAllHref={"/catalog/bestsellers"}
                     products={bestsellers}
                 />
+            </div>
+            <div
+                className={`page-container ${classes["main-page__collection"]}`}
+            >
+                <Colloection />
             </div>
         </>
     );

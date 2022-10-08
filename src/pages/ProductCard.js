@@ -3,12 +3,42 @@ import { useParams } from "react-router-dom";
 const productList = [
     {
         id: 1,
-        title: "Gorgeous jacket",
+        title: "Jacket",
+        price: 120,
+        paths: {
+            x1: "../bestsellers/1.jpg",
+            x2: "../bestsellers/1-2x.jpg",
+        },
         description: "Gorgeous jacket is the latest trend",
     },
     {
         id: 2,
-        title: "Nice pants",
+        title: "Overalls",
+        price: 140,
+        paths: {
+            x1: "../bestsellers/2.jpg",
+            x2: "../bestsellers/2-2x.jpg",
+        },
+        description: "Gorgeous jacket is the latest trend",
+    },
+    {
+        id: 3,
+        title: "Jacket",
+        price: 90,
+        paths: {
+            x1: "../bestsellers/3.jpg",
+            x2: "../bestsellers/3-2x.jpg",
+        },
+        description: "Nice pants on stock",
+    },
+    {
+        id: 4,
+        title: "Overalls",
+        price: 160,
+        paths: {
+            x1: "../bestsellers/4.jpg",
+            x2: "../bestsellers/4-2x.jpg",
+        },
         description: "Nice pants on stock",
     },
 ];
