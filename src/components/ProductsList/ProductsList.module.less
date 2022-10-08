@@ -119,9 +119,11 @@
 }
 
 .products__item img {
+    object-fit: cover;
+    aspect-ratio: 3 / 4;
+
     .from-to(@break-tablet, @break-desktop, {
         aspect-ratio: 1 / 1;
-        object-fit: cover;
         object-position: top;
     });
 }

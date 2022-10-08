@@ -120,10 +120,13 @@
 .products__item picture {
   display: flex;
 }
+.products__item img {
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+}
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .products__item img {
     aspect-ratio: 1 / 1;
-    object-fit: cover;
     object-position: top;
   }
 }

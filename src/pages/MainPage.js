@@ -15,7 +15,7 @@ const bestsellers = [
         price: 120,
         paths: {
             x1: "../bestsellers/1.jpg",
-            x2: "../bestsellers/1-2x.jpg",
+            x2: "../bestsellers/1@2x.jpg",
         },
     },
     {
@@ -24,7 +24,7 @@ const bestsellers = [
         price: 140,
         paths: {
             x1: "../bestsellers/2.jpg",
-            x2: "../bestsellers/2-2x.jpg",
+            x2: "../bestsellers/2@2x.jpg",
         },
     },
     {
@@ -33,7 +33,7 @@ const bestsellers = [
         price: 90,
         paths: {
             x1: "../bestsellers/3.jpg",
-            x2: "../bestsellers/3-2x.jpg",
+            x2: "../bestsellers/3@2x.jpg",
         },
     },
     {
@@ -42,7 +42,46 @@ const bestsellers = [
         price: 160,
         paths: {
             x1: "../bestsellers/4.jpg",
-            x2: "../bestsellers/4-2x.jpg",
+            x2: "../bestsellers/4@2x.jpg",
+        },
+    },
+];
+
+const categories = [
+    {
+        id: 1,
+        title: "Jacket",
+        price: 120,
+        paths: {
+            x1: "../categories/1.jpg",
+            x2: "../categories/1@2x.jpg",
+        },
+    },
+    {
+        id: 2,
+        title: "Overalls",
+        price: 140,
+        paths: {
+            x1: "../categories/2.jpg",
+            x2: "../categories/2@2x.jpg",
+        },
+    },
+    {
+        id: 3,
+        title: "Jacket",
+        price: 90,
+        paths: {
+            x1: "../categories/3.jpg",
+            x2: "../categories/3@2x.jpg",
+        },
+    },
+    {
+        id: 4,
+        title: "Overalls",
+        price: 160,
+        paths: {
+            x1: "../categories/4.jpg",
+            x2: "../categories/4@2x.jpg",
         },
     },
 ];
@@ -95,6 +134,15 @@ const MainPage = () => {
                 className={`page-container ${classes["main-page__collection"]}`}
             >
                 <Colloection />
+            </div>
+            <div
+                className={`page-container ${classes["main-page__categories"]}`}
+            >
+                <ProductsList
+                    title={"Categories"}
+                    viewAllHref={"/catalog/categories"}
+                    products={categories}
+                />
             </div>
         </>
     );
