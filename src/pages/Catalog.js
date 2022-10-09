@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PageContainer from "../components/layout/PageContainer/PageContainer";
 
 const productList = [
     {
@@ -16,16 +17,18 @@ const productList = [
 const Catalog = () => {
     return (
         <>
-            <h1>Catalog</h1>
-            <ul>
-                {productList.map((item) => (
-                    <li key={item.id}>
-                        <Link to={`/product/${item.id}`}>
-                            <h2>{item.title}</h2>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+            <PageContainer>
+                <h1>Catalog</h1>
+                <ul>
+                    {productList.map((item) => (
+                        <li key={item.id}>
+                            <Link to={`/product/${item.id}`}>
+                                <h2>{item.title}</h2>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </PageContainer>
         </>
     );
 };

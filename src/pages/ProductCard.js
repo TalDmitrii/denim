@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import PageContainer from "../components/layout/PageContainer/PageContainer";
 
 const productList = [
     {
@@ -50,8 +51,10 @@ const ProductCard = () => {
 
     return (
         <>
-            <h1>{product.title}</h1>
-            <p>{product.description}</p>
+            <PageContainer>
+                <h1>{product.title}</h1>
+                <p>{product.description}</p>
+            </PageContainer>
         </>
     );
 };
