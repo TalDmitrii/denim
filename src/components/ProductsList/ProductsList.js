@@ -17,7 +17,7 @@ const ProductsList = (props) => {
             <ul className={classes["products__list"]}>
                 {props.products.map((product) => (
                     <li className={classes["products__item"]} key={product.id}>
-                        <Link to={`/product/${product.id}`} />
+                        <Link to={`/catalog/${product.id}`} />
                         <figure>
                             <picture>
                                 <source

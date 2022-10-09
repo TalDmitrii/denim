@@ -22,7 +22,7 @@ const Catalog = () => {
                 <ul>
                     {productList.map((item) => (
                         <li key={item.id}>
-                            <Link to={`/product/${item.id}`}>
+                            <Link to={`/catalog/${item.id}`}>
                                 <h2>{item.title}</h2>
                             </Link>
                         </li>

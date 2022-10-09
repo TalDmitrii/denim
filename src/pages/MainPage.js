@@ -8,86 +8,19 @@ import Social from "../components/Social/Social";
 import ProductsList from "../components/ProductsList/ProductsList";
 import Collection from "../components/Collection/Collection";
 import PageContainer from "../components/layout/PageContainer/PageContainer";
-
-const bestsellers = [
-    {
-        id: 1,
-        title: "Jacket",
-        price: 120,
-        paths: {
-            x1: "../bestsellers/1.jpg",
-            x2: "../bestsellers/1@2x.jpg",
-        },
-    },
-    {
-        id: 2,
-        title: "Overalls",
-        price: 140,
-        paths: {
-            x1: "../bestsellers/2.jpg",
-            x2: "../bestsellers/2@2x.jpg",
-        },
-    },
-    {
-        id: 3,
-        title: "Jacket",
-        price: 90,
-        paths: {
-            x1: "../bestsellers/3.jpg",
-            x2: "../bestsellers/3@2x.jpg",
-        },
-    },
-    {
-        id: 4,
-        title: "Overalls",
-        price: 160,
-        paths: {
-            x1: "../bestsellers/4.jpg",
-            x2: "../bestsellers/4@2x.jpg",
-        },
-    },
-];
-
-const categories = [
-    {
-        id: 1,
-        title: "Jacket",
-        price: 120,
-        paths: {
-            x1: "../categories/1.jpg",
-            x2: "../categories/1@2x.jpg",
-        },
-    },
-    {
-        id: 2,
-        title: "Overalls",
-        price: 140,
-        paths: {
-            x1: "../categories/2.jpg",
-            x2: "../categories/2@2x.jpg",
-        },
-    },
-    {
-        id: 3,
-        title: "Jacket",
-        price: 90,
-        paths: {
-            x1: "../categories/3.jpg",
-            x2: "../categories/3@2x.jpg",
-        },
-    },
-    {
-        id: 4,
-        title: "Overalls",
-        price: 160,
-        paths: {
-            x1: "../categories/4.jpg",
-            x2: "../categories/4@2x.jpg",
-        },
-    },
-];
+import { useSelector } from "react-redux";
 
 const MainPage = () => {
+    const bestsellers = useSelector((state) =>
+        state.products.products.filter(
+            (item) => item.category === "bestsellers"
+        )
+    );
+
+    const categories = useSelector((state) =>
+        state.products.products.filter((item) => item.category === "categories")
+    );
+
     return (
         <>
             <div className={classes["main-page__wrap"]}>
