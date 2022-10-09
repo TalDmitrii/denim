@@ -9,7 +9,7 @@ import imgTablet2x from "../../images/collection/tablet@2x.jpg";
 import imgDesktop from "../../images/collection/desktop.jpg";
 import imgDesktop2x from "../../images/collection/desktop@2x.jpg";
 
-const Colloection = () => {
+const Collection = () => {
     return (
         <section className={classes["collection"]}>
             <div className={classes["collection__wrap"]}>
@@ -39,4 +39,4 @@ const Colloection = () => {
     );
 };
 
-export default Colloection;
+export default Collection;

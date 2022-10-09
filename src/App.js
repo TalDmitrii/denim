@@ -7,6 +7,7 @@ import classes from "./App.module.css";
 
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
+import PageContainer from "./components/layout/PageContainer/PageContainer";
 
 const Catalog = React.lazy(() => import("./pages/Catalog"));
 const MainPage = React.lazy(() => import("./pages/MainPage"));
@@ -16,9 +17,9 @@ const ProductCard = React.lazy(() => import("./pages/ProductCard"));
 function App() {
     return (
         <div className={classes.app}>
-            <div className={"page-container"}>
+            <PageContainer>
                 <Header />
-            </div>
+            </PageContainer>
             <main className={classes.main}>
                 <Suspense fallback="loading">
                     <Switch>

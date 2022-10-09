@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 
+import PageContainer from "../PageContainer/PageContainer";
+
 // Move from here
 import { ReactComponent as IconFB } from "../../../images/svg/social/fb.svg";
 import { ReactComponent as IconInst } from "../../../images/svg/social/inst.svg";
@@ -13,7 +15,7 @@ import classes from "./Footer.module.css";
 const Footer = () => {
     return (
         <footer className={classes.footer}>
-            <div className={"page-container"}>
+            <PageContainer>
                 <ul className={classes.navigation}>
                     <li>
                         <NavLink to="/">
@@ -58,7 +60,7 @@ const Footer = () => {
                         </a>
                     </li>
                 </ul>
-            </div>
+            </PageContainer>
         </footer>
     );
 };

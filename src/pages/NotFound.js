@@ -1,5 +1,11 @@
+import PageContainer from "../components/layout/PageContainer/PageContainer";
+
 const NotFound = () => {
-    return <h1>Page not found</h1>;
+    return (
+        <PageContainer>
+            <h1>Page not found</h1>
+        </PageContainer>
+    );
 };
 
 export default NotFound;

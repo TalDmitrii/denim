@@ -6,7 +6,8 @@ import classes from "./MainPage.module.css";
 import New from "../components/New/New";
 import Social from "../components/Social/Social";
 import ProductsList from "../components/ProductsList/ProductsList";
-import Colloection from "../components/Collection/Collection";
+import Collection from "../components/Collection/Collection";
+import PageContainer from "../components/layout/PageContainer/PageContainer";
 
 const bestsellers = [
     {
@@ -90,9 +91,7 @@ const MainPage = () => {
     return (
         <>
             <div className={classes["main-page__wrap"]}>
-                <div
-                    className={`page-container ${classes["main-page__content"]}`}
-                >
+                <PageContainer addClass={classes["main-page__content"]}>
                     <h1 className={"hide-vis"}>Online market Nimes</h1>
                     <div className={classes["main-page__grid"]}>
                         <div className={classes["main-page__main-nav"]}>
@@ -119,31 +118,25 @@ const MainPage = () => {
                             <Social />
                         </div>
                     </div>
-                </div>
+                </PageContainer>
             </div>
-            <div
-                className={`page-container ${classes["main-page__bestsellers"]}`}
-            >
+            <PageContainer addClass={classes["main-page__bestsellers"]}>
                 <ProductsList
                     title={"Bestsellers"}
                     viewAllHref={"/catalog/bestsellers"}
                     products={bestsellers}
                 />
-            </div>
-            <div
-                className={`page-container ${classes["main-page__collection"]}`}
-            >
-                <Colloection />
-            </div>
-            <div
-                className={`page-container ${classes["main-page__categories"]}`}
-            >
+            </PageContainer>
+            <PageContainer addClass={classes["main-page__collection"]}>
+                <Collection />
+            </PageContainer>
+            <PageContainer addClass={classes["main-page__categories"]}>
                 <ProductsList
                     title={"Categories"}
                     viewAllHref={"/catalog/categories"}
                     products={categories}
                 />
-            </div>
+            </PageContainer>
         </>
     );
 };
