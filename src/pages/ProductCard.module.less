@@ -1,0 +1,117 @@
+@import "../style/config.less";
+
+.product__wrap {
+    margin-bottom: 100px;
+
+    .from(@break-tablet, {
+        display: flex;
+        margin-top: 40px;
+    });
+
+    .from(@break-desktop, {
+        align-items: flex-start;
+        margin-top: 60px;
+    });
+}
+
+.product__slider {
+    .from(@break-tablet, {
+        width: 50%;
+    });
+}
+
+.product__details {
+    padding: 40px @padding;
+    margin: 40px -@padding;
+    background-color: @grey;
+
+    .from(@break-tablet, {
+        flex-grow: 1;
+        padding: 50px @padding-tablet 50px 50px;
+        margin: 0 -@padding-tablet 0 30px;
+    });
+
+    .from(@break-desktop-lg, {
+        align-self: stretch;
+        padding: 70px;
+        margin: 0 0 0 60px;
+    });
+}
+
+.product__title {
+    font-size: 26px;
+    line-height: 34px;
+    margin-bottom: 16px;
+
+    .from(@break-tablet, {
+        font-size: 28px;
+        line-height: 36px;
+        margin-bottom: 24px;
+    });
+
+    .from(@break-desktop-lg, {
+        font-size: 32px;
+        line-height: 42px;
+        margin-bottom: 32px;
+    });
+}
+
+.product__description {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 24px;
+
+    .from(@break-tablet, {
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 44px;
+    });
+}
+
+.product__form legend {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+
+    .from(@break-tablet, {
+        font-size: 18px;
+        line-height: 24px;
+    });
+}
+
+.product__form label {
+    font-size: 16px;
+    line-height: 22px;
+
+    .from(@break-tablet, {
+        font-size: 18px;
+        line-height: 24px;
+    });
+}
+
+.product__fieldset {
+    margin-bottom: 20px;
+
+    .from(@break-tablet, {
+        margin-bottom: 30px;
+    });
+
+    .from(@break-desktop-lg, {
+        margin-bottom: 36px;
+    });
+}
+
+.product__price {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold;
+    margin-bottom: 32px;
+
+    .from(@break-tablet, {
+        margin-bottom: 48px;
+    });
+}
+
+.product__btn {
+    min-width: 200px;
+}

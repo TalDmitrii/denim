@@ -24,6 +24,12 @@ const bestsellers = [
         paths: {
             x1: "../bestsellers/1.jpg",
             x2: "../bestsellers/1@2x.jpg",
+            previews: [
+                "../previews/1.jpg",
+                "../previews/2.jpg",
+                "../previews/3.jpg",
+                "../previews/4.jpg",
+            ],
         },
         description: `Gorgeous jacket is the latest trend`,
         category: "bestsellers",
@@ -35,6 +41,12 @@ const bestsellers = [
         paths: {
             x1: "../bestsellers/2.jpg",
             x2: "../bestsellers/2@2x.jpg",
+            previews: [
+                "../previews/1.jpg",
+                "../previews/2.jpg",
+                "../previews/3.jpg",
+                "../previews/4.jpg",
+            ],
         },
         description: `Gorgeous Overalls is the latest trend`,
         category: "bestsellers",
@@ -46,6 +58,12 @@ const bestsellers = [
         paths: {
             x1: "../bestsellers/3.jpg",
             x2: "../bestsellers/3@2x.jpg",
+            previews: [
+                "../previews/1.jpg",
+                "../previews/2.jpg",
+                "../previews/3.jpg",
+                "../previews/4.jpg",
+            ],
         },
         description: `Gorgeous Overalls is the latest trend`,
         category: "bestsellers",
@@ -57,6 +75,12 @@ const bestsellers = [
         paths: {
             x1: "../bestsellers/4.jpg",
             x2: "../bestsellers/4@2x.jpg",
+            previews: [
+                "../previews/1.jpg",
+                "../previews/2.jpg",
+                "../previews/3.jpg",
+                "../previews/4.jpg",
+            ],
         },
         description: `Gorgeous Overalls is the latest trend`,
         category: "bestsellers",
@@ -71,6 +95,12 @@ const categories = [
         paths: {
             x1: "../categories/1.jpg",
             x2: "../categories/1@2x.jpg",
+            previews: [
+                "../previews/1.jpg",
+                "../previews/2.jpg",
+                "../previews/3.jpg",
+                "../previews/4.jpg",
+            ],
         },
         description: `Gorgeous Overalls is the latest trend`,
         category: "categories",
@@ -82,6 +112,12 @@ const categories = [
         paths: {
             x1: "../categories/2.jpg",
             x2: "../categories/2@2x.jpg",
+            previews: [
+                "../previews/1.jpg",
+                "../previews/2.jpg",
+                "../previews/3.jpg",
+                "../previews/4.jpg",
+            ],
         },
         description: `Gorgeous Overalls is the latest trend`,
         category: "categories",
@@ -93,6 +129,12 @@ const categories = [
         paths: {
             x1: "../categories/3.jpg",
             x2: "../categories/3@2x.jpg",
+            previews: [
+                "../previews/1.jpg",
+                "../previews/2.jpg",
+                "../previews/3.jpg",
+                "../previews/4.jpg",
+            ],
         },
         description: `Gorgeous Jacket is the latest trend`,
         category: "categories",
@@ -104,6 +146,12 @@ const categories = [
         paths: {
             x1: "../categories/4.jpg",
             x2: "../categories/4@2x.jpg",
+            previews: [
+                "../previews/1.jpg",
+                "../previews/2.jpg",
+                "../previews/3.jpg",
+                "../previews/4.jpg",
+            ],
         },
         description: `Gorgeous Overalls is the latest trend`,
         category: "categories",
