@@ -5,34 +5,21 @@ const ProductSlider = (props) => {
         props.addClass ? " " + props.addClass : ""
     }`;
 
-    const product = props.product;
+    const images = props.images;
 
     return (
-        <div className={sliderClasses}>
+        <div className={sliderClasses} onClick={props.onSliderClick}>
             <button
                 className="hide-mobile"
                 type="button"
                 aria-label="Go to previous slide"
+                data-direction="backward"
             ></button>
             <ul>
-                <li>
-                    <picture>
-                        <source
-                            media="(min-width: 768px)"
-                            srcSet={product.paths.x2}
-                        />
+                {images.map((path, index) => (
+                    <li key={path}>
                         <img
-                            src={product.paths.x1}
-                            alt={product.title}
-                            width="244"
-                            height="310"
-                        />
-                    </picture>
-                </li>
-                {product.paths.previews.map((previewPath, index) => (
-                    <li key={previewPath}>
-                        <img
-                            src={previewPath}
+                            src={path}
                             alt={`Preview ${index + 1}`}
                             width="244"
                             height="310"
@@ -44,6 +31,7 @@ const ProductSlider = (props) => {
                 className="hide-mobile"
                 type="button"
                 aria-label="Go to next slide"
+                data-direction="forward"
             ></button>
         </div>
     );

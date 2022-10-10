@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -15,15 +16,43 @@ const ProductCard = () => {
     const productList = useSelector((state) => state.products.products);
     const product = productList.find((item) => item.id === +productID);
 
+    const [productImages, setProductImages] = useState([
+        product.paths.x1,
+        ...product.paths.previews,
+    ]);
+
     const colors = ["turquoise", "blue", "grey", "black", "bluelight"];
     const sizes = ["xs", "s", "m", "l", "xl"];
+
+    const sliderClickHandler = (evt) => {
+        const direction = evt.target.dataset?.direction;
+
+        if (!direction) return;
+
+        setProductImages((prevState) => {
+            let newState;
+
+            if (direction === "forward") {
+                const activeElem = prevState.slice(-1);
+                newState = [...activeElem, ...prevState.slice(0, -1)];
+            }
+
+            if (direction === "backward") {
+                const activeElem = prevState[0];
+                newState = [...prevState.slice(1), activeElem];
+            }
+
+            return newState;
+        });
+    };
 
     return (
         <PageContainer addClass={classes["product"]}>
             <div className={classes["product__wrap"]}>
                 <ProductSlider
                     addClass={classes["product__slider"]}
-                    product={product}
+                    images={productImages}
+                    onSliderClick={sliderClickHandler}
                 />
                 <div className={classes["product__details"]}>
                     <h1 className={classes["product__title"]}>
