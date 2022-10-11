@@ -47,36 +47,29 @@ const ProductCard = () => {
     };
 
     return (
-        <PageContainer addClass={classes["product"]}>
-            <div className={classes["product__wrap"]}>
+        <PageContainer>
+            <div className={classes["wrap"]}>
                 <ProductSlider
-                    addClass={classes["product__slider"]}
+                    addClass={classes["slider"]}
                     images={productImages}
                     onSliderClick={sliderClickHandler}
                 />
-                <div className={classes["product__details"]}>
-                    <h1 className={classes["product__title"]}>
-                        {product.title}
-                    </h1>
-                    <p className={classes["product__description"]}>
+                <div className={classes["details"]}>
+                    <h1 className={classes["title"]}>{product.title}</h1>
+                    <p className={classes["description"]}>
                         {product.description}
                     </p>
-                    <form action="" className={classes["product__form"]}>
+                    <form action="" className={classes["form"]}>
                         <FieldsetColor
-                            addClass={classes["product__fieldset"]}
+                            addClass={classes["fieldset"]}
                             colors={colors}
                         />
                         <FieldsetSize
-                            addClass={classes["product__fieldset"]}
+                            addClass={classes["fieldset"]}
                             sizes={sizes}
                         />
-                        <p className={classes["product__price"]}>
-                            $ {product.price}
-                        </p>
-                        <UIButton
-                            addClass={classes["product__btn"]}
-                            type="submit"
-                        >
+                        <p className={classes["price"]}>$ {product.price}</p>
+                        <UIButton addClass={classes["btn"]} type="submit">
                             Add to cart
                         </UIButton>
                     </form>

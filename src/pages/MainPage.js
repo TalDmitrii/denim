@@ -23,47 +23,47 @@ const MainPage = () => {
 
     return (
         <>
-            <div className={classes["main-page__wrap"]}>
-                <PageContainer addClass={classes["main-page__content"]}>
-                    <h1 className={"hide-vis"}>Online market Nimes</h1>
-                    <div className={classes["main-page__grid"]}>
-                        <div className={classes["main-page__main-nav"]}>
+            <h1 className={"hide-vis"}>Online market Nimes</h1>
+            <div className={classes["wrap"]}>
+                <PageContainer addClass={classes["content"]}>
+                    <div className={classes["grid"]}>
+                        <div className={classes["main-nav"]}>
                             <MainNavigation
                                 addClass={"main-navigation--page"}
                             />
                         </div>
-                        <div className={classes["main-page__user-nav"]}>
+                        <div className={classes["user-nav"]}>
                             <UserNavigation
                                 addClass={"user-navigation--main-page"}
                             />
                         </div>
-                        <div className={classes["main-page__new"]}>
+                        <div className={classes["new"]}>
                             <New />
                         </div>
                         <button
-                            className={classes["main-page__quick-nav"]}
+                            className={classes["quick-nav"]}
                             type="button"
                             aria-label="Scroll to next section"
                         >
                             <span></span>
                         </button>
-                        <div className={classes["main-page__social"]}>
+                        <div className={classes["social"]}>
                             <Social />
                         </div>
                     </div>
                 </PageContainer>
             </div>
-            <PageContainer addClass={classes["main-page__bestsellers"]}>
+            <PageContainer addClass={classes["bestsellers"]}>
                 <ProductsList
                     title={"Bestsellers"}
                     viewAllHref={"/catalog/categories/bestsellers"}
                     products={bestsellers}
                 />
             </PageContainer>
-            <PageContainer addClass={classes["main-page__collection"]}>
+            <PageContainer addClass={classes["collection"]}>
                 <Collection />
             </PageContainer>
-            <PageContainer addClass={classes["main-page__categories"]}>
+            <PageContainer addClass={classes["categories"]}>
                 <ProductsList
                     title={"Categories"}
                     viewAllHref={"/catalog/categories/all"}

@@ -1,118 +1,125 @@
-.product__wrap {
+.wrap {
   margin-bottom: 100px;
 }
 @media (min-width: 768px) {
-  .product__wrap {
+  .wrap {
     display: flex;
     margin-top: 40px;
   }
 }
 @media (min-width: 1024px) {
-  .product__wrap {
+  .wrap {
     align-items: flex-start;
     margin-top: 60px;
   }
 }
 @media (min-width: 768px) {
-  .product__slider {
+  .slider {
     width: 50%;
   }
 }
-.product__details {
+.details {
   padding: 40px 16px;
   margin: 40px -16px;
   background-color: #F1F2F4;
 }
 @media (min-width: 768px) {
-  .product__details {
+  .details {
     flex-grow: 1;
     padding: 50px 44px 50px 50px;
     margin: 0 -44px 0 30px;
   }
 }
 @media (min-width: 1366px) {
-  .product__details {
+  .details {
     align-self: stretch;
     padding: 70px;
     margin: 0 0 0 60px;
   }
 }
-.product__title {
+.title {
   font-size: 26px;
   line-height: 34px;
   margin-bottom: 16px;
 }
 @media (min-width: 768px) {
-  .product__title {
+  .title {
     font-size: 28px;
     line-height: 36px;
     margin-bottom: 24px;
   }
 }
 @media (min-width: 1366px) {
-  .product__title {
+  .title {
     font-size: 32px;
     line-height: 42px;
     margin-bottom: 32px;
   }
 }
-.product__description {
+.description {
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 24px;
 }
 @media (min-width: 768px) {
-  .product__description {
+  .description {
     font-size: 16px;
     line-height: 22px;
     margin-bottom: 44px;
   }
 }
-.product__form legend {
+@media (min-width: 1024px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.form legend {
   font-size: 16px;
   line-height: 22px;
   font-weight: 500;
 }
 @media (min-width: 768px) {
-  .product__form legend {
+  .form legend {
     font-size: 18px;
     line-height: 24px;
   }
 }
-.product__form label {
+.form label {
   font-size: 16px;
   line-height: 22px;
 }
 @media (min-width: 768px) {
-  .product__form label {
+  .form label {
     font-size: 18px;
     line-height: 24px;
   }
 }
-.product__fieldset {
+.fieldset {
   margin-bottom: 20px;
 }
 @media (min-width: 768px) {
-  .product__fieldset {
+  .fieldset {
     margin-bottom: 30px;
   }
 }
 @media (min-width: 1366px) {
-  .product__fieldset {
+  .fieldset {
     margin-bottom: 36px;
   }
 }
-.product__price {
+.price {
   font-size: 18px;
   line-height: 24px;
   font-weight: bold;
   margin-bottom: 32px;
 }
 @media (min-width: 768px) {
-  .product__price {
+  .price {
     margin-bottom: 48px;
   }
 }
-.product__btn {
+.btn {
   min-width: 200px;
 }

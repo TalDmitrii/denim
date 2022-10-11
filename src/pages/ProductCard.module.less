@@ -1,6 +1,6 @@
 @import "../style/config.less";
 
-.product__wrap {
+.wrap {
     margin-bottom: 100px;
 
     .from(@break-tablet, {
@@ -14,13 +14,13 @@
     });
 }
 
-.product__slider {
+.slider {
     .from(@break-tablet, {
         width: 50%;
     });
 }
 
-.product__details {
+.details {
     padding: 40px @padding;
     margin: 40px -@padding;
     background-color: @grey;
@@ -38,7 +38,7 @@
     });
 }
 
-.product__title {
+.title {
     font-size: 26px;
     line-height: 34px;
     margin-bottom: 16px;
@@ -56,7 +56,7 @@
     });
 }
 
-.product__description {
+.description {
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 24px;
@@ -68,7 +68,15 @@
     });
 }
 
-.product__form legend {
+.form {
+    .from(@break-desktop, {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    });
+}
+
+.form legend {
     font-size: 16px;
     line-height: 22px;
     font-weight: 500;
@@ -79,7 +87,7 @@
     });
 }
 
-.product__form label {
+.form label {
     font-size: 16px;
     line-height: 22px;
 
@@ -89,7 +97,7 @@
     });
 }
 
-.product__fieldset {
+.fieldset {
     margin-bottom: 20px;
 
     .from(@break-tablet, {
@@ -101,7 +109,7 @@
     });
 }
 
-.product__price {
+.price {
     font-size: 18px;
     line-height: 24px;
     font-weight: bold;
@@ -112,6 +120,6 @@
     });
 }
 
-.product__btn {
+.btn {
     min-width: 200px;
 }
