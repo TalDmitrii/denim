@@ -1,0 +1,58 @@
+@import "../style/config.less";
+
+.wrap {
+    margin-bottom: 28px;
+
+    .from(@break-tablet, {
+        background-color: @grey;
+    });
+}
+
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.breadcrumbs li {
+    display: flex;
+    align-items: baseline;
+    margin-right: 10px;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+
+    &:not(:last-child) {
+        color: @grey-dark;
+
+        &::after {
+            content: "/";
+            margin-left: 10px;
+        }
+    }
+}
+
+.breadcrumbs a {
+    color: inherit;
+    padding: 3px 0 5px;
+}
+
+.filter-wrap {
+    display: flex;
+    margin-bottom: 32px;
+}
+
+.filter-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    text-align: left;
+    border: 2px solid @black;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

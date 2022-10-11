@@ -1,0 +1,49 @@
+.wrap {
+  margin-bottom: 28px;
+}
+@media (min-width: 768px) {
+  .wrap {
+    background-color: #F1F2F4;
+  }
+}
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.breadcrumbs li {
+  display: flex;
+  align-items: baseline;
+  margin-right: 10px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.breadcrumbs li:not(:last-child) {
+  color: #727A82;
+}
+.breadcrumbs li:not(:last-child)::after {
+  content: "/";
+  margin-left: 10px;
+}
+.breadcrumbs a {
+  color: inherit;
+  padding: 3px 0 5px;
+}
+.filter-wrap {
+  display: flex;
+  margin-bottom: 32px;
+}
+.filter-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+  text-align: left;
+  border: 2px solid #151C22;
+}
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}

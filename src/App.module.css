@@ -1,5 +1,5 @@
 .app {
-  min-height: 100vh;
+  min-height: 101vh;
   display: flex;
   flex-direction: column;
 }

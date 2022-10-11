@@ -1,25 +1,42 @@
-import { Link } from "react-router-dom";
-import PageContainer from "../components/layout/PageContainer/PageContainer";
+import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const productList = [
-    {
-        id: 1,
-        title: "Gorgeous jacket",
-        description: "Gorgeous jacket is the latest trend",
-    },
-    {
-        id: 2,
-        title: "Nice pants",
-        description: "Nice pants on stock",
-    },
-];
+import PageContainer from "../components/layout/PageContainer/PageContainer";
+import CatalogAdv from "../components/CatalogAdv/CatalogAdv";
+
+import classes from "./Catalog.module.css";
 
 const Catalog = () => {
+    const productList = useSelector((state) => state.products.products);
+    const params = useParams();
+    const category = params.category;
+
     return (
         <>
+            <h1 className="hide-vis">Catalog</h1>
+            <div className={classes["wrap"]}>
+                <PageContainer>
+                    <CatalogAdv>
+                        <ul className={classes["breadcrumbs"]}>
+                            <li>
+                                <Link to={"/catalog/categories/all"}>
+                                    All categories
+                                </Link>
+                            </li>
+                            <li>
+                                <span>{category}</span>
+                            </li>
+                        </ul>
+                    </CatalogAdv>
+                </PageContainer>
+            </div>
+            <PageContainer addClass={classes["filter-wrap"]}>
+                <button className={classes["filter-btn"]} type="button">
+                    Filter by
+                </button>
+            </PageContainer>
             <PageContainer>
-                <h1>Catalog</h1>
-                <ul>
+                <ul className={classes["list"]}>
                     {productList.map((item) => (
                         <li key={item.id}>
                             <Link to={`/catalog/${item.id}`}>

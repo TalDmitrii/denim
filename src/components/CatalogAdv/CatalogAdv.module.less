@@ -1,0 +1,88 @@
+@import "../../style/config.less";
+
+.gradient-tablet(@angle) {
+    background-image: repeating-linear-gradient(
+        @angle,
+        transparent,
+        transparent 4px,
+        @black 4px,
+        @black 4px,
+        transparent 5px,
+        transparent 8px
+        );
+}
+
+.adv {
+    .from(@break-tablet, {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    });
+}
+
+.title-wrap {
+    .from(@break-tablet, {
+        margin-right: 20px;
+    });
+}
+
+.title {
+    max-width: 300px;
+    margin-top: 20px;
+    font-size: 28px;
+    line-height: 36px;
+
+    .to(@break-tablet, {
+        .m-visually-hidden();
+    });
+
+    .from(@break-desktop, {
+        font-size: 32px;
+        line-height: 40px;
+    });
+}
+
+.img-wrap {
+    .to(@break-tablet, {
+        display: none;
+    });
+
+    .from(@break-tablet, {
+        position: relative;
+        display: flex;
+        width: 360px;
+        aspect-ratio: 360 / 260;
+        flex-shrink: 0;
+        padding: 0 30px;
+    });
+}
+
+.img-wrap img {
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+}
+
+.img-decor {
+    width: 55%;
+    position: absolute;
+    z-index: 1;
+    .gradient-tablet(45deg);
+
+    &:first-of-type {
+        left: 0;
+        bottom: 0;
+    }
+    
+    &:last-of-type {
+        top: 0;
+        right: 0;
+    }
+
+    &::before {
+        content: "";
+        display: block;
+        padding-top: 76%; 
+    }
+}
