@@ -56,7 +56,7 @@ const MainPage = () => {
             <PageContainer addClass={classes["main-page__bestsellers"]}>
                 <ProductsList
                     title={"Bestsellers"}
-                    viewAllHref={"/catalog/bestsellers"}
+                    viewAllHref={"/catalog/categories/bestsellers"}
                     products={bestsellers}
                 />
             </PageContainer>
@@ -66,7 +66,7 @@ const MainPage = () => {
             <PageContainer addClass={classes["main-page__categories"]}>
                 <ProductsList
                     title={"Categories"}
-                    viewAllHref={"/catalog/categories"}
+                    viewAllHref={"/catalog/categories/all"}
                     products={categories}
                 />
             </PageContainer>

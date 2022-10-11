@@ -10,13 +10,13 @@ const MainNavigation = (props) => {
         <nav className={navClasses}>
             <ul>
                 <li>
-                    <NavLink to="/catalog">Woman</NavLink>
+                    <NavLink to="/catalog/categories/woman">Woman</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/catalog">Man</NavLink>
+                    <NavLink to="/catalog/categories/man">Man</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/catalog">New</NavLink>
+                    <NavLink to="/catalog/categories/new">New</NavLink>
                 </li>
             </ul>
         </nav>

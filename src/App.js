@@ -182,7 +182,7 @@ function App() {
                         <Route path="/" exact>
                             <MainPage />
                         </Route>
-                        <Route path="/catalog" exact>
+                        <Route path="/catalog/categories/:category">
                             <Catalog />
                         </Route>
                         <Route path="/catalog/:productID">

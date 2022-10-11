@@ -17,7 +17,7 @@ const Collection = () => {
                     <span>Street fashion collection</span>
                     <b>Fall 2022</b>
                 </h2>
-                <UILink to="/catalog/new">Shop now</UILink>
+                <UILink to="/catalog/categories/new">Shop now</UILink>
             </div>
             <picture>
                 <source

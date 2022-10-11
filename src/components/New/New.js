@@ -22,7 +22,9 @@ const New = () => {
                 <div className={classes["new__logo-wrap"]}>
                     <LogoDenim />
                 </div>
-                <UILink to="/catalog/new">Check new collection</UILink>
+                <UILink to="/catalog/categories/new">
+                    Check new collection
+                </UILink>
             </div>
         </section>
     );
