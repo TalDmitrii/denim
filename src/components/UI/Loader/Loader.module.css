@@ -1,0 +1,31 @@
+.loader {
+  position: relative;
+  min-height: 200px;
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  width: 40px;
+  height: 40px;
+  border: 5px dashed #727A82;
+  border-radius: 50%;
+  animation-name: spin;
+  animation-duration: 1.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(0.5turn) scale(2);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(1turn) scale(1);
+  }
+}

@@ -10,6 +10,7 @@ import classes from "./App.module.css";
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import PageContainer from "./components/layout/PageContainer/PageContainer";
+import Loader from "./components/UI/Loader/Loader";
 
 const Catalog = React.lazy(() => import("./pages/Catalog"));
 const MainPage = React.lazy(() => import("./pages/MainPage"));
@@ -176,7 +177,7 @@ function App() {
                 <Header />
             </PageContainer>
             <main className={classes.main}>
-                <Suspense fallback="loading">
+                <Suspense fallback={<Loader />}>
                     <Switch>
                         <Route path="/" exact>
                             <MainPage />
