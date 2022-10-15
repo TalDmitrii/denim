@@ -6,7 +6,7 @@ import PageContainer from "../components/layout/PageContainer/PageContainer";
 import ProductSlider from "../components/ProductSlider/ProductSlider";
 import FieldsetColor from "../components/UI/FieldsetColor/FieldsetColor";
 import FieldsetSize from "../components/UI/FieldsetSize/FieldsetSize";
-import UIButton from "../components/UI/UIButon/UIButton";
+import UIButton from "../components/UI/UIButton/UIButton";
 
 import classes from "./ProductCard.module.css";
 

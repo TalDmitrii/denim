@@ -1,3 +1,5 @@
+@import "../style/config.less";
+
 .from(@min_width, @content) {
     @media (min-width: @min_width) {
         @content();
@@ -14,10 +16,6 @@
     @media (min-width: @min_width) and (max-width: @max_width - 0.02px) {
         @content();
     }
-}
-
-.m-aspect-ratio(@height, @width) {
-    padding-top: ~"calc(100% * (@{height}/@{width}))";
 }
 
 .m-visually-hidden() {
@@ -72,7 +70,7 @@
     }
 }
 
-.m-scroll(@width-scrollbar: 6px, @height-thumb: 30px, @border-radius: 3px) {
+.m-scroll(@width-scrollbar: 4px, @height-thumb: 30px, @border-radius: 3px) {
     overflow-y: auto;
 
     /* width */
@@ -88,16 +86,16 @@
     /* Handle */
     &::-webkit-scrollbar-thumb {
         height: @height-thumb;
-        background-color: @gray-4;
+        background-color: @grey-dark;
         border-radius: @border-radius;
     }
     
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
-        background: @gray-9;
+        background: @black;
     }
 
     //For FF
-    scrollbar-color: @gray-4 transparent;
+    scrollbar-color: @grey-dark transparent;
     scrollbar-width: thin;
 }

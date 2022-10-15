@@ -1,0 +1,142 @@
+@import "../../../style/config.less";
+
+.local-btn() {
+    padding: 12px @padding;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.local-label() {
+    .m-visually-hidden();
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+
+    .from(@break-tablet, {
+        font-size: 18px;
+        line-height: 24px;
+    });
+}
+
+.btn {
+    position: relative;
+    padding: 10px 34px 10px 10px;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    text-align: left;
+    border: 2px solid @black;
+
+    .to(@break-tablet, {
+        width: 100%;
+    });
+
+    .from(@break-tablet, {
+        min-width: 206px;
+    });
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translateY(-50%) rotate(-45deg);
+        transform-origin: center;
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-left: 2px solid @black;
+        border-bottom: 2px solid @black;
+    }
+
+    &.open {
+        &::after {
+            transform: translateY(-50%) rotate(-225deg);
+        }
+    }
+}
+
+.popup {
+    display: flex;
+}
+
+.filter {
+    display: flex;
+    width: 100%;
+}
+
+.form {
+    display: grid;
+    width: 100%;
+    grid-template-areas: "clear title close"
+                         "fields fields fields"
+                         "submit submit submit";
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto 1fr;
+}
+
+.clear {
+    grid-area: clear;
+    justify-self: start;
+    margin-left: -@padding;
+    margin-top: -8px;
+    .local-btn();
+}
+
+.title {
+    grid-area: title;
+    justify-self: center;
+    font-size: 18px;
+    line-height: 24px;
+
+}
+
+.close {
+    grid-area: close;
+    justify-self: end;
+    margin-right: -@padding;
+    margin-top: -8px;
+    .local-btn();
+}
+
+.fields {
+    grid-area: fields;
+    margin: 14px -@padding 20px;
+    border-top: 2px solid @grey;
+    .m-scroll();
+}
+
+.field-wrap {
+    border-bottom: 2px solid @grey;
+}
+
+.field-wrap legend {
+    .local-label();
+}
+
+.range-wrap {
+    border-bottom: 2px solid @grey;
+}
+
+.range-container {
+    padding: 0 26px 24px;
+}
+
+.range-label {
+    display: block;
+}
+
+.range-label > span:first-of-type {
+    .local-label();
+    margin-left: -10px;
+}
+
+.range {
+    margin-bottom: 20px;
+}
+
+.submit {
+    grid-area: submit;
+    align-self: end;
+}

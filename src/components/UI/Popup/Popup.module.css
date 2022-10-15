@@ -1,8 +1,28 @@
 .popup {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: white;
+  background-color: #ffffff;
+  z-index: 100;
+}
+@media (max-width: 767.98px) {
+  .popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+  }
+}
+@media (min-width: 768px) {
+  .popup {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    max-width: 800px;
+    height: 50vh;
+    max-height: 600px;
+    position: absolute;
+    padding: 24px;
+    border: 3px solid #151C22;
+  }
 }

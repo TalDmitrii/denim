@@ -1,0 +1,59 @@
+@import "../../../style/config.less";
+
+.top-wrap {
+    position: relative;
+    display: flex;
+    padding: 16px;
+}
+
+.content {
+    padding: 0 @padding 10px;
+}
+
+.open .content {
+    display: none;
+}
+
+.title {
+    flex-grow: 1;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+
+    .from(@break-tablet, {
+        font-size: 18px;
+        line-height: 24px;
+    });
+}
+
+.toggle {
+    width: 20px;
+    margin-left: 16px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translateY(-50%) rotate(-225deg);
+        transform-origin: center;
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-left: 2px solid @black;
+        border-bottom: 2px solid @black;
+    }
+}
+
+.open .toggle::after {
+    transform: translateY(-50%) rotate(-45deg);
+}

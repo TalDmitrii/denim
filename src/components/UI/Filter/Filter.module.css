@@ -1,0 +1,155 @@
+.btn {
+  position: relative;
+  padding: 10px 34px 10px 10px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+  text-align: left;
+  border: 2px solid #151C22;
+}
+@media (max-width: 767.98px) {
+  .btn {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .btn {
+    min-width: 206px;
+  }
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%) rotate(-45deg);
+  transform-origin: center;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #151C22;
+  border-bottom: 2px solid #151C22;
+}
+.btn.open::after {
+  transform: translateY(-50%) rotate(-225deg);
+}
+.popup {
+  display: flex;
+}
+.filter {
+  display: flex;
+  width: 100%;
+}
+.form {
+  display: grid;
+  width: 100%;
+  grid-template-areas: "clear title close" "fields fields fields" "submit submit submit";
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto 1fr;
+}
+.clear {
+  grid-area: clear;
+  justify-self: start;
+  margin-left: -16px;
+  margin-top: -8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+.title {
+  grid-area: title;
+  justify-self: center;
+  font-size: 18px;
+  line-height: 24px;
+}
+.close {
+  grid-area: close;
+  justify-self: end;
+  margin-right: -16px;
+  margin-top: -8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+.fields {
+  grid-area: fields;
+  margin: 14px -16px 20px;
+  border-top: 2px solid #F1F2F4;
+  overflow-y: auto;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  scrollbar-color: #727A82 transparent;
+  scrollbar-width: thin;
+}
+.fields::-webkit-scrollbar {
+  width: 4px;
+}
+.fields::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.fields::-webkit-scrollbar-thumb {
+  height: 30px;
+  background-color: #727A82;
+  border-radius: 3px;
+}
+.fields::-webkit-scrollbar-thumb:hover {
+  background: #151C22;
+}
+.field-wrap {
+  border-bottom: 2px solid #F1F2F4;
+}
+.field-wrap legend {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+}
+@media (min-width: 768px) {
+  .field-wrap legend {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+.range-wrap {
+  border-bottom: 2px solid #F1F2F4;
+}
+.range-container {
+  padding: 0 26px 24px;
+}
+.range-label {
+  display: block;
+}
+.range-label > span:first-of-type {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+  margin-left: -10px;
+}
+@media (min-width: 768px) {
+  .range-label > span:first-of-type {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+.range {
+  margin-bottom: 20px;
+}
+.submit {
+  grid-area: submit;
+  align-self: end;
+}

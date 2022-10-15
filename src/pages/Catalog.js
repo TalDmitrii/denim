@@ -5,6 +5,7 @@ import PageContainer from "../components/layout/PageContainer/PageContainer";
 import CatalogAdv from "../components/CatalogAdv/CatalogAdv";
 
 import classes from "./Catalog.module.css";
+import Filter from "../components/UI/Filter/Filter";
 
 const Catalog = () => {
     const productList = useSelector((state) => state.products.products);
@@ -31,9 +32,7 @@ const Catalog = () => {
                 </PageContainer>
             </div>
             <PageContainer addClass={classes["filter-wrap"]}>
-                <button className={classes["filter-btn"]} type="button">
-                    Filter by
-                </button>
+                <Filter />
             </PageContainer>
             <PageContainer>
                 <ul className={classes["list"]}>
