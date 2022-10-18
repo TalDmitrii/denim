@@ -24,7 +24,7 @@ const Dropdown = (props) => {
                 <button
                     className={classes["toggle"]}
                     type="button"
-                    aria-label={`${open ? "Close" : "Open"} dropdown`}
+                    aria-label={`${open ? "Open" : "Close"} dropdown`}
                     onClick={clickHandler}
                 ></button>
             </div>

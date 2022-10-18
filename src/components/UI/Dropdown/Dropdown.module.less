@@ -4,14 +4,20 @@
     position: relative;
     display: flex;
     padding: 16px;
+
+    .from(@break-tablet, {
+        display: none;
+    });
 }
 
 .content {
-    padding: 0 @padding 10px;
+    .to(@break-tablet, {
+        display: none;
+    });
 }
 
 .open .content {
-    display: none;
+    display: block;
 }
 
 .title {

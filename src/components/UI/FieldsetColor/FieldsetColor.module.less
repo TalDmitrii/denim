@@ -14,20 +14,6 @@ each(@colors, {
     }
 });
 
-.fieldset legend {
-    border-bottom: 2px solid transparent;
-}
-
-.m-pointer-only({
-    .fieldset:hover legend {
-        border-color: currentColor;
-    }
-
-    .fieldset:focus-within legend {
-        border-color: currentColor;
-    }
-});
-
 .fieldset__label-wrap {
     display: flex;
     margin-left: -10px;
@@ -53,6 +39,11 @@ each(@colors, {
     border: 2px solid transparent;
     background-color: currentColor;
     background-clip: content-box;
+}
+
+.fieldset input:hover ~ span,
+.fieldset input:focus-visible ~ span {
+    transform: translate(-50%, -50%) scale(1.3);
 }
 
 .fieldset input:checked ~ span {

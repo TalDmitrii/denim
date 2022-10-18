@@ -6,9 +6,9 @@ import UIButton from "../UIButton/UIButton";
 import FieldsetColor from "../FieldsetColor/FieldsetColor";
 import FieldsetSize from "../FieldsetSize/FieldsetSize";
 import Dropdown from "../Dropdown/Dropdown";
+import MultiRange from "../MultiRange/MultiRange";
 
 import classes from "./Filter.module.css";
-import MultiRange from "../MultiRange/MultiRange";
 
 const colors = ["turquoise", "blue", "grey", "black", "bluelight"];
 const sizes = ["xs", "s", "m", "l", "xl"];
@@ -43,7 +43,7 @@ const Filter = () => {
                         </button>
                         <div className={classes["fields"]}>
                             <Dropdown
-                                addClass={classes["range-wrap"]}
+                                addClass={classes["field-wrap"]}
                                 contentClass={classes["range-container"]}
                                 title="Price"
                             >
@@ -54,24 +54,14 @@ const Filter = () => {
                             </Dropdown>
                             <Dropdown
                                 addClass={classes["field-wrap"]}
+                                contentClass={classes["field-container"]}
                                 title="Color"
                             >
                                 <FieldsetColor colors={colors} />
                             </Dropdown>
                             <Dropdown
                                 addClass={classes["field-wrap"]}
-                                title="Size"
-                            >
-                                <FieldsetSize sizes={sizes} />
-                            </Dropdown>
-                            <Dropdown
-                                addClass={classes["field-wrap"]}
-                                title="Size"
-                            >
-                                <FieldsetSize sizes={sizes} />
-                            </Dropdown>
-                            <Dropdown
-                                addClass={classes["field-wrap"]}
+                                contentClass={classes["field-container"]}
                                 title="Size"
                             >
                                 <FieldsetSize sizes={sizes} />

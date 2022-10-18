@@ -51,11 +51,18 @@
   grid-area: clear;
   justify-self: start;
   margin-left: -16px;
-  margin-top: -8px;
   padding: 12px 16px;
+  margin-top: -8px;
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
+}
+@media (min-width: 1024px) {
+  .clear {
+    margin-top: 0;
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 .title {
   grid-area: title;
@@ -63,82 +70,90 @@
   font-size: 18px;
   line-height: 24px;
 }
+@media (min-width: 1024px) {
+  .title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
 .close {
   grid-area: close;
   justify-self: end;
   margin-right: -16px;
-  margin-top: -8px;
   padding: 12px 16px;
+  margin-top: -8px;
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
+}
+@media (min-width: 1024px) {
+  .close {
+    margin-top: 0;
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 .fields {
   grid-area: fields;
   margin: 14px -16px 20px;
   border-top: 2px solid #F1F2F4;
-  overflow-y: auto;
-  /* width */
-  /* Track */
-  /* Handle */
-  /* Handle on hover */
-  scrollbar-color: #727A82 transparent;
-  scrollbar-width: thin;
 }
-.fields::-webkit-scrollbar {
-  width: 4px;
-}
-.fields::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-.fields::-webkit-scrollbar-thumb {
-  height: 30px;
-  background-color: #727A82;
-  border-radius: 3px;
-}
-.fields::-webkit-scrollbar-thumb:hover {
-  background: #151C22;
-}
-.field-wrap {
-  border-bottom: 2px solid #F1F2F4;
-}
-.field-wrap legend {
-  position: absolute;
-  clip: rect(0 0 0 0);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  font-size: 16px;
-  line-height: 22px;
-  font-weight: 500;
-}
-@media (min-width: 768px) {
-  .field-wrap legend {
-    font-size: 18px;
-    line-height: 24px;
+@media (max-width: 767.98px) {
+  .fields {
+    overflow-y: auto;
+    /* width */
+    /* Track */
+    /* Handle */
+    /* Handle on hover */
+    scrollbar-color: #727A82 transparent;
+    scrollbar-width: thin;
+  }
+  .fields::-webkit-scrollbar {
+    width: 4px;
+  }
+  .fields::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  .fields::-webkit-scrollbar-thumb {
+    height: 30px;
+    background-color: #727A82;
+    border-radius: 3px;
+  }
+  .fields::-webkit-scrollbar-thumb:hover {
+    background: #151C22;
   }
 }
-.range-wrap {
-  border-bottom: 2px solid #F1F2F4;
+@media (min-width: 768px) {
+  .fields {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 .range-container {
   padding: 0 26px 24px;
+}
+@media (min-width: 768px) {
+  .range-container {
+    padding: 16px 0 24px;
+  }
 }
 .range-label {
   display: block;
 }
 .range-label > span:first-of-type {
-  position: absolute;
-  clip: rect(0 0 0 0);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
   font-size: 16px;
   line-height: 22px;
   font-weight: 500;
-  margin-left: -10px;
+}
+@media (max-width: 767.98px) {
+  .range-label > span:first-of-type {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+  }
 }
 @media (min-width: 768px) {
   .range-label > span:first-of-type {
@@ -146,8 +161,42 @@
     line-height: 24px;
   }
 }
-.range {
-  margin-bottom: 20px;
+@media (max-width: 767.98px) {
+  .range-label > span:first-of-type {
+    margin-left: -10px;
+  }
+}
+.field-wrap {
+  border-bottom: 2px solid #F1F2F4;
+}
+.field-container {
+  padding: 0 16px 10px;
+}
+@media (min-width: 768px) {
+  .field-container {
+    padding: 16px 0 10px;
+  }
+}
+.field-wrap legend {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+}
+@media (max-width: 767.98px) {
+  .field-wrap legend {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+  }
+}
+@media (min-width: 768px) {
+  .field-wrap legend {
+    font-size: 18px;
+    line-height: 24px;
+  }
 }
 .submit {
   grid-area: submit;
