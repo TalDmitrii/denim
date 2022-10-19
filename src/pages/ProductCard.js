@@ -15,14 +15,13 @@ const ProductCard = () => {
     const productID = params.productID;
     const productList = useSelector((state) => state.products.products);
     const product = productList.find((item) => item.id === +productID);
+    const colors = product.colors;
+    const sizes = product.sizes;
 
     const [productImages, setProductImages] = useState([
         product.paths.x1,
         ...product.paths.previews,
     ]);
-
-    const colors = ["turquoise", "blue", "grey", "black", "bluelight"];
-    const sizes = ["xs", "s", "m", "l", "xl"];
 
     const sliderClickHandler = (evt) => {
         const direction = evt.target.dataset?.direction;

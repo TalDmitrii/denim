@@ -39,7 +39,7 @@ const MultiRange = (props) => {
     const [value, setValue] = useState([...props.values]);
     const minValue = props.values[0];
     const maxValue = props.values[1];
-    const minDistance = (maxValue - minValue) / 4; // Min distance between labels - 25%
+    const minDistance = 10;
 
     const valuetext = (value) => {
         return `$ ${value}`;
@@ -54,16 +54,10 @@ const MultiRange = (props) => {
             return;
         }
 
-        if (newValue[1] - newValue[0] < minDistance) {
-            if (activeThumb === 0) {
-                const clamped = Math.min(newValue[0], maxValue - minDistance);
-                setValue([clamped, clamped + minDistance]);
-            } else {
-                const clamped = Math.max(newValue[1], minDistance);
-                setValue([clamped - minDistance, clamped]);
-            }
+        if (activeThumb === 0) {
+            setValue([Math.min(newValue[0], value[1] - minDistance), value[1]]);
         } else {
-            setValue(newValue);
+            setValue([value[0], Math.max(newValue[1], value[0] + minDistance)]);
         }
     };
 
@@ -77,7 +71,7 @@ const MultiRange = (props) => {
             getAriaValueText={valuetext}
             min={minValue}
             max={maxValue}
-            step={25}
+            step={10}
             disableSwap
         />
     );

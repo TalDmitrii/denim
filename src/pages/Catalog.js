@@ -9,9 +9,23 @@ import classes from "./Catalog.module.css";
 import Filter from "../components/UI/Filter/Filter";
 
 const Catalog = () => {
-    const productList = useSelector((state) => state.products.products);
     const params = useParams();
     const category = params.category;
+    const products = useSelector((state) => state.products.products);
+
+    let productList = [];
+
+    if (category === "woman") {
+        productList = products.filter((item) => item.gender === "female");
+    }
+
+    if (category === "man") {
+        productList = products.filter((item) => item.gender === "male");
+    }
+
+    if (category === "new") {
+        productList = products.filter((item) => item.new);
+    }
 
     return (
         <>
@@ -33,7 +47,7 @@ const Catalog = () => {
                 </PageContainer>
             </div>
             <PageContainer addClass={classes["filter-wrap"]}>
-                <Filter />
+                <Filter products={productList} />
             </PageContainer>
             <PageContainer>
                 <CatalogList products={productList} />

@@ -10,13 +10,24 @@ import MultiRange from "../MultiRange/MultiRange";
 
 import classes from "./Filter.module.css";
 
-const colors = ["turquoise", "blue", "grey", "black", "bluelight"];
-const sizes = ["xs", "s", "m", "l", "xl"];
-
-const Filter = () => {
+const Filter = (props) => {
     const [isFilterShown, setIsFilterShown] = useState(false);
+    const products = props.products;
+
+    const minPrice = Math.min(...products.map((item) => +item.price));
+    const maxPrice = Math.max(...products.map((item) => +item.price));
+
+    const colors = new Set(
+        products.reduce((acc, item) => acc.concat(item.colors), [])
+    );
+
+    const sizes = new Set(
+        products.reduce((acc, item) => acc.concat(item.sizes), [])
+    );
 
     const filterToggle = () => {
+        if (products?.length === 0) return;
+
         setIsFilterShown((prevState) => !prevState);
     };
 
@@ -49,7 +60,7 @@ const Filter = () => {
                             >
                                 <label className={classes["range-label"]}>
                                     <span>Price</span>
-                                    <MultiRange values={[0, 1000]} />
+                                    <MultiRange values={[minPrice, maxPrice]} />
                                 </label>
                             </Dropdown>
                             <Dropdown
@@ -57,14 +68,14 @@ const Filter = () => {
                                 contentClass={classes["field-container"]}
                                 title="Color"
                             >
-                                <FieldsetColor colors={colors} />
+                                <FieldsetColor colors={[...colors]} />
                             </Dropdown>
                             <Dropdown
                                 addClass={classes["field-wrap"]}
                                 contentClass={classes["field-container"]}
                                 title="Size"
                             >
-                                <FieldsetSize sizes={sizes} />
+                                <FieldsetSize sizes={[...sizes]} />
                             </Dropdown>
                         </div>
                         <UIButton addClass={classes["submit"]} type="submit">

@@ -21,7 +21,11 @@ const bestsellers = [
     {
         id: 1,
         title: "Jacket",
-        price: 120,
+        price: 40,
+        colors: ["turquoise", "blue", "bluelight"],
+        sizes: ["xs", "s", "m", "l", "xl"],
+        gender: "female",
+        new: true,
         paths: {
             x1: "../bestsellers/1.jpg",
             x2: "../bestsellers/1@2x.jpg",
@@ -38,7 +42,11 @@ const bestsellers = [
     {
         id: 2,
         title: "Overalls",
-        price: 140,
+        price: 1400,
+        colors: ["turquoise", "blue", "grey", "bluelight"],
+        sizes: ["xs", "s", "m", "l"],
+        gender: "female",
+        new: false,
         paths: {
             x1: "../bestsellers/2.jpg",
             x2: "../bestsellers/2@2x.jpg",
@@ -55,7 +63,11 @@ const bestsellers = [
     {
         id: 3,
         title: "Jacket",
-        price: 90,
+        price: 910,
+        colors: ["turquoise", "blue", "grey"],
+        sizes: ["xs", "l", "xl"],
+        gender: "female",
+        new: false,
         paths: {
             x1: "../bestsellers/3.jpg",
             x2: "../bestsellers/3@2x.jpg",
@@ -72,7 +84,11 @@ const bestsellers = [
     {
         id: 4,
         title: "Overalls",
-        price: 160,
+        price: 200,
+        colors: ["turquoise", "black", "bluelight"],
+        sizes: ["xs", "s", "m", "xl"],
+        gender: "female",
+        new: false,
         paths: {
             x1: "../bestsellers/4.jpg",
             x2: "../bestsellers/4@2x.jpg",
@@ -92,7 +108,11 @@ const categories = [
     {
         id: 5,
         title: "Jacket",
-        price: 120,
+        price: 360,
+        colors: ["grey", "black", "bluelight"],
+        sizes: ["m", "l", "xl"],
+        gender: "female",
+        new: true,
         paths: {
             x1: "../categories/1.jpg",
             x2: "../categories/1@2x.jpg",
@@ -110,6 +130,10 @@ const categories = [
         id: 6,
         title: "Overalls",
         price: 140,
+        colors: ["turquoise", "blue", "grey", "black"],
+        sizes: ["xs", "s", "xl"],
+        gender: "male",
+        new: true,
         paths: {
             x1: "../categories/2.jpg",
             x2: "../categories/2@2x.jpg",
@@ -127,6 +151,10 @@ const categories = [
         id: 7,
         title: "Jacket",
         price: 90,
+        colors: ["blue", "grey", "black"],
+        sizes: ["xs", "s", "m"],
+        gender: "male",
+        new: true,
         paths: {
             x1: "../categories/3.jpg",
             x2: "../categories/3@2x.jpg",
@@ -144,6 +172,10 @@ const categories = [
         id: 8,
         title: "Overalls",
         price: 160,
+        colors: ["turquoise", "blue", "grey", "black"],
+        sizes: ["xs", "m", "xl"],
+        gender: "male",
+        new: true,
         paths: {
             x1: "../categories/4.jpg",
             x2: "../categories/4@2x.jpg",
