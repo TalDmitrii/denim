@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import PageContainer from "../components/layout/PageContainer/PageContainer";
 import CatalogAdv from "../components/CatalogAdv/CatalogAdv";
+import CatalogList from "../components/CatalogList/CatalogList";
 
 import classes from "./Catalog.module.css";
 import Filter from "../components/UI/Filter/Filter";
@@ -35,15 +36,7 @@ const Catalog = () => {
                 <Filter />
             </PageContainer>
             <PageContainer>
-                <ul className={classes["list"]}>
-                    {productList.map((item) => (
-                        <li key={item.id}>
-                            <Link to={`/catalog/${item.id}`}>
-                                <h2>{item.title}</h2>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+                <CatalogList products={productList} />
             </PageContainer>
         </>
     );
