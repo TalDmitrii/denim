@@ -9,9 +9,10 @@ const FieldsetColor = (props) => {
         <fieldset className={fieldsetClasses}>
             <legend>Color</legend>
             <div className={classes["fieldset__label-wrap"]}>
-                {props.colors.map((color, index) => (
+                {props.colors.map((color) => (
                     <label data-color={color} key={color}>
                         <input
+                            onChange={props.changeHandler}
                             type="radio"
                             value={color}
                             name="color"

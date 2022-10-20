@@ -12,6 +12,7 @@ const FieldsetSize = (props) => {
                 {props.sizes.map((size) => (
                     <label key={size}>
                         <input
+                            onChange={props.changeHandler}
                             type="radio"
                             value={size}
                             name="size"

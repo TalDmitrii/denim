@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import PageContainer from "../components/layout/PageContainer/PageContainer";
@@ -11,29 +11,58 @@ import Filter from "../components/UI/Filter/Filter";
 const Catalog = () => {
     const params = useParams();
     const category = params.category;
+    const history = useHistory();
+    const location = useLocation();
     const products = useSelector((state) => state.products.products);
 
-    let productList = [];
+    const queryParams = new URLSearchParams(location.search);
+    const queryColor = queryParams.get("color");
+    const querySize = queryParams.get("size");
 
-    if (category === "all") {
-        productList = products;
-    }
+    let filteredByCategory = [];
 
-    if (category === "woman") {
-        productList = products.filter((item) => item.gender === "female");
+    switch (category) {
+        case "woman":
+            filteredByCategory = products.filter(
+                (item) => item.gender === "female"
+            );
+            break;
+        case "man":
+            filteredByCategory = products.filter(
+                (item) => item.gender === "male"
+            );
+            break;
+        case "new":
+            filteredByCategory = products.filter((item) => item.new);
+            break;
+        case "bestsellers":
+            filteredByCategory = products.filter((item) => item.bestseller);
+            break;
+        default:
+            filteredByCategory = [...products];
     }
+    ////////////////////////////
+    ////////////////////////////
+    ////////////////////////////
 
-    if (category === "man") {
-        productList = products.filter((item) => item.gender === "male");
-    }
+    const renderedList = filteredByCategory
+        .filter((item) =>
+            queryColor ? item.colors.includes(queryColor) : item.colors.length
+        )
+        .filter((item) =>
+            querySize ? item.sizes.includes(querySize) : item.sizes.length
+        );
 
-    if (category === "new") {
-        productList = products.filter((item) => item.new);
-    }
+    const filterHandler = (formData) => {
+        // Looking for objects with values
+        const queryItems = Object.entries(formData).filter((item) => item[1]);
 
-    if (category === "bestsellers") {
-        productList = products.filter((item) => item.bestseller);
-    }
+        const queryString = queryItems
+            .map((item) => `${item[0]}=${item[1]}`)
+            .join("&");
+
+        history.push(`/catalog/categories/${category}?${queryString}`);
+    };
 
     return (
         <>
@@ -57,10 +86,13 @@ const Catalog = () => {
                 </PageContainer>
             </div>
             <PageContainer addClass={classes["filter-wrap"]}>
-                <Filter products={productList} />
+                <Filter
+                    products={filteredByCategory}
+                    filterHandler={filterHandler}
+                />
             </PageContainer>
             <PageContainer>
-                <CatalogList products={productList} />
+                <CatalogList products={renderedList} />
             </PageContainer>
         </>
     );
