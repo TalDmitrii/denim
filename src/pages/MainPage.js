@@ -12,14 +12,10 @@ import { useSelector } from "react-redux";
 
 const MainPage = () => {
     const bestsellers = useSelector((state) =>
-        state.products.products.filter(
-            (item) => item.category === "bestsellers"
-        )
+        state.products.products.filter((item) => item.bestseller)
     );
 
-    const categories = useSelector((state) =>
-        state.products.products.filter((item) => item.category === "categories")
-    );
+    const categories = useSelector((state) => state.products.products);
 
     return (
         <>

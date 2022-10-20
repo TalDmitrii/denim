@@ -15,6 +15,10 @@ const Catalog = () => {
 
     let productList = [];
 
+    if (category === "all") {
+        productList = products;
+    }
+
     if (category === "woman") {
         productList = products.filter((item) => item.gender === "female");
     }
@@ -25,6 +29,10 @@ const Catalog = () => {
 
     if (category === "new") {
         productList = products.filter((item) => item.new);
+    }
+
+    if (category === "bestsellers") {
+        productList = products.filter((item) => item.bestseller);
     }
 
     return (
@@ -39,9 +47,11 @@ const Catalog = () => {
                                     All categories
                                 </Link>
                             </li>
-                            <li>
-                                <span>{category}</span>
-                            </li>
+                            {category !== "all" && (
+                                <li>
+                                    <span>{category}</span>
+                                </li>
+                            )}
                         </ul>
                     </CatalogAdv>
                 </PageContainer>
