@@ -37,10 +37,16 @@ const Filter = (props) => {
             ),
     ];
 
+    const resetStates = () => {
+        setChosenColor(null);
+        setChosenSize(null);
+    };
+
     const filterToggle = () => {
         if (products?.length === 0) return;
 
         setIsFilterShown((prevState) => !prevState);
+        resetStates();
     };
 
     const submitHandler = (evt) => {
@@ -49,8 +55,6 @@ const Filter = (props) => {
         if (!(chosenColor || chosenSize)) return;
 
         props.filterHandler({ color: chosenColor, size: chosenSize });
-        setChosenColor(null);
-        setChosenSize(null);
         filterToggle();
     };
 
@@ -78,7 +82,11 @@ const Filter = (props) => {
             <Popup addClass={classes["popup"]}>
                 <section className={classes["filter"]}>
                     <form className={classes["form"]} onSubmit={submitHandler}>
-                        <button className={classes["clear"]} type="reset">
+                        <button
+                            className={classes["clear"]}
+                            type="reset"
+                            onClick={resetStates}
+                        >
                             Clear all
                         </button>
                         <h2 className={classes["title"]}>Filters</h2>
