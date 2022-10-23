@@ -1,4 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import filterSlice from "./filter";
 
 const initialProductsState = {
     products: [],
@@ -17,6 +18,7 @@ const productsSlice = createSlice({
 const store = configureStore({
     reducer: {
         products: productsSlice.reducer,
+        filter: filterSlice.reducer,
     },
 });
 

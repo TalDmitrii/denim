@@ -17,6 +17,7 @@ const FieldsetSize = (props) => {
                             value={size}
                             name="size"
                             className="hide-vis"
+                            defaultChecked={props.checkedSize === size}
                         />
                         <span>{size}</span>
                     </label>

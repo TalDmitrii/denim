@@ -17,6 +17,7 @@ const FieldsetColor = (props) => {
                             value={color}
                             name="color"
                             className="hide-vis"
+                            defaultChecked={props.checkedColor === color}
                         />
                         <span></span>
                     </label>

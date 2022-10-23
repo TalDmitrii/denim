@@ -3,7 +3,7 @@ import { useState } from "react";
 import classes from "./Dropdown.module.css";
 
 const Dropdown = (props) => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(props.open);
 
     const clickHandler = () => {
         setOpen((prevState) => !prevState);

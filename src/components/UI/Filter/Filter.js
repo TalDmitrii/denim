@@ -1,21 +1,23 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import Popup from "../Popup/Popup";
 import Overlay from "../Overlay/Overlay";
 import UIButton from "../UIButton/UIButton";
 import FieldsetColor from "../FieldsetColor/FieldsetColor";
 import FieldsetSize from "../FieldsetSize/FieldsetSize";
-import Dropdown from "../Dropdown/Dropdown";
 import MultiRange from "../MultiRange/MultiRange";
+import Dropdown from "../Dropdown/Dropdown";
+
+import { filterActions } from "../../../store/filter";
 
 import classes from "./Filter.module.css";
 
 const Filter = (props) => {
+    const dispatch = useDispatch();
     const [isFilterShown, setIsFilterShown] = useState(false);
-    const [chosenColor, setChosenColor] = useState(null);
-    const [chosenSize, setChosenSize] = useState(null);
-
     const products = props.products;
+
     const minPrice = Math.min(...products.map((item) => +item.price));
     const maxPrice = Math.max(...products.map((item) => +item.price));
     const colors = new Set(
@@ -24,6 +26,11 @@ const Filter = (props) => {
     const sizes = new Set(
         products.reduce((acc, item) => acc.concat(item.sizes), [])
     );
+
+    const chosenColor = useSelector((state) => state.filter.color);
+    const chosenSize = useSelector((state) => state.filter.size);
+    const chosenMinPrice = useSelector((state) => +state.filter.minPrice);
+    const chosenMaxPrice = useSelector((state) => +state.filter.maxPrice);
 
     const filteredItems = [
         ...products
@@ -34,39 +41,69 @@ const Filter = (props) => {
             )
             .filter((item) =>
                 chosenSize ? item.sizes.includes(chosenSize) : item.sizes.length
+            )
+            .filter((item) =>
+                chosenMinPrice ? item.price >= chosenMinPrice : item.price
+            )
+            .filter((item) =>
+                chosenMaxPrice ? item.price <= chosenMaxPrice : item.price
             ),
     ];
 
     const resetStates = () => {
-        setChosenColor(null);
-        setChosenSize(null);
+        dispatch(filterActions.setColor(null));
+        dispatch(filterActions.setSize(null));
+        dispatch(filterActions.setMinPrice(minPrice));
+        dispatch(filterActions.setMaxPrice(maxPrice));
     };
 
     const filterToggle = () => {
         if (products?.length === 0) return;
 
         setIsFilterShown((prevState) => !prevState);
-        resetStates();
     };
 
     const submitHandler = (evt) => {
         evt.preventDefault();
 
-        if (!(chosenColor || chosenSize)) return;
-
-        props.filterHandler({ color: chosenColor, size: chosenSize });
+        props.filterHandler({
+            color: chosenColor,
+            size: chosenSize,
+            minPrice: chosenMinPrice,
+            maxPrice: chosenMaxPrice,
+        });
         filterToggle();
     };
 
     const colorChangeHandler = (evt) => {
         const color = evt.target.value;
-        setChosenColor(color);
+        dispatch(filterActions.setColor(color));
     };
 
     const sizeChangeHandler = (evt) => {
         const size = evt.target.value;
-        setChosenSize(size);
+        dispatch(filterActions.setSize(size));
     };
+
+    const priceChangeHandler = (prices) => {
+        dispatch(filterActions.setMinPrice(prices[0]));
+        dispatch(filterActions.setMaxPrice(prices[1]));
+    };
+
+    // useEffect(() => {
+    //     if (items.length === 0) {
+    //         return;
+    //     }
+    //     setBtnIsHighlighted(true);
+
+    //     const timer = setTimeout(() => {
+    //         setBtnIsHighlighted(false);
+    //     }, 300);
+
+    //     return () => {
+    //         clearTimeout(timer);
+    //     };
+    // }, [items]);
 
     const btnClasses = `${classes["btn"]} ${
         isFilterShown ? classes["open"] : ""
@@ -75,6 +112,11 @@ const Filter = (props) => {
     const btnContent = ` (${filteredItems.length} ${
         filteredItems.length === 1 ? " product" : "products"
     })`;
+
+    const isDropdownRangeOpen = chosenMinPrice || chosenMaxPrice ? true : false;
+
+    const isBtnContentShown =
+        chosenColor || chosenSize || chosenMinPrice || chosenMaxPrice;
 
     const content = (
         <>
@@ -92,8 +134,8 @@ const Filter = (props) => {
                         <h2 className={classes["title"]}>Filters</h2>
                         <button
                             className={classes["close"]}
-                            onClick={filterToggle}
                             type="button"
+                            onClick={filterToggle}
                         >
                             Close
                         </button>
@@ -101,37 +143,47 @@ const Filter = (props) => {
                             <Dropdown
                                 addClass={classes["field-wrap"]}
                                 contentClass={classes["range-container"]}
+                                open={isDropdownRangeOpen}
                                 title="Price"
                             >
                                 <label className={classes["range-label"]}>
                                     <span>Price</span>
-                                    <MultiRange values={[minPrice, maxPrice]} />
+                                    <MultiRange
+                                        range={[minPrice, maxPrice]}
+                                        minValue={chosenMinPrice}
+                                        maxValue={chosenMaxPrice}
+                                        сhangeHandler={priceChangeHandler}
+                                    />
                                 </label>
                             </Dropdown>
                             <Dropdown
                                 addClass={classes["field-wrap"]}
                                 contentClass={classes["field-container"]}
+                                open={chosenColor ? true : false}
                                 title="Color"
                             >
                                 <FieldsetColor
                                     colors={[...colors]}
                                     changeHandler={colorChangeHandler}
+                                    checkedColor={chosenColor}
                                 />
                             </Dropdown>
                             <Dropdown
                                 addClass={classes["field-wrap"]}
                                 contentClass={classes["field-container"]}
+                                open={chosenSize ? true : false}
                                 title="Size"
                             >
                                 <FieldsetSize
                                     sizes={[...sizes]}
                                     changeHandler={sizeChangeHandler}
+                                    checkedSize={chosenSize}
                                 />
                             </Dropdown>
                         </div>
                         <UIButton addClass={classes["submit"]} type="submit">
                             Apply
-                            {(chosenColor || chosenSize) && btnContent}
+                            {isBtnContentShown && btnContent}
                         </UIButton>
                     </form>
                 </section>

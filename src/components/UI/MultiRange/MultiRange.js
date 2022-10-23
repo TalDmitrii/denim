@@ -36,10 +36,13 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
 }));
 
 const MultiRange = (props) => {
-    const [value, setValue] = useState([...props.values]);
-    const minValue = props.values[0];
-    const maxValue = props.values[1];
-    const minDistance = 10;
+    const value = [
+        props.minValue ? props.minValue : props.range[0],
+        props.maxValue ? props.maxValue : props.range[1],
+    ];
+    const minValue = props.range[0];
+    const maxValue = props.range[1];
+    const minDistance = 20;
 
     const valuetext = (value) => {
         return `$ ${value}`;
@@ -55,9 +58,11 @@ const MultiRange = (props) => {
         }
 
         if (activeThumb === 0) {
-            setValue([Math.min(newValue[0], value[1] - minDistance), value[1]]);
+            const newMinValue = Math.min(newValue[0], value[1] - minDistance);
+            props.сhangeHandler([newMinValue, value[1]]);
         } else {
-            setValue([value[0], Math.max(newValue[1], value[0] + minDistance)]);
+            const newMaxValue = Math.max(newValue[1], value[0] + minDistance);
+            props.сhangeHandler([value[0], newMaxValue]);
         }
     };
 
