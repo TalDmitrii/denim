@@ -53,8 +53,8 @@ const Filter = (props) => {
     const resetStates = () => {
         dispatch(filterActions.setColor(null));
         dispatch(filterActions.setSize(null));
-        dispatch(filterActions.setMinPrice(minPrice));
-        dispatch(filterActions.setMaxPrice(maxPrice));
+        dispatch(filterActions.setMinPrice(null));
+        dispatch(filterActions.setMaxPrice(null));
     };
 
     const filterToggle = () => {
@@ -113,10 +113,10 @@ const Filter = (props) => {
         filteredItems.length === 1 ? " product" : "products"
     })`;
 
-    const isDropdownRangeOpen = chosenMinPrice || chosenMaxPrice ? true : false;
-
     const isBtnContentShown =
-        chosenColor || chosenSize || chosenMinPrice || chosenMaxPrice;
+        chosenColor || chosenSize || !!chosenMinPrice || !!chosenMaxPrice;
+
+    const isDropdownRangeOpen = chosenMinPrice || chosenMaxPrice ? true : false;
 
     const content = (
         <>
