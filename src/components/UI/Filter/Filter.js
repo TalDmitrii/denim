@@ -66,12 +66,7 @@ const Filter = (props) => {
     const submitHandler = (evt) => {
         evt.preventDefault();
 
-        props.filterHandler({
-            color: chosenColor,
-            size: chosenSize,
-            minPrice: chosenMinPrice,
-            maxPrice: chosenMaxPrice,
-        });
+        props.filterHandler();
         filterToggle();
     };
 

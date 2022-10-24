@@ -1,0 +1,81 @@
+@import "../../../style/config.less";
+
+@colors: {
+    black: @product-black;
+    turquoise: @product-turquoise;
+    blue: @product-blue;
+    bluelight: @product-blue-light;
+    grey: @product-grey;
+}
+
+each(@colors, {
+    .filter-indicators button[data-color = "@{key}"]::after {
+        background-color: @value;
+    }
+});
+
+.filter-indicators {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    margin-bottom: -12px;
+}
+
+.filter-indicators li {
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+.filter-indicators button {
+    position: relative;
+    display: flex;
+    padding: 10px 48px 10px 10px;
+    font-size: 18px;
+    line-height: 24px;
+    // color: @grey-dark;
+    border: 2px solid @black;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 24px;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+    }
+
+    span {
+        position: absolute;
+        top: 50%;
+        right: 4px;
+        transform: translateY(-50%) rotate(45deg);
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            background-color: @black;
+        }
+
+        &::before {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 2px;
+        }
+
+        &::after {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+            width: 2px;
+        }
+    }
+}

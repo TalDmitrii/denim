@@ -1,0 +1,72 @@
+.filter-indicators button[data-color="black"]::after {
+  background-color: #2D2E2E;
+}
+.filter-indicators button[data-color="turquoise"]::after {
+  background-color: #B0C3C7;
+}
+.filter-indicators button[data-color="blue"]::after {
+  background-color: #3B6392;
+}
+.filter-indicators button[data-color="bluelight"]::after {
+  background-color: #4193DA;
+}
+.filter-indicators button[data-color="grey"]::after {
+  background-color: #BFC3C8;
+}
+.filter-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-bottom: -12px;
+}
+.filter-indicators li {
+  margin-right: 12px;
+  margin-bottom: 12px;
+}
+.filter-indicators button {
+  position: relative;
+  display: flex;
+  padding: 10px 48px 10px 10px;
+  font-size: 18px;
+  line-height: 24px;
+  border: 2px solid #151C22;
+}
+.filter-indicators button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+.filter-indicators button span {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%) rotate(45deg);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+.filter-indicators button span::before,
+.filter-indicators button span::after {
+  content: "";
+  position: absolute;
+  background-color: #151C22;
+}
+.filter-indicators button span::before {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 2px;
+}
+.filter-indicators button span::after {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 2px;
+}

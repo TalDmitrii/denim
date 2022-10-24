@@ -1,11 +1,12 @@
 import { Link, useParams, useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import PageContainer from "../components/layout/PageContainer/PageContainer";
 import CatalogAdv from "../components/CatalogAdv/CatalogAdv";
 import CatalogList from "../components/CatalogList/CatalogList";
 import Filter from "../components/UI/Filter/Filter";
+import FilterMarkers from "../components/UI/FilterMarkers/FilterMarkers";
 
 import { filterActions } from "../store/filter";
 
@@ -15,14 +16,18 @@ const Catalog = () => {
     const params = useParams();
     const category = params.category;
     const history = useHistory();
-    const location = useLocation();
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.products.products);
+    const [isURLChanged, setIsURLChanged] = useState(false);
+    const [isFilterTouched, setIsFilterTouched] = useState(false);
 
+    const products = useSelector((state) => state.products.products);
+    const filter = useSelector((state) => state.filter);
+
+    const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const queryColor = queryParams.get("color");
     const querySize = queryParams.get("size");
-    const queryMinPrice = +queryParams.get("minPrice");
+    const queryMinPrice = +queryParams.get("minPrice"); // ????
     const queryMaxPrice = +queryParams.get("maxPrice");
 
     useEffect(() => {
@@ -72,15 +77,30 @@ const Catalog = () => {
             queryMaxPrice ? item.price <= queryMaxPrice : item.price
         );
 
-    const filterHandler = (formData) => {
+    const refreshURL = (params) => {
         // Looking for objects with NOT empty values
-        const queryItems = Object.entries(formData).filter((item) => item[1]);
+        const queryItems = Object.entries(params).filter((item) => item[1]);
 
         const queryString = queryItems
             .map((item) => `${item[0]}=${item[1]}`)
             .join("&");
 
         history.push(`/catalog/categories/${category}?${queryString}`);
+    };
+
+    const filterHandler = () => {
+        refreshURL(filter);
+    };
+
+    useEffect(() => {
+        if (!isFilterTouched) return;
+
+        filterHandler();
+    }, [isURLChanged, isFilterTouched]);
+
+    const removeFilterHandler = () => {
+        setIsURLChanged((prevState) => !prevState);
+        setIsFilterTouched(true);
     };
 
     return (
@@ -105,6 +125,7 @@ const Catalog = () => {
                 </PageContainer>
             </div>
             <PageContainer addClass={classes["filter-wrap"]}>
+                <FilterMarkers clickHandler={removeFilterHandler} />
                 <Filter
                     products={filteredByCategory}
                     filterHandler={filterHandler}
