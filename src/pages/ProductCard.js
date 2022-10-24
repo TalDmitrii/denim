@@ -18,6 +18,9 @@ const ProductCard = () => {
     const colors = product.colors;
     const sizes = product.sizes;
 
+    const chosenColor = useSelector((state) => state.filter.color);
+    const chosenSize = useSelector((state) => state.filter.size);
+
     const [productImages, setProductImages] = useState([
         product.paths.x1,
         ...product.paths.previews,
@@ -62,10 +65,12 @@ const ProductCard = () => {
                         <FieldsetColor
                             addClass={classes["fieldset"]}
                             colors={colors}
+                            checkedColor={chosenColor}
                         />
                         <FieldsetSize
                             addClass={classes["fieldset"]}
                             sizes={sizes}
+                            checkedSize={chosenSize}
                         />
                         <p className={classes["price"]}>$ {product.price}</p>
                         <UIButton addClass={classes["btn"]} type="submit">
