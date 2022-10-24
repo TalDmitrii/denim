@@ -1,7 +1,7 @@
 import classes from "./UserNavigation.module.css";
 
-import { ReactComponent as IconSearch } from "../../../images/svg/search.svg";
-import { ReactComponent as IconBasket } from "../../../images/svg/basket.svg";
+import IconBasket from "../../UI/Icons/IconBasket";
+import IconSearch from "../../UI/Icons/IconSearch";
 
 const UserNavigation = (props) => {
     const navClasses = `

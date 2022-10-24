@@ -1,7 +1,7 @@
-import { ReactComponent as IconLogo } from "../../../images/svg/logo.svg";
+import { ReactComponent as Icon } from "../../../images/svg/logo.svg";
 
 const Logo = () => {
-    return <IconLogo />;
+    return <Icon />;
 };
 
 export default Logo;
