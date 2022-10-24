@@ -40,6 +40,7 @@ const FilterMarkers = (props) => {
             {queryColor && (
                 <li>
                     <button
+                        className={classes["btn-color"]}
                         type="button"
                         aria-label={`Remove ${queryColor} color filter`}
                         data-color={queryColor}
@@ -53,6 +54,7 @@ const FilterMarkers = (props) => {
             {querySize && (
                 <li>
                     <button
+                        className={classes["btn-size"]}
                         type="button"
                         aria-label={`Remove ${querySize} size filter`}
                         data-color={querySize}
