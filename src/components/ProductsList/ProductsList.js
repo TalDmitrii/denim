@@ -1,31 +1,17 @@
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
-import Popup from "../UI/Popup/Popup";
-import Overlay from "../UI/Overlay/Overlay";
-import FieldsetSize from "../UI/FieldsetSize/FieldsetSize";
-import FieldsetColor from "../UI/FieldsetColor/FieldsetColor";
-import UIButton from "../UI/UIButton/UIButton";
-
-import { cartActions } from "../../store/cart";
+import PopupChooseProduct from "../PopupChooseProduct/PopupChoseProduct";
 
 import IconBasket from "../UI/Icons/IconBasket";
 
 import classes from "./ProductsList.module.css";
 
 const ProductsList = (props) => {
-    const dispatch = useDispatch();
-    const products = useSelector((state) => state.products.products);
     const cartProducts = useSelector((state) => state.cart.products);
     const [isParamsPopupShown, setIsParamsPopupShown] = useState(false);
     const [productID, setProductID] = useState(null);
-    const [productColor, setProductColor] = useState(null);
-    const [productSize, setProductSize] = useState(null);
-    const [isInCart, setIsInCart] = useState(false);
-
-    const colors = products.find((item) => +item.id === productID)?.colors;
-    const sizes = products.find((item) => +item.id === productID)?.sizes;
 
     const btnClickHandler = (evt) => {
         const id = +evt.target.closest("li").dataset.id;
@@ -33,80 +19,9 @@ const ProductsList = (props) => {
         toggleParamsPopup();
     };
 
-    const addToCartHandler = (evt) => {
-        evt.preventDefault();
-
-        dispatch(
-            cartActions.addToCart({
-                id: productID,
-                color: productColor,
-                size: productSize,
-            })
-        );
-
-        toggleParamsPopup();
-    };
-
-    const colorChangeHandler = (evt) => {
-        setProductColor(evt.target.value);
-    };
-
-    const sizeChangeHandler = (evt) => {
-        setProductSize(evt.target.value);
-    };
-
-    const resetValues = () => {
-        setProductColor(null);
-        setProductSize(null);
-    };
-
     const toggleParamsPopup = () => {
         setIsParamsPopupShown((prevState) => !prevState);
-        resetValues();
     };
-
-    const checkIsInCart = () => {
-        if (!(productColor && productSize)) return;
-
-        const isFound = cartProducts.find((item) => {
-            return (
-                item.id === productID &&
-                item.color === productColor &&
-                item.size === productSize
-            );
-        });
-
-        isFound ? setIsInCart(true) : setIsInCart(false);
-    };
-
-    useEffect(() => {
-        checkIsInCart();
-    }, [productColor, productSize]);
-
-    const popupContent = (
-        <>
-            <Overlay onOverlayClick={toggleParamsPopup} />
-            <Popup addClass={classes["popup"]}>
-                <h2>Chose color and size</h2>
-                <form action="" onSubmit={addToCartHandler}>
-                    <FieldsetColor
-                        colors={colors}
-                        changeHandler={colorChangeHandler}
-                    />
-                    <FieldsetSize
-                        sizes={sizes}
-                        changeHandler={sizeChangeHandler}
-                    />
-                    <UIButton
-                        type={"submit"}
-                        disabled={!(productColor && productSize) || isInCart}
-                    >
-                        {isInCart ? "In cart" : "Add to cart"}
-                    </UIButton>
-                </form>
-            </Popup>
-        </>
-    );
 
     return (
         <>
@@ -170,7 +85,12 @@ const ProductsList = (props) => {
                     ))}
                 </ul>
             </section>
-            {isParamsPopupShown && popupContent}
+            {isParamsPopupShown && (
+                <PopupChooseProduct
+                    productID={productID}
+                    toggleParamsPopup={toggleParamsPopup}
+                />
+            )}
         </>
     );
 };
