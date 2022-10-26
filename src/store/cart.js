@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const cartInitial = {
-    // products: [{ id: 1, size: "m", color: "bluelight" }],
-    products: [],
+    products: JSON.parse(localStorage.getItem("cartProducts")) || [],
 };
+
+console.log(cartInitial);
 
 const cartSlice = createSlice({
     name: "cart",
@@ -11,10 +12,18 @@ const cartSlice = createSlice({
     reducers: {
         addToCart(state, action) {
             state.products.push(action.payload);
+            localStorage.setItem(
+                "cartProducts",
+                JSON.stringify(state.products)
+            );
         },
         removeFromCart(state, action) {
             state.products = state.products.filter(
-                (item) => item !== action.payload
+                (item) => item.localStorageID !== action.payload
+            );
+            localStorage.setItem(
+                "cartProducts",
+                JSON.stringify(state.products)
             );
         },
     },

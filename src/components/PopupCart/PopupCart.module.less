@@ -1,0 +1,135 @@
+@import "../../style/config.less";
+
+@colors: {
+    black: @product-black;
+    turquoise: @product-turquoise;
+    blue: @product-blue;
+    bluelight: @product-blue-light;
+    grey: @product-grey;
+}
+
+.popup {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content 1fr min-content;
+    grid-row-gap: 20px;
+}
+
+.title-wrap {
+    display: grid;
+    grid-template-areas: "empty title close";
+    grid-template-columns: 1fr 150px 1fr;
+}
+
+.title {
+    grid-area: title;
+    text-align: center;
+    font-size: 18px;
+    line-height: 24px;
+
+    .from(@break-desktop, {
+        font-size: 24px;
+        line-height: 32px;
+    });
+}
+
+.btn-close {
+    grid-area: close;
+    justify-self: end;
+    margin-right: -@padding;
+    padding: 12px @padding;
+    margin-top: -8px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+
+    .from(@break-desktop, {
+        margin-top: 0;
+        font-size: 16px;
+        line-height: 20px;
+    });
+}
+
+.list {
+    .m-scroll();
+}
+
+.item {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.item picture {
+    width: 130px;
+    display: flex;
+    margin-right: 12px;
+}
+
+.item h3 {
+    margin-bottom: 8px;
+    font-size: 16px;
+    line-height: 22px;
+
+    .from(@break-tablet, {
+        font-size: 18px;
+        line-height: 24px;
+    });
+}
+
+.info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.price {
+    margin-bottom: 8px;
+}
+
+.color {
+    display: flex;
+    align-items: start;
+    margin-bottom: 8px;
+    color: @grey-dark;
+    text-transform: capitalize;
+
+    &::before {
+        content: "";
+        width: 22px;
+        height: 22px;
+        margin-right: 8px;
+        border-radius: 50%;
+    }
+}
+
+each(@colors, {
+    .color[data-color = "@{key}"]::before {
+        background-color: @value;
+    }
+});
+
+.size {
+    color: @grey-dark;
+    margin-bottom: 8px;
+
+    span {
+        text-transform: uppercase;
+    }
+}
+
+.remove {
+    width: 40px;
+    height: 40px;
+    margin-top: auto;
+    margin-left: auto;
+    transform: translateY(12px);
+    
+    .m-pointer-only({
+        &:hover path {
+            fill: @black;
+        }
+    });
+}

@@ -32,6 +32,9 @@ const PopupChooseProduct = (props) => {
                 id: productID,
                 color: productColor,
                 size: productSize,
+                localStorageID: [productID, productColor, productSize].join(
+                    "&"
+                ),
             })
         );
 

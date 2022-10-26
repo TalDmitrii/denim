@@ -1,5 +1,10 @@
+.popup {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr;
+  grid-row-gap: 20px;
+}
 .popup h2 {
-  margin-bottom: 20px;
   text-align: center;
   font-size: 18px;
   line-height: 24px;
@@ -10,9 +15,14 @@
     line-height: 32px;
   }
 }
+.popup form {
+  display: flex;
+  flex-direction: column;
+}
 .popup fieldset {
   margin-bottom: 20px;
 }
 .popup button {
   width: 100%;
+  margin-top: auto;
 }

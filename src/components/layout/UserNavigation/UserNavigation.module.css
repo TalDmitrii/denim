@@ -4,6 +4,7 @@
   justify-content: flex-end;
 }
 .user-navigation button {
+  position: relative;
   display: flex;
   align-items: center;
   padding: 22px 12px;
@@ -17,6 +18,22 @@
   .user-navigation button:hover path {
     stroke: #FFB400;
   }
+}
+.user-navigation button span {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  min-width: 20px;
+  max-width: 30px;
+  padding: 0 4px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #151C22;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #FFB400;
+  border-radius: 20px;
 }
 @media (min-width: 1024px) {
   .user-navigation--main-page {
