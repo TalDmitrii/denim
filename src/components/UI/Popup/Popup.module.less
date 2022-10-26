@@ -1,11 +1,11 @@
 @import "../../../style/config.less";
 
 .popup {
-    background-color: @white;
+    position: fixed;
     z-index: @zi-popup;
+    background-color: @white;
 
     .to(@break-tablet, {
-        position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
@@ -19,8 +19,8 @@
         transform: translate(-50%, -50%);
         width: 90vw;
         max-width: 600px;
-        min-height: 600px;
-        position: absolute;
+        min-height: 200px;
+        max-height: 60vh;
         padding: 24px;
         border: 3px solid @black;
     });

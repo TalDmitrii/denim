@@ -79,6 +79,11 @@ legend {
     padding: 21px 24px;
   }
 }
+.button:disabled {
+  color: #727A82;
+  background-color: #F1F2F4;
+  cursor: default;
+}
 .page-container {
   width: 100%;
   max-width: 1366px;
