@@ -67,8 +67,12 @@
 }
 .item picture {
   width: 130px;
+  height: 168px;
   display: flex;
   margin-right: 12px;
+}
+.item picture img {
+  object-fit: cover;
 }
 .item h3 {
   margin-bottom: 8px;

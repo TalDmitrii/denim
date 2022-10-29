@@ -78,25 +78,20 @@ const PopupCart = (props) => {
             <Overlay onOverlayClick={props.overlayClickHandler} />
             <Popup addClass={classes["popup"]}>
                 <div className={classes["title-wrap"]}>
-                    <h2 className={classes["title"]}>
-                        {updatedList?.length
-                            ? "Cart"
-                            : "Add something to the Cart!"}
-                    </h2>
+                    <h2 className={classes["title"]}>Cart</h2>
                     <button
                         className={classes["btn-close"]}
                         type="button"
                         onClick={props.overlayClickHandler}
+                        aria-label="Close cart popup"
                     >
                         Close
                     </button>
                 </div>
-                {updatedList?.length > 0 && popupContent}
-                {updatedList?.length > 0 && (
-                    <UILink addClass={classes["btn-to-cart"]} to={"/"}>
-                        Go to Cart
-                    </UILink>
-                )}
+                {popupContent}
+                <UILink addClass={classes["btn-to-cart"]} to={"/"}>
+                    Go to Cart
+                </UILink>
             </Popup>
         </>
     );

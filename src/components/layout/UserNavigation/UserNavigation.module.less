@@ -13,10 +13,14 @@
     padding: 22px 12px;
 
     .m-pointer-only({
-        &:hover path {
+        &:not(:disabled):hover path {
             stroke: @orange;
         }
     });
+
+    &:disabled {
+        cursor: default;
+    }
 
     span {
         position: absolute;

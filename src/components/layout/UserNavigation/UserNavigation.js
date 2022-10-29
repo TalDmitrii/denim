@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import PopupCart from "../../PopupCart/PopupCart";
@@ -9,14 +9,23 @@ import classes from "./UserNavigation.module.css";
 
 const UserNavigation = (props) => {
     const [isCartShown, setIsCartShown] = useState(false);
+
     const cartProductsLength = useSelector(
         (state) => state.cart.products?.length
     );
 
-    console.log(cartProductsLength);
+    useEffect(() => {
+        if (cartProductsLength === 0) {
+            setIsCartShown(false);
+        }
+    }, [cartProductsLength]);
 
-    const cartToggle = () => {
-        setIsCartShown((prevState) => !prevState);
+    const openCartPopup = () => {
+        setIsCartShown(true);
+    };
+
+    const closeCartPopup = () => {
+        setIsCartShown(false);
     };
 
     const navClasses = `
@@ -34,7 +43,7 @@ const UserNavigation = (props) => {
                 <li>
                     <button
                         type="button"
-                        onClick={cartToggle}
+                        onClick={openCartPopup}
                         disabled={cartProductsLength === 0}
                     >
                         {cartProductsLength > 0 && (
@@ -44,7 +53,9 @@ const UserNavigation = (props) => {
                     </button>
                 </li>
             </ul>
-            {isCartShown && <PopupCart overlayClickHandler={cartToggle} />}
+            {isCartShown && cartProductsLength !== 0 && (
+                <PopupCart overlayClickHandler={closeCartPopup} />
+            )}
         </>
     );
 };

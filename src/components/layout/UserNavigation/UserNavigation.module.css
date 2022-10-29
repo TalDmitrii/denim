@@ -10,14 +10,17 @@
   padding: 22px 12px;
 }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .user-navigation button:hover path {
+  .user-navigation button:not(:disabled):hover path {
     stroke: #FFB400;
   }
 }
 @media (hover: hover) and (pointer: fine) {
-  .user-navigation button:hover path {
+  .user-navigation button:not(:disabled):hover path {
     stroke: #FFB400;
   }
+}
+.user-navigation button:disabled {
+  cursor: default;
 }
 .user-navigation button span {
   position: absolute;
