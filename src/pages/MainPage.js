@@ -1,21 +1,52 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+
 import MainNavigation from "../components/layout/MainNavigation/MainNavigation";
 import UserNavigation from "../components/layout/UserNavigation/UserNavigation";
-
-import classes from "./MainPage.module.css";
-
 import New from "../components/New/New";
 import Social from "../components/Social/Social";
 import ProductsList from "../components/ProductsList/ProductsList";
 import Collection from "../components/Collection/Collection";
 import PageContainer from "../components/layout/PageContainer/PageContainer";
-import { useSelector } from "react-redux";
+
+import { headerActions } from "../store/header";
+
+import classes from "./MainPage.module.css";
 
 const MainPage = () => {
+    const dispatch = useDispatch();
+
     const bestsellers = useSelector((state) =>
         state.products.products.filter((item) => item.bestseller)
     );
 
     const categories = useSelector((state) => state.products.products);
+
+    useEffect(() => {
+        const intersectionTarget = document.querySelector(".j-main-nav-body");
+        if (!intersectionTarget) return;
+
+        dispatch(headerActions.setIsNavVisible(false));
+
+        const intersectHandler = (entries) => {
+            const [entry] = entries;
+
+            entry.isIntersecting
+                ? dispatch(headerActions.setIsNavVisible(false))
+                : dispatch(headerActions.setIsNavVisible(true));
+        };
+
+        const observer = new IntersectionObserver(intersectHandler, {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0,
+        });
+        observer.observe(intersectionTarget);
+
+        return () => {
+            dispatch(headerActions.setIsNavVisible(true));
+        };
+    }, [dispatch]);
 
     return (
         <>
@@ -23,7 +54,9 @@ const MainPage = () => {
             <div className={classes["wrap"]}>
                 <PageContainer addClass={classes["content"]}>
                     <div className={classes["grid"]}>
-                        <div className={classes["main-nav"]}>
+                        <div
+                            className={`${classes["main-nav"]} j-main-nav-body`}
+                        >
                             <MainNavigation
                                 addClass={"main-navigation--page"}
                             />

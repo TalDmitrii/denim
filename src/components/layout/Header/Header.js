@@ -1,5 +1,6 @@
-import { Route, NavLink } from "react-router-dom";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import MainNavigation from "../MainNavigation/MainNavigation";
 import UserNavigation from "../UserNavigation/UserNavigation";
@@ -12,6 +13,7 @@ import classes from "./Header.module.css";
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
+    const isNavVisible = useSelector((state) => state.header.isNavVisible);
 
     const openModal = () => {
         setShowMenu(true);
@@ -22,23 +24,23 @@ const Header = () => {
     };
 
     return (
-        <header className={classes.header}>
-            <Route path={["/catalog", "/product/:productID"]}>
-                <div className={classes["header__nav-wrap"]}>
+        <header className={classes["header"]}>
+            {isNavVisible && (
+                <div className={`${classes["header__nav-wrap"]}`}>
                     <BurgerMenu onBurgerClick={openModal} />
                     <MainNavigation addClass={"main-navigation--header"} />
                 </div>
-            </Route>
+            )}
             <div className={classes["header__logo"]}>
                 <NavLink to="/">
                     <Logo />
                 </NavLink>
             </div>
-            <Route path={["/catalog", "/product/:productID"]}>
-                <div className={classes["header__user-nav"]}>
+            {isNavVisible && (
+                <div className={`${classes["header__user-nav"]}`}>
                     <UserNavigation addClass={"user-navigation--header"} />
                 </div>
-            </Route>
+            )}
             {showMenu && (
                 <Popup>
                     <Menu onCloseHandler={closeModal} />

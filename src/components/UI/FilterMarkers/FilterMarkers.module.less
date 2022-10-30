@@ -47,10 +47,11 @@ each(@colors, {
 .filter-indicators button {
     position: relative;
     display: flex;
-    padding: 10px 30px 10px 10px;
+    padding: 10px 34px 10px 10px;
     font-size: 18px;
     line-height: 24px;
-    border: 2px solid @black;
+    color: @grey-dark;
+    border: 2px solid currentColor;
 
     &::after {
         content: "";
@@ -63,20 +64,20 @@ each(@colors, {
         border-radius: 50%;
     }
 
-    span {
+    b {
         position: absolute;
         top: 50%;
         right: 4px;
         transform: translateY(-50%) rotate(45deg);
-        width: 18px;
-        height: 18px;
+        width: 14px;
+        height: 14px;
         border-radius: 50%;
 
         &::before,
         &::after {
             content: "";
             position: absolute;
-            background-color: @black;
+            background-color: currentColor;
         }
 
         &::before {
@@ -101,6 +102,7 @@ each(@colors, {
     padding-right: 48px;
 }
 
-.filter-indicators .btn-size {
-    text-transform: capitalize;
+.filter-indicators .btn-size span {
+    margin-left: 4px;
+    text-transform: uppercase;
 }

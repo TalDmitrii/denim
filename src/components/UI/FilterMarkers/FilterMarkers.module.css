@@ -55,10 +55,11 @@
 .filter-indicators button {
   position: relative;
   display: flex;
-  padding: 10px 30px 10px 10px;
+  padding: 10px 34px 10px 10px;
   font-size: 18px;
   line-height: 24px;
-  border: 2px solid #151C22;
+  color: #727A82;
+  border: 2px solid currentColor;
 }
 .filter-indicators button::after {
   content: "";
@@ -70,29 +71,29 @@
   height: 18px;
   border-radius: 50%;
 }
-.filter-indicators button span {
+.filter-indicators button b {
   position: absolute;
   top: 50%;
   right: 4px;
   transform: translateY(-50%) rotate(45deg);
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
 }
-.filter-indicators button span::before,
-.filter-indicators button span::after {
+.filter-indicators button b::before,
+.filter-indicators button b::after {
   content: "";
   position: absolute;
-  background-color: #151C22;
+  background-color: currentColor;
 }
-.filter-indicators button span::before {
+.filter-indicators button b::before {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
   width: 100%;
   height: 2px;
 }
-.filter-indicators button span::after {
+.filter-indicators button b::after {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -102,6 +103,7 @@
 .filter-indicators .btn-color {
   padding-right: 48px;
 }
-.filter-indicators .btn-size {
-  text-transform: capitalize;
+.filter-indicators .btn-size span {
+  margin-left: 4px;
+  text-transform: uppercase;
 }

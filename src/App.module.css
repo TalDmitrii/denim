@@ -6,3 +6,11 @@
 .main {
   flex-grow: 1;
 }
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 98;
+  background-color: #ffffff;
+  border-bottom: 1px solid #F1F2F4;
+  box-shadow: 0 1px 10px #F1F2F4;
+}

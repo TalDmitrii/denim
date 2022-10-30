@@ -47,7 +47,7 @@ const FilterMarkers = (props) => {
                         onClick={removeColorHandler}
                     >
                         Color: {`${queryColor}`}
-                        <span></span>
+                        <b></b>
                     </button>
                 </li>
             )}
@@ -60,8 +60,8 @@ const FilterMarkers = (props) => {
                         data-color={querySize}
                         onClick={removeSizeHandler}
                     >
-                        Size: {`${querySize}`}
-                        <span></span>
+                        Size: <span>{`${querySize}`}</span>
+                        <b></b>
                     </button>
                 </li>
             )}

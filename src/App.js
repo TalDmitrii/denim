@@ -205,7 +205,7 @@ function App() {
 
     return (
         <div className={classes.app}>
-            <PageContainer>
+            <PageContainer addClass={classes.sticky}>
                 <Header />
             </PageContainer>
             <main className={classes.main}>
