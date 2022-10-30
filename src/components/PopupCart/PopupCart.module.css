@@ -98,7 +98,7 @@
 }
 .color {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   margin-bottom: 8px;
   color: #727A82;
   text-transform: capitalize;
