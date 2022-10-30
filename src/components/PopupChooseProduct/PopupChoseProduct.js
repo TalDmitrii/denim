@@ -49,7 +49,7 @@ const PopupChooseProduct = (props) => {
         setProductSize(evt.target.value);
     };
 
-    const checkIsInCart = () => {
+    useEffect(() => {
         if (!(productColor && productSize)) return;
 
         const isFound = cartProducts.find((item) => {
@@ -61,11 +61,7 @@ const PopupChooseProduct = (props) => {
         });
 
         isFound ? setIsInCart(true) : setIsInCart(false);
-    };
-
-    useEffect(() => {
-        checkIsInCart();
-    }, [productColor, productSize]);
+    }, [productColor, productSize, productID, cartProducts]);
 
     return (
         <>
