@@ -1,15 +1,5 @@
 @import "../../../style/config.less";
 
-.main-navigation {
-    /*  */
-}
-
-@media (max-width: 767px) {
-    .main-navigation--header {
-        display: none;
-    }
-}
-
 .main-navigation a {
     display: block;
     padding: 12px;
@@ -23,23 +13,3 @@
     display: flex;
     flex-wrap: wrap;
 }
-
-.main-navigation--page {
-    ul {
-        .from(@break-desktop, {
-            flex-direction: column;
-        });
-    }
-
-    li {
-        .from(@break-tablet, {
-            margin-right: 12px;
-        });
-
-        .from(@break-desktop, {
-            margin-right: 0;
-            margin-bottom: 8px;
-        });
-    }
-}
-

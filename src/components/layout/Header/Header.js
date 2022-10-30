@@ -10,6 +10,7 @@ import Popup from "../../UI/Popup/Popup";
 import Logo from "../../UI/Icons/Logo";
 
 import classes from "./Header.module.css";
+import PageContainer from "../PageContainer/PageContainer";
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
@@ -24,29 +25,33 @@ const Header = () => {
     };
 
     return (
-        <header className={classes["header"]}>
-            {isNavVisible && (
-                <div className={`${classes["header__nav-wrap"]}`}>
-                    <BurgerMenu onBurgerClick={openModal} />
-                    <MainNavigation addClass={"main-navigation--header"} />
+        <PageContainer>
+            <header className={classes["header"]}>
+                {isNavVisible && (
+                    <div className={classes["header__nav-wrap"]}>
+                        <BurgerMenu onBurgerClick={openModal} />
+                        <MainNavigation
+                            addClass={classes["header__main-nav"]}
+                        />
+                    </div>
+                )}
+                <div className={classes["header__logo"]}>
+                    <NavLink to="/">
+                        <Logo />
+                    </NavLink>
                 </div>
-            )}
-            <div className={classes["header__logo"]}>
-                <NavLink to="/">
-                    <Logo />
-                </NavLink>
-            </div>
-            {isNavVisible && (
-                <div className={`${classes["header__user-nav"]}`}>
-                    <UserNavigation addClass={"user-navigation--header"} />
-                </div>
-            )}
-            {showMenu && (
-                <Popup>
-                    <Menu onCloseHandler={closeModal} />
-                </Popup>
-            )}
-        </header>
+                {isNavVisible && (
+                    <div className={`${classes["header__user-nav"]}`}>
+                        <UserNavigation />
+                    </div>
+                )}
+                {showMenu && (
+                    <Popup>
+                        <Menu onCloseHandler={closeModal} />
+                    </Popup>
+                )}
+            </header>
+        </PageContainer>
     );
 };
 

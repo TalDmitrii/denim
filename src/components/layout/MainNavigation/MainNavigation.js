@@ -4,7 +4,7 @@ import classes from "./MainNavigation.module.css";
 const MainNavigation = (props) => {
     const navClasses = `
         ${classes["main-navigation"]} 
-        ${props.addClass ? classes[`${props.addClass}`] : ""}`;
+        ${props.addClass ? " " + props.addClass : ""}`;
 
     return (
         <nav className={navClasses}>

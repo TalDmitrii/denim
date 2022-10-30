@@ -50,6 +50,23 @@
     .from(@break-desktop-lg, {
         margin-top: 38px;
     });
+
+    ul {
+        .from(@break-desktop, {
+            flex-direction: column;
+        });
+    }
+
+    li {
+        .from(@break-tablet, {
+            margin-right: 12px;
+        });
+
+        .from(@break-desktop, {
+            margin-right: 0;
+            margin-bottom: 8px;
+        });
+    }
 }
 
 .user-nav {
@@ -64,6 +81,25 @@
     .from(@break-desktop-lg, {
         margin-top: 34px;
     });
+
+    ul {
+        .from(@break-desktop, {
+            flex-direction: column-reverse;
+            align-items: flex-end;
+        });
+    }
+
+    button {
+        .from(@break-desktop, {
+            padding: 16px 12px;
+        });
+
+        span {
+            .from(@break-desktop, {
+                top: 2px;
+            });
+        }
+    }
 }
 
 .new {

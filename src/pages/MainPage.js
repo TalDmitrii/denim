@@ -57,14 +57,10 @@ const MainPage = () => {
                         <div
                             className={`${classes["main-nav"]} j-main-nav-body`}
                         >
-                            <MainNavigation
-                                addClass={"main-navigation--page"}
-                            />
+                            <MainNavigation />
                         </div>
                         <div className={classes["user-nav"]}>
-                            <UserNavigation
-                                addClass={"user-navigation--main-page"}
-                            />
+                            <UserNavigation />
                         </div>
                         <div className={classes["new"]}>
                             <New />

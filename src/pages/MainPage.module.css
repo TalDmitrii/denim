@@ -44,6 +44,22 @@
     margin-top: 38px;
   }
 }
+@media (min-width: 1024px) {
+  .main-nav ul {
+    flex-direction: column;
+  }
+}
+@media (min-width: 768px) {
+  .main-nav li {
+    margin-right: 12px;
+  }
+}
+@media (min-width: 1024px) {
+  .main-nav li {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+}
 .user-nav {
   grid-area: user-nav;
   margin-right: -12px;
@@ -57,6 +73,22 @@
 @media (min-width: 1366px) {
   .user-nav {
     margin-top: 34px;
+  }
+}
+@media (min-width: 1024px) {
+  .user-nav ul {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+}
+@media (min-width: 1024px) {
+  .user-nav button {
+    padding: 16px 12px;
+  }
+}
+@media (min-width: 1024px) {
+  .user-nav button span {
+    top: 2px;
   }
 }
 .new {

@@ -30,7 +30,7 @@ const UserNavigation = (props) => {
 
     const navClasses = `
         ${classes["user-navigation"]} 
-        ${props.addClass ? classes[`${props.addClass}`] : ""}`;
+        ${props.addClass ? " " + props.addClass : ""}`;
 
     return (
         <>

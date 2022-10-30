@@ -1,6 +1,11 @@
 .wrap {
   margin-bottom: 28px;
 }
+@media (max-width: 767.98px) {
+  .wrap {
+    margin-top: 12px;
+  }
+}
 @media (min-width: 768px) {
   .wrap {
     background-color: #F1F2F4;

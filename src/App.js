@@ -205,9 +205,9 @@ function App() {
 
     return (
         <div className={classes.app}>
-            <PageContainer addClass={classes.sticky}>
+            <div className={classes.sticky}>
                 <Header />
-            </PageContainer>
+            </div>
             <main className={classes.main}>
                 <Suspense fallback={<Loader />}>
                     <Switch>
