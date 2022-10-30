@@ -23,39 +23,39 @@ const Footer = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="">Sitemap</NavLink>
+                        <NavLink to="/">Sitemap</NavLink>
                     </li>
                     <li>
-                        <NavLink to="">Shop</NavLink>
+                        <NavLink to="/">Shop</NavLink>
                     </li>
                     <li>
-                        <NavLink to="">Service</NavLink>
+                        <NavLink to="/">Service</NavLink>
                     </li>
                     <li>
-                        <NavLink to="">Delivery</NavLink>
+                        <NavLink to="/">Delivery</NavLink>
                     </li>
                     <li>
-                        <NavLink to="">Contacts</NavLink>
+                        <NavLink to="/">Contacts</NavLink>
                     </li>
                 </ul>
                 <ul className={classes.social}>
                     <li>
-                        <a href="">
+                        <a href="/">
                             <IconFB />
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="/">
                             <IconInst />
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="/">
                             <IconPint />
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="/">
                             <IconTw />
                         </a>
                     </li>

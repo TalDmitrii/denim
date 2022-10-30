@@ -1,6 +1,6 @@
 import { Link, useParams, useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import PageContainer from "../components/layout/PageContainer/PageContainer";
 import CatalogAdv from "../components/CatalogAdv/CatalogAdv";
@@ -77,26 +77,29 @@ const Catalog = () => {
             queryMaxPrice ? item.price <= queryMaxPrice : item.price
         );
 
-    const refreshURL = (params) => {
-        // Looking for objects with NOT empty values
-        const queryItems = Object.entries(params).filter((item) => item[1]);
+    const refreshURL = useCallback(
+        (params) => {
+            // Looking for objects with NOT empty values
+            const queryItems = Object.entries(params).filter((item) => item[1]);
 
-        const queryString = queryItems
-            .map((item) => `${item[0]}=${item[1]}`)
-            .join("&");
+            const queryString = queryItems
+                .map((item) => `${item[0]}=${item[1]}`)
+                .join("&");
 
-        history.push(`/catalog/categories/${category}?${queryString}`);
-    };
+            history.push(`/catalog/categories/${category}?${queryString}`);
+        },
+        [category, history]
+    );
 
-    const filterHandler = () => {
+    const filterHandler = useCallback(() => {
         refreshURL(filter);
-    };
+    }, [refreshURL, filter]);
 
     useEffect(() => {
         if (!isFilterTouched) return;
 
         filterHandler();
-    }, [isURLChanged, isFilterTouched]);
+    }, [isURLChanged, isFilterTouched, filterHandler]);
 
     const removeFilterHandler = () => {
         setIsURLChanged((prevState) => !prevState);
