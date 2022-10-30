@@ -73,7 +73,7 @@ const FilterMarkers = (props) => {
                         data-color={queryMinPrice}
                         onClick={removeMinPriceHandler}
                     >
-                        Min price: {`${queryMinPrice}`} $<span></span>
+                        Min price: {`${queryMinPrice}`} $<b></b>
                     </button>
                 </li>
             )}
@@ -85,7 +85,7 @@ const FilterMarkers = (props) => {
                         data-color={queryMaxPrice}
                         onClick={removeMaxPriceHandler}
                     >
-                        Max price: {`${queryMaxPrice}`} $<span></span>
+                        Max price: {`${queryMaxPrice}`} $<b></b>
                     </button>
                 </li>
             )}
