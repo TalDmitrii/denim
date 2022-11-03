@@ -5,12 +5,15 @@
     z-index: @zi-popup;
     background-color: @white;
 
+    @transform-value: 70px;
+
     .to(@break-tablet, {
-        top: 0;
+        top: -@transform-value;
         right: 0;
         bottom: 0;
         left: 0;
-        padding: @padding;
+        padding: @padding @padding calc(@transform-value + @padding) @padding;
+    	transform: translateY(@transform-value);
     });
 
     .from(@break-tablet, {

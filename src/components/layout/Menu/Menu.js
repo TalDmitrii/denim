@@ -7,7 +7,7 @@ const Menu = (props) => {
         <div className={classes["content"]} onClick={props.onCloseHandler}>
             <h2 className={classes["title"]}>Menu</h2>
             <button className={classes["close"]} aria-label="Close menu">
-                Close menu
+                Close
             </button>
             <MainNavigation addClass={classes["nav"]} />
         </div>

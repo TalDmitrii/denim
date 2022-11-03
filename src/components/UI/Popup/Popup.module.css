@@ -5,11 +5,12 @@
 }
 @media (max-width: 767.98px) {
   .popup {
-    top: 0;
+    top: -70px;
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 16px;
+    padding: 16px 16px calc(70px + 16px) 16px;
+    transform: translateY(70px);
   }
 }
 @media (min-width: 768px) {

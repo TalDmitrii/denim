@@ -1,9 +1,14 @@
 .wrap {
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 @media (max-width: 767.98px) {
   .wrap {
-    margin-top: 12px;
+    margin-top: 16px;
+  }
+}
+@media (min-width: 768px) {
+  .wrap {
+    margin-bottom: 28px;
   }
 }
 @media (min-width: 768px) {
