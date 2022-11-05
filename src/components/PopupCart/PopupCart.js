@@ -1,18 +1,47 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Overlay from "../UI/Overlay/Overlay";
 import Popup from "../UI/Popup/Popup";
 import IconTrash from "../UI/Icons/IconTrash";
 import UILink from "../UI/UILink/UILink";
+import Loader from "../UI/Loader/Loader";
+import NotFound from "../../pages/NotFound";
 
+import useHttp from "../../hooks/use-http";
+import { getProducts } from "../../libs/api";
 import { cartActions } from "../../store/cart";
 
 import classes from "./PopupCart.module.css";
 
 const PopupCart = (props) => {
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.products.products);
     const cartProducts = useSelector((state) => state.cart.products);
+
+    const {
+        sendRequest,
+        status,
+        data: products,
+        error,
+    } = useHttp(getProducts, true);
+
+    console.log(products);
+
+    useEffect(() => {
+        sendRequest();
+    }, [sendRequest]);
+
+    if (status === "pending") {
+        return <Loader />;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    if (status === "completed" && (!products || products.length === 0)) {
+        return <NotFound />;
+    }
 
     const removeFromCartHandler = (evt) => {
         const parent = evt.target.closest("li");
@@ -26,9 +55,9 @@ const PopupCart = (props) => {
         const foundItem = products.find((product) => product.id === item.id);
         const title = foundItem.title;
         const price = foundItem.price;
-        const paths = foundItem.paths;
+        const imagesFolder = foundItem.imagesFolder;
 
-        return { ...item, title, price, paths };
+        return { ...item, title, price, imagesFolder };
     });
 
     const popupContent = (
@@ -41,10 +70,10 @@ const PopupCart = (props) => {
                 >
                     <picture>
                         <source
-                            srcSet={`${item.paths.x1} 1x, ${item.paths.x2} 2x`}
+                            srcSet={`../../img/${item.imagesFolder}/1-small.jpg 1x, ../../img/${item.imagesFolder}/1-small.jpg 2x`}
                         />
                         <img
-                            src={item.paths.x1}
+                            src={`../../img/${item.imagesFolder}/1-small.jpg`}
                             alt={item.title}
                             width="130"
                             height="168"

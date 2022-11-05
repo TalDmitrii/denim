@@ -14,7 +14,7 @@ const ProductsList = (props) => {
     const [productID, setProductID] = useState(null);
 
     const btnClickHandler = (evt) => {
-        const id = +evt.target.closest("li").dataset.id;
+        const id = evt.target.closest("li").dataset.id;
         setProductID(id);
         toggleParamsPopup();
     };
@@ -48,10 +48,10 @@ const ProductsList = (props) => {
                             <picture>
                                 <source
                                     media="(min-width: 768px)"
-                                    srcSet={product.paths.x2}
+                                    srcSet={`../img/${product.imagesFolder}/1-middle.jpg`}
                                 />
                                 <img
-                                    src={product.paths.x1}
+                                    src={`../img/${product.imagesFolder}/1-small.jpg`}
                                     alt={product.title}
                                     width="130"
                                     height="160"

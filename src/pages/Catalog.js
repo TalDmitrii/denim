@@ -7,8 +7,12 @@ import CatalogAdv from "../components/CatalogAdv/CatalogAdv";
 import CatalogList from "../components/CatalogList/CatalogList";
 import Filter from "../components/UI/Filter/Filter";
 import FilterMarkers from "../components/UI/FilterMarkers/FilterMarkers";
+import Loader from "../components/UI/Loader/Loader";
+import NotFound from "./NotFound";
 
+import useHttp from "../hooks/use-http";
 import { filterActions } from "../store/filter";
+import { getProducts } from "../libs/api";
 
 import classes from "./Catalog.module.css";
 
@@ -20,15 +24,16 @@ const Catalog = () => {
     const [isURLChanged, setIsURLChanged] = useState(false);
     const [isFilterTouched, setIsFilterTouched] = useState(false);
 
-    const products = useSelector((state) => state.products.products);
+    const [queryOptions, setQueryOptions] = useState({});
+
     const filter = useSelector((state) => state.filter);
 
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const queryColor = queryParams.get("color");
-    const querySize = queryParams.get("size");
-    const queryMinPrice = +queryParams.get("minPrice"); // ????
-    const queryMaxPrice = +queryParams.get("maxPrice");
+    const queryColor = queryParams?.get("color");
+    const querySize = queryParams?.get("size");
+    const queryMinPrice = +queryParams?.get("minPrice"); // ????
+    const queryMaxPrice = +queryParams?.get("maxPrice");
 
     useEffect(() => {
         queryColor && dispatch(filterActions.setColor(queryColor));
@@ -37,45 +42,7 @@ const Catalog = () => {
         queryMaxPrice && dispatch(filterActions.setMaxPrice(queryMaxPrice));
     }, [dispatch, queryColor, querySize, queryMinPrice, queryMaxPrice]);
 
-    let filteredByCategory = [];
-
-    switch (category) {
-        case "woman":
-            filteredByCategory = products.filter(
-                (item) => item.gender === "female"
-            );
-            break;
-        case "man":
-            filteredByCategory = products.filter(
-                (item) => item.gender === "male"
-            );
-            break;
-        case "new":
-            filteredByCategory = products.filter((item) => item.new);
-            break;
-        case "bestsellers":
-            filteredByCategory = products.filter((item) => item.bestseller);
-            break;
-        default:
-            filteredByCategory = [...products];
-    }
-    ////////////////////////////
-    ////////////////////////////
-    ////////////////////////////
-
-    const renderedList = filteredByCategory
-        .filter((item) =>
-            queryColor ? item.colors.includes(queryColor) : item.colors.length
-        )
-        .filter((item) =>
-            querySize ? item.sizes.includes(querySize) : item.sizes.length
-        )
-        .filter((item) =>
-            queryMinPrice ? item.price >= queryMinPrice : item.price
-        )
-        .filter((item) =>
-            queryMaxPrice ? item.price <= queryMaxPrice : item.price
-        );
+    // const products = useSelector((state) => state.products.products);
 
     const refreshURL = useCallback(
         (params) => {
@@ -106,6 +73,69 @@ const Catalog = () => {
         setIsFilterTouched(true);
     };
 
+    useEffect(() => {
+        switch (category) {
+            case "woman":
+                setQueryOptions({ field: "gender", value: "female" });
+                break;
+            case "man":
+                setQueryOptions({ field: "gender", value: "male" });
+                break;
+            case "new":
+                setQueryOptions({ field: "new", value: true });
+                break;
+            case "bestsellers":
+                setQueryOptions({ field: "bestseller", value: true });
+                break;
+            default:
+                setQueryOptions({});
+        }
+    }, [category]);
+
+    const {
+        sendRequest,
+        status,
+        data: products,
+        error,
+    } = useHttp(getProducts, true);
+
+    useEffect(() => {
+        if (!queryOptions.field) return;
+
+        sendRequest(queryOptions);
+    }, [sendRequest, queryOptions]);
+
+    if (status === "pending") {
+        return <Loader />;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    if (status === "completed" && (!products || products.length === 0)) {
+        return <NotFound />;
+    }
+
+    console.log(products);
+    ////////////////////////////
+    ////////////////////////////
+    ////////////////////////////
+
+    const renderedList = products
+        .filter((item) =>
+            queryColor ? item.colors.includes(queryColor) : item.colors.length
+        )
+        .filter((item) =>
+            querySize ? item.sizes.includes(querySize) : item.sizes.length
+        )
+        .filter((item) =>
+            queryMinPrice ? item.price >= queryMinPrice : item.price
+        )
+        .filter((item) =>
+            queryMaxPrice ? item.price <= queryMaxPrice : item.price
+        );
+
     return (
         <>
             <h1 className="hide-vis">Catalog</h1>
@@ -129,10 +159,7 @@ const Catalog = () => {
             </div>
             <PageContainer addClass={classes["filter-wrap"]}>
                 <FilterMarkers clickHandler={removeFilterHandler} />
-                <Filter
-                    products={filteredByCategory}
-                    filterHandler={filterHandler}
-                />
+                <Filter products={products} filterHandler={filterHandler} />
             </PageContainer>
             <PageContainer>
                 <CatalogList products={renderedList} />

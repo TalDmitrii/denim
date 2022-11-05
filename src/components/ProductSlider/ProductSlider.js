@@ -1,14 +1,38 @@
+import { useState } from "react";
+
 import classes from "./ProductSlider.module.css";
 
 const ProductSlider = (props) => {
+    const [sliderImages, setSliderImages] = useState([...props.images]);
+
+    const sliderClickHandler = (evt) => {
+        const direction = evt.target.dataset?.direction;
+
+        if (!direction) return;
+
+        setSliderImages((prevState) => {
+            let newState;
+
+            if (direction === "forward") {
+                const activeElem = prevState.slice(-1);
+                newState = [...activeElem, ...prevState.slice(0, -1)];
+            }
+
+            if (direction === "backward") {
+                const activeElem = prevState[0];
+                newState = [...prevState.slice(1), activeElem];
+            }
+
+            return newState;
+        });
+    };
+
     const sliderClasses = `${classes["slider"]}${
         props.addClass ? " " + props.addClass : ""
     }`;
 
-    const images = props.images;
-
     return (
-        <div className={sliderClasses} onClick={props.onSliderClick}>
+        <div className={sliderClasses} onClick={sliderClickHandler}>
             <button
                 className="hide-mobile"
                 type="button"
@@ -16,7 +40,7 @@ const ProductSlider = (props) => {
                 data-direction="backward"
             ></button>
             <ul>
-                {images.map((path, index) => (
+                {sliderImages.map((path, index) => (
                     <li key={path}>
                         <img
                             src={path}

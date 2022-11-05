@@ -16,6 +16,7 @@
 @media (min-width: 768px) {
   .slider {
     width: 50%;
+    flex-shrink: 0;
   }
 }
 .details {

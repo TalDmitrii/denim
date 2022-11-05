@@ -12,10 +12,10 @@ const CatalogList = (props) => {
                         <picture>
                             <source
                                 media="(min-width: 768px)"
-                                srcSet={item.paths.x2}
+                                srcSet={`../../img/${item.imagesFolder}/1-middle.jpg`}
                             />
                             <img
-                                src={item.paths.x1}
+                                src={`../../img/${item.imagesFolder}/1-small.jpg`}
                                 alt={item.title}
                                 width="130"
                                 height="160"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -7,46 +7,54 @@ import ProductSlider from "../components/ProductSlider/ProductSlider";
 import FieldsetColor from "../components/UI/FieldsetColor/FieldsetColor";
 import FieldsetSize from "../components/UI/FieldsetSize/FieldsetSize";
 import UIButton from "../components/UI/UIButton/UIButton";
+import Loader from "../components/UI/Loader/Loader";
+import NotFound from "./NotFound";
+
+import useHttp from "../hooks/use-http";
+import { getSingleProduct } from "../libs/api";
 
 import classes from "./ProductCard.module.css";
 
 const ProductCard = () => {
     const params = useParams();
     const productID = params.productID;
-    const productList = useSelector((state) => state.products.products);
-    const product = productList.find((item) => item.id === +productID);
-    const colors = product.colors;
-    const sizes = product.sizes;
 
-    const chosenColor = useSelector((state) => state.filter.color);
-    const chosenSize = useSelector((state) => state.filter.size);
+    const chosenColor = useSelector((state) => state.filter.color); // ???????
+    const chosenSize = useSelector((state) => state.filter.size); // ???????
 
-    const [productImages, setProductImages] = useState([
-        product.paths.x1,
-        ...product.paths.previews,
-    ]);
+    const {
+        sendRequest,
+        status,
+        data: product,
+        error,
+    } = useHttp(getSingleProduct, true);
 
-    const sliderClickHandler = (evt) => {
-        const direction = evt.target.dataset?.direction;
+    useEffect(() => {
+        sendRequest(productID);
+    }, [sendRequest, productID]);
 
-        if (!direction) return;
+    if (status === "pending") {
+        return <Loader />;
+    }
 
-        setProductImages((prevState) => {
-            let newState;
+    if (error) {
+        return <div>{error}</div>;
+    }
 
-            if (direction === "forward") {
-                const activeElem = prevState.slice(-1);
-                newState = [...activeElem, ...prevState.slice(0, -1)];
-            }
+    if (status === "completed" && !product) {
+        return <NotFound />;
+    }
 
-            if (direction === "backward") {
-                const activeElem = prevState[0];
-                newState = [...prevState.slice(1), activeElem];
-            }
+    if (!product) return;
 
-            return newState;
-        });
-    };
+    const colors = product?.colors;
+    const sizes = product?.sizes;
+    const productImages = [];
+
+    for (let i = 1; i <= 5; i++) {
+        const img = `../img/${product?.imagesFolder}/${i}-big.jpg`;
+        productImages.push(img);
+    }
 
     return (
         <PageContainer>
@@ -54,7 +62,6 @@ const ProductCard = () => {
                 <ProductSlider
                     addClass={classes["slider"]}
                     images={productImages}
-                    onSliderClick={sliderClickHandler}
                 />
                 <div className={classes["details"]}>
                     <h1 className={classes["title"]}>{product.title}</h1>
