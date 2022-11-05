@@ -13,7 +13,7 @@
         display: block;
         width: 40px;
         height: 40px;
-        border: 5px dashed @grey-dark;
+        border: 5px dashed transparent;
         border-radius: 50%;
         animation-name: spin;
         animation-duration: 1.2s;
@@ -25,13 +25,23 @@
 @keyframes spin {
     0% {
         transform: translate(-50%, -50%) rotate(0) scale(1);
+        border-color: blue;
+    }
+
+    33% {
+        border-color: green;
     }
     
     50% {
         transform: translate(-50%, -50%) rotate(0.5turn) scale(2);
     }
 
+    66% {
+        border-color: red;
+    }
+
     100% {
         transform: translate(-50%, -50%) rotate(1turn) scale(1);
+        border-color: blue;
     }
 }
