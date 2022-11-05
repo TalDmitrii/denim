@@ -26,8 +26,8 @@ const ProductsList = (props) => {
     return (
         <>
             <section>
-                <div className={classes["products__title-wrap"]}>
-                    <h2 className={classes["products__title"]}>
+                <div className={classes["products__header-wrap"]}>
+                    <h2 className={classes["products__section-header"]}>
                         {props.title}
                     </h2>
                     <Link
