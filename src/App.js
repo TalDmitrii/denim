@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from "react";
+import React, { Suspense } from "react";
 import { Switch } from "react-router-dom";
 import { Route } from "react-router-dom";
 
