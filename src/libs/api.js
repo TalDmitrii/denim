@@ -10,6 +10,12 @@ const matchQuery = (query) => {
         case "man":
             params = `?orderBy="gender"&equalTo="male"`;
             break;
+        case "jackets":
+            params = `?orderBy="kind"&equalTo="jacket"`;
+            break;
+        case "overalls":
+            params = `?orderBy="kind"&equalTo="overalls"`;
+            break;
         case "new":
             params = `?orderBy="new"&equalTo=true`;
             break;
