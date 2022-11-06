@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -16,6 +16,8 @@ import { getSingleProduct } from "../libs/api";
 import classes from "./ProductCard.module.css";
 
 const ProductCard = () => {
+    const [descriptionIsOpen, setDescriptionIsOpen] = useState(true);
+    const [limitIsNeeded, setLimitIsNeeded] = useState(false);
     const params = useParams();
     const productID = params.productID;
 
@@ -33,6 +35,23 @@ const ProductCard = () => {
         sendRequest(productID);
     }, [sendRequest, productID]);
 
+    useEffect(() => {
+        const description = document.querySelector(".j-description");
+        if (!description) return;
+
+        const descriptionHeight = description.clientHeight;
+        const lineHeight = parseFloat(
+            window.getComputedStyle(description).lineHeight
+        );
+        const result = +descriptionHeight / +lineHeight;
+
+        // 4 rows is a limit
+        if (result > 4) {
+            setLimitIsNeeded(true);
+            setDescriptionIsOpen(false);
+        }
+    }, [product]);
+
     if (status === "pending") {
         return <Loader />;
     }
@@ -47,14 +66,18 @@ const ProductCard = () => {
 
     if (!product) return;
 
-    const colors = product?.colors;
-    const sizes = product?.sizes;
+    const colors = product.colors;
+    const sizes = product.sizes;
     const productImages = [];
 
     for (let i = 1; i <= 5; i++) {
         const img = `../img/${product?.imagesFolder}/${i}-big.jpg`;
         productImages.push(img);
     }
+
+    const descriptionToggle = () => {
+        setDescriptionIsOpen((prevState) => !prevState);
+    };
 
     return (
         <PageContainer>
@@ -65,9 +88,22 @@ const ProductCard = () => {
                 />
                 <div className={classes["details"]}>
                     <h1 className={classes["title"]}>{product.title}</h1>
-                    <p className={classes["description"]}>
+                    <p
+                        className={`${classes["description"]} ${
+                            !descriptionIsOpen ? classes["closed"] : ""
+                        } j-description`}
+                    >
                         {product.description}
                     </p>
+                    {limitIsNeeded && (
+                        <button
+                            className={classes["description-toggle"]}
+                            type="button"
+                            onClick={descriptionToggle}
+                        >
+                            Show {descriptionIsOpen ? "less" : "more"}
+                        </button>
+                    )}
                     <form action="" className={classes["form"]}>
                         <FieldsetColor
                             addClass={classes["fieldset"]}

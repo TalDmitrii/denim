@@ -65,16 +65,39 @@
 .description {
     font-size: 14px;
     line-height: 20px;
-    margin-bottom: 24px;
 
     .from(@break-tablet, {
         font-size: 16px;
         line-height: 22px;
-        margin-bottom: 44px;
+    });
+
+    &.closed {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+.description-toggle {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 20px;
+    border-bottom: 1px dashed currentColor;
+
+    .from(@break-tablet, {
+        font-size: 16px;
+        line-height: 22px;
     });
 }
 
 .form {
+    margin-top: 24px;
+
+    .from(@break-tablet, {
+        margin-top: 44px;
+    });
+
     .from(@break-desktop, {
         display: flex;
         flex-direction: column;
