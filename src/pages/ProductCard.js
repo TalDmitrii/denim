@@ -45,8 +45,8 @@ const ProductCard = () => {
         );
         const result = +descriptionHeight / +lineHeight;
 
-        // 4 rows is a limit
-        if (result > 4) {
+        // 3 rows is a limit
+        if (result > 3) {
             setLimitIsNeeded(true);
             setDescriptionIsOpen(false);
         }
