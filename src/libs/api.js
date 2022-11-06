@@ -1,17 +1,31 @@
 const FIREBASE_DOMAIN = "https://denim-1aa45-default-rtdb.firebaseio.com";
 
-export async function getProducts(query) {
-    const response = query
-        ? await fetch(
-              `${FIREBASE_DOMAIN}/products.json?orderBy="${
-                  query.field
-              }"&equalTo=${
-                  typeof query.value === "boolean"
-                      ? query.value
-                      : '"' + query.value + '"'
-              }`
-          )
-        : await fetch(`${FIREBASE_DOMAIN}/products.json`);
+const matchQuery = (query) => {
+    let params = "";
+
+    switch (query.type) {
+        case "woman":
+            params = `?orderBy="gender"&equalTo="female"`;
+            break;
+        case "man":
+            params = `?orderBy="gender"&equalTo="male"`;
+            break;
+        case "new":
+            params = `?orderBy="new"&equalTo=true`;
+            break;
+        case "bestsellers":
+            params = `?orderBy="bestseller"&equalTo=true`;
+            break;
+        default:
+            params = "";
+    }
+
+    return `${params}${query.limit ? query.limit : ""}`;
+};
+
+export async function getProducts(query = {}) {
+    const params = matchQuery(query);
+    const response = await fetch(`${FIREBASE_DOMAIN}/products.json${params}`);
 
     const data = await response.json();
 

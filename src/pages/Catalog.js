@@ -24,8 +24,6 @@ const Catalog = () => {
     const [isURLChanged, setIsURLChanged] = useState(false);
     const [isFilterTouched, setIsFilterTouched] = useState(false);
 
-    const [queryOptions, setQueryOptions] = useState({});
-
     const filter = useSelector((state) => state.filter);
 
     const location = useLocation();
@@ -41,8 +39,6 @@ const Catalog = () => {
         queryMinPrice && dispatch(filterActions.setMinPrice(queryMinPrice));
         queryMaxPrice && dispatch(filterActions.setMaxPrice(queryMaxPrice));
     }, [dispatch, queryColor, querySize, queryMinPrice, queryMaxPrice]);
-
-    // const products = useSelector((state) => state.products.products);
 
     const refreshURL = useCallback(
         (params) => {
@@ -73,25 +69,6 @@ const Catalog = () => {
         setIsFilterTouched(true);
     };
 
-    useEffect(() => {
-        switch (category) {
-            case "woman":
-                setQueryOptions({ field: "gender", value: "female" });
-                break;
-            case "man":
-                setQueryOptions({ field: "gender", value: "male" });
-                break;
-            case "new":
-                setQueryOptions({ field: "new", value: true });
-                break;
-            case "bestsellers":
-                setQueryOptions({ field: "bestseller", value: true });
-                break;
-            default:
-                setQueryOptions({});
-        }
-    }, [category]);
-
     const {
         sendRequest,
         status,
@@ -100,10 +77,8 @@ const Catalog = () => {
     } = useHttp(getProducts, true);
 
     useEffect(() => {
-        if (!queryOptions.field) return;
-
-        sendRequest(queryOptions);
-    }, [sendRequest, queryOptions]);
+        sendRequest({ type: category });
+    }, [sendRequest, category]);
 
     if (status === "pending") {
         return <Loader />;

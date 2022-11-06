@@ -6,6 +6,7 @@ import UserNavigation from "../components/layout/UserNavigation/UserNavigation";
 import New from "../components/New/New";
 import Social from "../components/Social/Social";
 import ProductsList from "../components/ProductsList/ProductsList";
+import CategoriesList from "../components/CategoriesList/CategoriesList";
 import Collection from "../components/Collection/Collection";
 import PageContainer from "../components/layout/PageContainer/PageContainer";
 
@@ -18,11 +19,10 @@ import classes from "./MainPage.module.css";
 
 const MainPage = () => {
     const dispatch = useDispatch();
-    const { sendRequest, data: productList } = useHttp(getProducts);
     const { sendRequest: sendRequestBestsellers, data: bestsellersList } =
         useHttp(getProducts);
 
-    // console.log(bestsellersList);
+    // console.log(productList);
     const {
         checkIntersection: checkNavIntersection,
         isIntersected: isNavInViewport,
@@ -46,11 +46,10 @@ const MainPage = () => {
     }, [isNavInViewport, dispatch]);
 
     useEffect(() => {
-        sendRequest();
-    }, [sendRequest]);
-
-    useEffect(() => {
-        sendRequestBestsellers({ field: "bestseller", value: true });
+        sendRequestBestsellers({
+            type: "bestsellers",
+            limit: "&limitToLast=4",
+        });
     }, [sendRequestBestsellers]);
 
     return (
@@ -95,15 +94,9 @@ const MainPage = () => {
             <PageContainer addClass={classes["collection"]}>
                 <Collection />
             </PageContainer>
-            {!!(productList && productList.length) && (
-                <PageContainer addClass={classes["categories"]}>
-                    <ProductsList
-                        title={"Categories"}
-                        viewAllHref={"/catalog/categories/all"}
-                        products={productList}
-                    />
-                </PageContainer>
-            )}
+            <PageContainer addClass={classes["categories"]}>
+                <CategoriesList />
+            </PageContainer>
         </>
     );
 };
