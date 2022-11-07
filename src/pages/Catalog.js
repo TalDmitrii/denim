@@ -8,7 +8,6 @@ import CatalogList from "../components/CatalogList/CatalogList";
 import Filter from "../components/UI/Filter/Filter";
 import FilterMarkers from "../components/UI/FilterMarkers/FilterMarkers";
 import Loader from "../components/UI/Loader/Loader";
-import NotFound from "./NotFound";
 
 import useHttp from "../hooks/use-http";
 import { filterActions } from "../store/filter";
