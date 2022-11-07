@@ -8,21 +8,19 @@ const CatalogList = (props) => {
             {props.products.map((item) => (
                 <li className={classes["item"]} key={item.id}>
                     <Link to={`/catalog/${item.id}`} />
-                    <figure>
-                        <picture>
-                            <source
-                                media="(min-width: 768px)"
-                                srcSet={`../../img/${item.imagesFolder}/1-middle.jpg`}
-                            />
-                            <img
-                                src={`../../img/${item.imagesFolder}/1-small.jpg`}
-                                alt={item.title}
-                                width="130"
-                                height="160"
-                            />
-                        </picture>
-                        <figcaption>{item.title}</figcaption>
-                    </figure>
+                    <picture>
+                        <source
+                            media="(min-width: 768px)"
+                            srcSet={`../../img/${item.imagesFolder}/1-big.jpg`}
+                        />
+                        <img
+                            src={`../../img/${item.imagesFolder}/1-middle.jpg`}
+                            alt={item.title}
+                            width="130"
+                            height="160"
+                        />
+                    </picture>
+                    <h3>{item.title}</h3>
                     <p>${item.price}</p>
                 </li>
             ))}
