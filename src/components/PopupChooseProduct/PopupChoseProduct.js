@@ -6,11 +6,6 @@ import Popup from "../UI/Popup/Popup";
 import FieldsetColor from "../UI/FieldsetColor/FieldsetColor";
 import FieldsetSize from "../UI/FieldsetSize/FieldsetSize";
 import UIButton from "../UI/UIButton/UIButton";
-import Loader from "../UI/Loader/Loader";
-import NotFound from "../../pages/NotFound";
-
-import useHttp from "../../hooks/use-http";
-import { getProducts } from "../../libs/api"; // Only one item
 
 import { cartActions } from "../../store/cart";
 
@@ -24,16 +19,7 @@ const PopupChooseProduct = (props) => {
     const [productSize, setProductSize] = useState(null);
     const [isInCart, setIsInCart] = useState(false);
 
-    const productID = props.productID;
-
-    const {
-        sendRequest,
-        status,
-        data: products,
-        error,
-    } = useHttp(getProducts, true);
-
-    console.log(products);
+    const { id: productID, colors, sizes } = props.productParams;
 
     useEffect(() => {
         if (!(productColor && productSize)) return;
@@ -48,25 +34,6 @@ const PopupChooseProduct = (props) => {
 
         isFound ? setIsInCart(true) : setIsInCart(false);
     }, [productColor, productSize, productID, cartProducts]);
-
-    useEffect(() => {
-        sendRequest();
-    }, [sendRequest]);
-
-    if (status === "pending") {
-        return <Loader />;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
-    }
-
-    if (status === "completed" && (!products || products.length === 0)) {
-        return <NotFound />;
-    }
-
-    const colors = products.find((item) => item.id === productID)?.colors;
-    const sizes = products.find((item) => item.id === productID)?.sizes;
 
     const addToCartHandler = (evt) => {
         evt.preventDefault();

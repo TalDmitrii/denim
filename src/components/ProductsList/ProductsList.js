@@ -9,13 +9,15 @@ import IconBasket from "../UI/Icons/IconBasket";
 import classes from "./ProductsList.module.css";
 
 const ProductsList = (props) => {
+    const productsList = props.products;
     const cartProducts = useSelector((state) => state.cart.products);
     const [isParamsPopupShown, setIsParamsPopupShown] = useState(false);
-    const [productID, setProductID] = useState(null);
+    const [productParams, setProductParams] = useState(null);
 
     const btnClickHandler = (evt) => {
-        const id = evt.target.closest("li").dataset.id;
-        setProductID(id);
+        const cardId = evt.target.closest("li").dataset.id;
+        const product = productsList.find((item) => item.id === cardId);
+        setProductParams(product);
         toggleParamsPopup();
     };
 
@@ -38,7 +40,7 @@ const ProductsList = (props) => {
                     </Link>
                 </div>
                 <ul className={classes["products__list"]}>
-                    {props.products.map((product) => (
+                    {productsList.map((product) => (
                         <li
                             className={classes["products__item"]}
                             data-id={product.id}
@@ -85,9 +87,9 @@ const ProductsList = (props) => {
                     ))}
                 </ul>
             </section>
-            {isParamsPopupShown && (
+            {isParamsPopupShown && productParams && (
                 <PopupChooseProduct
-                    productID={productID}
+                    productParams={productParams}
                     toggleParamsPopup={toggleParamsPopup}
                 />
             )}
