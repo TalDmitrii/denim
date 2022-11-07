@@ -33,6 +33,17 @@ const Catalog = () => {
     const queryMinPrice = +queryParams?.get("minPrice"); // ????
     const queryMaxPrice = +queryParams?.get("maxPrice");
 
+    const {
+        sendRequest,
+        status,
+        data: products,
+        error,
+    } = useHttp(getProducts, true);
+
+    useEffect(() => {
+        sendRequest({ type: category });
+    }, [sendRequest, category]);
+
     useEffect(() => {
         queryColor && dispatch(filterActions.setColor(queryColor));
         querySize && dispatch(filterActions.setSize(querySize));
@@ -69,36 +80,22 @@ const Catalog = () => {
         setIsFilterTouched(true);
     };
 
-    const {
-        sendRequest,
-        status,
-        data: products,
-        error,
-    } = useHttp(getProducts, true);
-
-    useEffect(() => {
-        sendRequest({ type: category });
-    }, [sendRequest, category]);
+    let noContent = null;
 
     if (status === "pending") {
-        return <Loader />;
+        noContent = <Loader />;
     }
 
     if (error) {
-        return <div>{error}</div>;
+        noContent = <div>{error}</div>;
     }
 
     if (status === "completed" && (!products || products.length === 0)) {
-        return <NotFound />;
+        noContent = <div>Products not found</div>;
     }
 
-    console.log(products);
-    ////////////////////////////
-    ////////////////////////////
-    ////////////////////////////
-
     const renderedList = products
-        .filter((item) =>
+        ?.filter((item) =>
             queryColor ? item.colors.includes(queryColor) : item.colors.length
         )
         .filter((item) =>
@@ -133,11 +130,19 @@ const Catalog = () => {
                 </PageContainer>
             </div>
             <PageContainer addClass={classes["filter-wrap"]}>
-                <FilterMarkers clickHandler={removeFilterHandler} />
-                <Filter products={products} filterHandler={filterHandler} />
+                {products && (
+                    <>
+                        <FilterMarkers clickHandler={removeFilterHandler} />
+                        <Filter
+                            products={products}
+                            filterHandler={filterHandler}
+                        />
+                    </>
+                )}
             </PageContainer>
             <PageContainer>
-                <CatalogList products={renderedList} />
+                {products && <CatalogList products={renderedList} />}
+                {!products && noContent}
             </PageContainer>
         </>
     );
