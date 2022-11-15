@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import PageContainer from "../components/layout/PageContainer/PageContainer";
 import CatalogAdv from "../components/CatalogAdv/CatalogAdv";
-import CatalogList from "../components/CatalogList/CatalogList";
+import ProductsList from "../components/ProductsList/ProductsList";
 import Filter from "../components/UI/Filter/Filter";
 import FilterMarkers from "../components/UI/FilterMarkers/FilterMarkers";
 import Loader from "../components/UI/Loader/Loader";
@@ -140,7 +140,15 @@ const Catalog = () => {
                 )}
             </PageContainer>
             <PageContainer>
-                {products && <CatalogList products={renderedList} />}
+                {products && (
+                    <ProductsList
+                        title={"Catalog list"}
+                        titleHidden={true}
+                        products={renderedList}
+                        addClass={classes["products"]}
+                        path={"../../img/"}
+                    />
+                )}
                 {!products && noContent}
             </PageContainer>
         </>

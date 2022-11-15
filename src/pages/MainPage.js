@@ -88,6 +88,8 @@ const MainPage = () => {
                         title={"Bestsellers"}
                         viewAllHref={"/catalog/categories/bestsellers"}
                         products={bestsellersList}
+                        addClass={classes["products"]}
+                        path={"../img/"}
                     />
                 </PageContainer>
             )}

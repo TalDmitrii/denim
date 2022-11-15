@@ -58,3 +58,47 @@
 .filter-wrap > button {
     margin-left: auto;
 }
+
+.products ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    // grid-template-columns: repeat(auto-fit, minmax(129px, 1fr));
+    gap: 28px 30px;
+    margin-bottom: 60px;
+    
+    .from(@break-tablet, {
+        grid-template-columns: repeat(3, 1fr);
+    });
+    
+    .from(@break-desktop, {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 64px 66px;
+    });
+}
+
+.products li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+    .to(@break-tablet, {
+        &:nth-child(5n) {
+            grid-column: 1 / -1;
+        }
+    });
+
+    .from-to(@break-tablet, @break-desktop, {
+        &:nth-child(6n + 5):not(:last-of-type) {
+            grid-column: auto /span 2;
+            grid-row: auto /span 2;
+        }
+    });
+
+    .from(@break-desktop, {
+        &:nth-child(9n + 7):not(:last-of-type):not(:nth-last-of-type(2)) {
+            grid-column: auto /span 2;
+            grid-row: auto /span 2;
+        }
+    });
+}

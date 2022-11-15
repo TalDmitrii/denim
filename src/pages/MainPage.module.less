@@ -235,3 +235,42 @@
         margin-bottom: @section-margin-d;
     });
 }
+
+.products ul {
+    display: flex;
+    
+    .to(@break-tablet, {
+        margin: 0 -@padding;
+        padding: 0 16px;
+        .m-horizontal-snap-scroll();
+        scroll-padding-left: 16px;
+    });
+
+    .from(@break-tablet, {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 30px;
+        row-gap: 50px;
+    });
+
+    .from(@break-desktop, {
+        grid-template-columns: repeat(4, 1fr);    
+    });
+}
+
+.products li {
+    .to(@break-tablet, {
+        width: 130px;
+        margin-right: 16px;
+    });
+
+    &:last-of-type {
+        margin-right: 0;
+    }
+}
+
+.products li img {
+    .from-to(@break-tablet, @break-desktop, {
+        aspect-ratio: 1 / 1;
+    });
+}
