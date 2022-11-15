@@ -40,6 +40,7 @@ const Catalog = () => {
     } = useHttp(getProducts, true);
 
     useEffect(() => {
+        if (!category) return;
         sendRequest({ type: category });
     }, [sendRequest, category]);
 
@@ -79,18 +80,20 @@ const Catalog = () => {
         setIsFilterTouched(true);
     };
 
-    let noContent = null;
+    let noProducts = null;
 
     if (status === "pending") {
-        noContent = <Loader />;
+        noProducts = <Loader />;
     }
 
     if (error) {
-        noContent = <div>{error}</div>;
+        noProducts = <p>{error}</p>;
     }
 
     if (status === "completed" && (!products || products.length === 0)) {
-        noContent = <div>Products not found</div>;
+        noProducts = (
+            <p className={classes["not-found"]}>Products not found.</p>
+        );
     }
 
     const renderedList = products
@@ -128,29 +131,27 @@ const Catalog = () => {
                     </CatalogAdv>
                 </PageContainer>
             </div>
-            <PageContainer addClass={classes["filter-wrap"]}>
-                {products && (
-                    <>
+            {!!(renderedList && renderedList.length) && (
+                <>
+                    <PageContainer addClass={classes["filter-wrap"]}>
                         <FilterMarkers clickHandler={removeFilterHandler} />
                         <Filter
                             products={products}
                             filterHandler={filterHandler}
                         />
-                    </>
-                )}
-            </PageContainer>
-            <PageContainer>
-                {products && (
-                    <ProductsList
-                        title={"Catalog list"}
-                        titleHidden={true}
-                        products={renderedList}
-                        addClass={classes["products"]}
-                        path={"../../img/"}
-                    />
-                )}
-                {!products && noContent}
-            </PageContainer>
+                    </PageContainer>
+                    <PageContainer>
+                        <ProductsList
+                            title={"Catalog list"}
+                            titleHidden={true}
+                            products={renderedList}
+                            addClass={classes["products"]}
+                            path={"../../img/"}
+                        />
+                    </PageContainer>
+                </>
+            )}
+            {noProducts && <PageContainer>{noProducts}</PageContainer>}
         </>
     );
 };

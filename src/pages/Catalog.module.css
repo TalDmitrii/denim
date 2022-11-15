@@ -93,3 +93,9 @@
     grid-row: auto / span 2;
   }
 }
+.not-found {
+  font-size: 16px;
+  line-height: 22px;
+  color: #727A82;
+  text-align: center;
+}
