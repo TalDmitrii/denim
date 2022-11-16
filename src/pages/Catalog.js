@@ -13,6 +13,7 @@ import Loader from "../components/UI/Loader/Loader";
 import useHttp from "../hooks/use-http";
 import { filterActions } from "../store/filter";
 import { getProducts } from "../libs/api";
+import { filterProducts } from "../utils/utils";
 
 import classes from "./Catalog.module.css";
 
@@ -97,19 +98,13 @@ const Catalog = () => {
         );
     }
 
-    const renderedList = products
-        ?.filter((item) =>
-            queryColor ? item.colors.includes(queryColor) : item.colors.length
-        )
-        .filter((item) =>
-            querySize ? item.sizes.includes(querySize) : item.sizes.length
-        )
-        .filter((item) =>
-            queryMinPrice ? item.price >= queryMinPrice : item.price
-        )
-        .filter((item) =>
-            queryMaxPrice ? item.price <= queryMaxPrice : item.price
-        );
+    const renderedList = filterProducts(
+        products,
+        queryColor,
+        querySize,
+        queryMinPrice,
+        queryMaxPrice
+    );
 
     return (
         <>
