@@ -28,7 +28,7 @@ const PopupCart = (props) => {
     console.log(products);
 
     useEffect(() => {
-        sendRequest();
+        sendRequest({ type: "all" }); //Need to fetch defined products only
     }, [sendRequest]);
 
     if (status === "pending") {

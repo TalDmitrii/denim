@@ -1,9 +1,10 @@
-import { Link, useParams, useHistory, useLocation } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useCallback, useEffect, useState } from "react";
 
 import PageContainer from "../components/layout/PageContainer/PageContainer";
 import CatalogAdv from "../components/CatalogAdv/CatalogAdv";
+import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 import ProductsList from "../components/ProductsList/ProductsList";
 import Filter from "../components/UI/Filter/Filter";
 import FilterMarkers from "../components/UI/FilterMarkers/FilterMarkers";
@@ -116,18 +117,10 @@ const Catalog = () => {
             <div className={classes["wrap"]}>
                 <PageContainer>
                     <CatalogAdv>
-                        <ul className={classes["breadcrumbs"]}>
-                            <li>
-                                <Link to={"/catalog/categories/all"}>
-                                    All categories
-                                </Link>
-                            </li>
-                            {category !== "all" && (
-                                <li>
-                                    <span>{category}</span>
-                                </li>
-                            )}
-                        </ul>
+                        <Breadcrumbs
+                            addClass={classes["breadcrumbs"]}
+                            category={category}
+                        />
                     </CatalogAdv>
                 </PageContainer>
             </div>
