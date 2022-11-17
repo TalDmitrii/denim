@@ -10,6 +10,7 @@ import MultiRange from "../MultiRange/MultiRange";
 import Dropdown from "../Dropdown/Dropdown";
 
 import { filterActions } from "../../../store/filter";
+import { filterProducts } from "../../../utils/utils";
 
 import classes from "./Filter.module.css";
 
@@ -27,28 +28,20 @@ const Filter = (props) => {
         products.reduce((acc, item) => acc.concat(item.sizes), [])
     );
 
-    const chosenColor = useSelector((state) => state.filter.color);
-    const chosenSize = useSelector((state) => state.filter.size);
-    const chosenMinPrice = useSelector((state) => +state.filter.minPrice);
-    const chosenMaxPrice = useSelector((state) => +state.filter.maxPrice);
+    const {
+        color: chosenColor,
+        size: chosenSize,
+        minPrice: chosenMinPrice,
+        maxPrice: chosenMaxPrice,
+    } = useSelector((state) => state.filter);
 
-    const filteredItems = [
-        ...products
-            .filter((item) =>
-                chosenColor
-                    ? item.colors.includes(chosenColor)
-                    : item.colors.length
-            )
-            .filter((item) =>
-                chosenSize ? item.sizes.includes(chosenSize) : item.sizes.length
-            )
-            .filter((item) =>
-                chosenMinPrice ? item.price >= chosenMinPrice : item.price
-            )
-            .filter((item) =>
-                chosenMaxPrice ? item.price <= chosenMaxPrice : item.price
-            ),
-    ];
+    const filteredItems = filterProducts(
+        products,
+        chosenColor,
+        chosenSize,
+        chosenMinPrice,
+        chosenMaxPrice
+    );
 
     const resetStates = () => {
         dispatch(filterActions.setColor(null));
@@ -57,7 +50,7 @@ const Filter = (props) => {
         dispatch(filterActions.setMaxPrice(null));
     };
 
-    const filterToggle = () => {
+    const filterShownToggle = () => {
         if (products?.length === 0) return;
 
         setIsFilterShown((prevState) => !prevState);
@@ -67,7 +60,7 @@ const Filter = (props) => {
         evt.preventDefault();
 
         props.filterHandler();
-        filterToggle();
+        filterShownToggle();
     };
 
     const colorChangeHandler = (evt) => {
@@ -100,10 +93,6 @@ const Filter = (props) => {
     //     };
     // }, [items]);
 
-    const btnClasses = `${classes["btn"]} ${
-        isFilterShown ? classes["open"] : ""
-    }`;
-
     const btnContent = ` (${filteredItems.length} ${
         filteredItems.length === 1 ? " product" : "products"
     })`;
@@ -115,7 +104,7 @@ const Filter = (props) => {
 
     const content = (
         <>
-            <Overlay onOverlayClick={filterToggle} />
+            <Overlay onOverlayClick={filterShownToggle} />
             <Popup addClass={classes["popup"]}>
                 <section className={classes["filter"]}>
                     <form className={classes["form"]} onSubmit={submitHandler}>
@@ -130,7 +119,7 @@ const Filter = (props) => {
                         <button
                             className={classes["close"]}
                             type="button"
-                            onClick={filterToggle}
+                            onClick={filterShownToggle}
                         >
                             Close
                         </button>
@@ -188,7 +177,11 @@ const Filter = (props) => {
 
     return (
         <>
-            <button className={btnClasses} type="button" onClick={filterToggle}>
+            <button
+                className={classes["btn"]}
+                type="button"
+                onClick={filterShownToggle}
+            >
                 Filter by
             </button>
             {isFilterShown && content}
