@@ -64,7 +64,16 @@ const PopupChooseProduct = (props) => {
         <>
             <Overlay onOverlayClick={props.toggleParamsPopup} />
             <Popup addClass={classes["popup"]}>
-                <h2>Choose color and size</h2>
+                <div className={classes["header-wrap"]}>
+                    <h2>Choose color and size</h2>
+                    <button
+                        className={classes["close"]}
+                        onClick={props.toggleParamsPopup}
+                        aria-label="Close popup"
+                    >
+                        <span></span>
+                    </button>
+                </div>
                 <form action="" onSubmit={addToCartHandler}>
                     <FieldsetColor
                         colors={colors}
@@ -75,6 +84,7 @@ const PopupChooseProduct = (props) => {
                         changeHandler={sizeChangeHandler}
                     />
                     <UIButton
+                        addClass={classes["submit"]}
                         type={"submit"}
                         disabled={!(productColor && productSize) || isInCart}
                     >
