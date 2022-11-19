@@ -6,7 +6,6 @@ import Popup from "../UI/Popup/Popup";
 import IconTrash from "../UI/Icons/IconTrash";
 import UILink from "../UI/UILink/UILink";
 import Loader from "../UI/Loader/Loader";
-import NotFound from "../../pages/NotFound";
 
 import useHttp from "../../hooks/use-http";
 import { getProducts } from "../../libs/api";
@@ -25,23 +24,9 @@ const PopupCart = (props) => {
         error,
     } = useHttp(getProducts, true);
 
-    console.log(products);
-
     useEffect(() => {
         sendRequest({ type: "all" }); //Need to fetch defined products only
     }, [sendRequest]);
-
-    if (status === "pending") {
-        return <Loader />;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
-    }
-
-    if (status === "completed" && (!products || products.length === 0)) {
-        return <NotFound />;
-    }
 
     const removeFromCartHandler = (evt) => {
         const parent = evt.target.closest("li");
@@ -50,57 +35,80 @@ const PopupCart = (props) => {
         dispatch(cartActions.removeFromCart(localStorageID));
     };
 
-    const updatedList = cartProducts.map((item) => {
-        // Find the obect with full data
-        const foundItem = products.find((product) => product.id === item.id);
-        const title = foundItem.title;
-        const price = foundItem.price;
-        const imagesFolder = foundItem.imagesFolder;
+    let noProducts;
 
-        return { ...item, title, price, imagesFolder };
-    });
+    if (status === "pending") {
+        noProducts = <Loader />;
+    }
 
-    const popupContent = (
-        <ul className={classes["list"]}>
-            {updatedList.map((item) => (
-                <li
-                    className={classes["item"]}
-                    data-id={item.localStorageID}
-                    key={item.localStorageID}
-                >
-                    <picture>
-                        <source
-                            srcSet={`../../img/${item.imagesFolder}/1-small.jpg 1x, ../../img/${item.imagesFolder}/1-small.jpg 2x`}
-                        />
-                        <img
-                            src={`../../img/${item.imagesFolder}/1-small.jpg`}
-                            alt={item.title}
-                            width="130"
-                            height="168"
-                        />
-                    </picture>
-                    <div className={classes["info"]}>
-                        <h3>{item.title}</h3>
-                        <p className={classes["price"]}>{item.price} $</p>
-                        <p className={classes["color"]} data-color={item.color}>
-                            {item.color}
-                        </p>
-                        <p className={classes["size"]}>
-                            Size: <span>{item.size}</span>
-                        </p>
-                        <button
-                            className={classes["remove"]}
-                            type="button"
-                            aria-label="Remove product from cart"
-                            onClick={removeFromCartHandler}
-                        >
-                            <IconTrash />
-                        </button>
-                    </div>
-                </li>
-            ))}
-        </ul>
-    );
+    if (error) {
+        noProducts = <p>{error}</p>;
+    }
+
+    if (status === "completed" && (!products || products.length === 0)) {
+        noProducts = <p>No products found</p>;
+    }
+
+    let popupContent;
+
+    if (products && products.length) {
+        const updatedList = cartProducts.map((item) => {
+            // Find the obect with full data
+            const foundItem = products.find(
+                (product) => product.id === item.id
+            );
+            const title = foundItem.title;
+            const price = foundItem.price;
+            const imagesFolder = foundItem.imagesFolder;
+
+            return { ...item, title, price, imagesFolder };
+        });
+
+        popupContent = (
+            <ul className={classes["list"]}>
+                {updatedList.map((item) => (
+                    <li
+                        className={classes["item"]}
+                        data-id={item.localStorageID}
+                        key={item.localStorageID}
+                    >
+                        <picture>
+                            <source
+                                srcSet={`../../img/${item.imagesFolder}/1-small.jpg 1x, ../../img/${item.imagesFolder}/1-middle.jpg 2x`}
+                            />
+                            <img
+                                src={`../../img/${item.imagesFolder}/1-small.jpg`}
+                                alt={item.title}
+                                width="130"
+                                height="168"
+                            />
+                        </picture>
+                        <div className={classes["info"]}>
+                            <h3>{item.title}</h3>
+                            <p className={classes["price"]}>{item.price} $</p>
+                            <p
+                                className={classes["color"]}
+                                data-color={item.color}
+                            >
+                                {item.color}
+                            </p>
+                            <p className={classes["size"]}>
+                                Size: <span>{item.size}</span>
+                            </p>
+                            <button
+                                className={classes["remove"]}
+                                type="button"
+                                aria-label="Remove product from cart"
+                                onClick={removeFromCartHandler}
+                            >
+                                <IconTrash />
+                            </button>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        );
+    }
 
     return (
         <>
@@ -117,7 +125,8 @@ const PopupCart = (props) => {
                         Close
                     </button>
                 </div>
-                {popupContent}
+                {popupContent && popupContent}
+                {noProducts && noProducts}
                 <UILink addClass={classes["btn-to-cart"]} to={"/"}>
                     Go to Cart
                 </UILink>
