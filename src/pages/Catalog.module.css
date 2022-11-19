@@ -109,7 +109,6 @@
   flex-direction: column;
 }
 .load-more p {
-  margin-bottom: 30px;
   padding: 0 4px;
   font-size: 16px;
   line-height: 22px;
@@ -119,8 +118,22 @@
   .load-more p {
     font-size: 18px;
     line-height: 24px;
+  }
+}
+.progress-bar {
+  display: flex;
+  height: 2px;
+  margin-top: 4px;
+  margin-bottom: 30px;
+  background-color: #F1F2F4;
+}
+@media (min-width: 1024px) {
+  .progress-bar {
     margin-bottom: 40px;
   }
+}
+.progress-bar span {
+  background-color: #151C22;
 }
 .not-found {
   font-size: 16px;

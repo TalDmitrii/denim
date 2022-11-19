@@ -93,6 +93,8 @@ const Catalog = () => {
         [history]
     );
 
+    const progressWidth = (shownCount / products?.length) * 100;
+
     const filterHandler = useCallback(() => {
         refreshURL(filterParams, category);
     }, [refreshURL, filterParams, category]);
@@ -152,6 +154,13 @@ const Catalog = () => {
                                     Showing {shownCount} of {products.length}{" "}
                                     items
                                 </p>
+                                <span className={classes["progress-bar"]}>
+                                    <span
+                                        style={{
+                                            width: `${progressWidth}%`,
+                                        }}
+                                    ></span>
+                                </span>
                                 <UIButton clickHandler={loadMoreHandler}>
                                     Load more
                                 </UIButton>
