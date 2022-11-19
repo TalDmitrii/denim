@@ -1,6 +1,6 @@
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import PageContainer from "../components/layout/PageContainer/PageContainer";
 import CatalogAdv from "../components/CatalogAdv/CatalogAdv";
@@ -16,6 +16,9 @@ import { filterProducts } from "../utils/utils";
 import { filterActions } from "../store/filter";
 
 import classes from "./Catalog.module.css";
+import UIButton from "../components/UI/UIButton/UIButton";
+
+const CATALOG_STEP = 9;
 
 const Catalog = () => {
     const dispatch = useDispatch();
@@ -23,6 +26,7 @@ const Catalog = () => {
     const params = useParams();
     const category = params.category;
     const filterParams = useSelector((state) => state.filter);
+    const [shownCount, setShownCount] = useState(CATALOG_STEP);
 
     const {
         sendRequest,
@@ -51,13 +55,29 @@ const Catalog = () => {
         queryMaxPrice && dispatch(filterActions.setMaxPrice(queryMaxPrice));
     }, [dispatch, queryColor, querySize, queryMinPrice, queryMaxPrice]);
 
-    const renderedList = filterProducts(
+    const filteredList = filterProducts(
         products,
         queryColor,
         querySize,
         queryMinPrice,
         queryMaxPrice
     );
+
+    const renderedList = filteredList?.slice(0, shownCount);
+
+    const loadMoreHandler = () => {
+        setShownCount((prevState) => {
+            if (prevState + CATALOG_STEP > products.length) {
+                return products.length;
+            } else {
+                return prevState + CATALOG_STEP;
+            }
+        });
+    };
+
+    useEffect(() => {
+        setShownCount(CATALOG_STEP);
+    }, [category]);
 
     const refreshURL = useCallback(
         (params, category) => {
@@ -125,6 +145,19 @@ const Catalog = () => {
                         products={renderedList}
                         addClass={classes["products"]}
                     />
+                    {shownCount < products.length && (
+                        <PageContainer addClass={classes["load-more"]}>
+                            <div>
+                                <p>
+                                    Showing {shownCount} of {products.length}{" "}
+                                    items
+                                </p>
+                                <UIButton clickHandler={loadMoreHandler}>
+                                    Load more
+                                </UIButton>
+                            </div>
+                        </PageContainer>
+                    )}
                 </>
             )}
             {noProducts && <PageContainer>{noProducts}</PageContainer>}

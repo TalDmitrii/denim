@@ -64,7 +64,7 @@
     grid-template-columns: repeat(2, 1fr);
     // grid-template-columns: repeat(auto-fit, minmax(129px, 1fr));
     gap: 28px 30px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     
     .from(@break-tablet, {
         grid-template-columns: repeat(3, 1fr);
@@ -73,6 +73,7 @@
     .from(@break-desktop, {
         grid-template-columns: repeat(4, 1fr);
         gap: 64px 66px;
+        margin-bottom: 75px;
     });
 }
 
@@ -100,6 +101,35 @@
             grid-column: auto /span 2;
             grid-row: auto /span 2;
         }
+    });
+}
+
+.load-more {
+    margin-bottom: 50px;
+
+    .from(@break-desktop, {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 100px;
+    });
+}
+
+.load-more div {
+    display: flex;
+    flex-direction: column;
+}
+
+.load-more p {
+    margin-bottom: 30px;
+    padding: 0 4px;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+
+    .from(@break-desktop, {
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 40px;
     });
 }
 

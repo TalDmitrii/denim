@@ -6,6 +6,7 @@ const UIButton = (props) => {
             className={btnClasses}
             type={props.type || "button"}
             disabled={props.disabled}
+            onClick={props.clickHandler}
         >
             {props.children}
         </button>
