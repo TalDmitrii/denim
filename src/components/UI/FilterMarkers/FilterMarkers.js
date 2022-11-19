@@ -1,91 +1,93 @@
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
 
 import { filterActions } from "../../../store/filter";
+import usePrevious from "../../../hooks/use-previous";
 
 import classes from "./FilterMarkers.module.css";
 
 const FilterMarkers = (props) => {
     const dispatch = useDispatch();
-    const location = useLocation();
+    const { color, size, minPrice, maxPrice, filterHandler } = props;
+    const [markerState, setMarkerState] = useState(false);
+    const prevMarkerState = usePrevious(markerState);
 
-    const queryParams = new URLSearchParams(location.search);
-    const queryColor = queryParams.get("color");
-    const querySize = queryParams.get("size");
-    const queryMinPrice = +queryParams.get("minPrice"); // ????
-    const queryMaxPrice = +queryParams.get("maxPrice");
+    useEffect(() => {
+        if (prevMarkerState === markerState) return;
+        filterHandler();
+    }, [filterHandler, markerState, prevMarkerState]);
 
     const removeColorHandler = () => {
         dispatch(filterActions.setColor(null));
-        props.clickHandler();
+        setMarkerState((prevState) => !prevState);
     };
 
     const removeSizeHandler = () => {
         dispatch(filterActions.setSize(null));
-        props.clickHandler();
+        setMarkerState((prevState) => !prevState);
     };
 
     const removeMinPriceHandler = () => {
         dispatch(filterActions.setMinPrice(null));
-        props.clickHandler();
+        setMarkerState((prevState) => !prevState);
     };
 
     const removeMaxPriceHandler = () => {
         dispatch(filterActions.setMaxPrice(null));
-        props.clickHandler();
+        setMarkerState((prevState) => !prevState);
     };
 
     return (
         <ul className={classes["filter-indicators"]}>
-            {queryColor && (
+            {color && (
                 <li>
                     <button
                         className={classes["btn-color"]}
                         type="button"
-                        aria-label={`Remove ${queryColor} color filter`}
-                        data-color={queryColor}
+                        aria-label={`Remove ${color} color filter`}
+                        data-color={color}
                         onClick={removeColorHandler}
                     >
-                        Color: {`${queryColor}`}
+                        Color: {`${color}`}
                         <b></b>
                     </button>
                 </li>
             )}
-            {querySize && (
+            {size && (
                 <li>
                     <button
                         className={classes["btn-size"]}
                         type="button"
-                        aria-label={`Remove ${querySize} size filter`}
-                        data-color={querySize}
+                        aria-label={`Remove ${size} size filter`}
+                        data-color={size}
                         onClick={removeSizeHandler}
                     >
-                        Size: <span>{`${querySize}`}</span>
+                        Size: <span>{`${size}`}</span>
                         <b></b>
                     </button>
                 </li>
             )}
-            {!!queryMinPrice && (
+            {!!minPrice && (
                 <li>
                     <button
                         type="button"
-                        aria-label={`Remove ${queryMinPrice} min price filter`}
-                        data-color={queryMinPrice}
+                        aria-label={`Remove ${minPrice} min price filter`}
+                        data-color={minPrice}
                         onClick={removeMinPriceHandler}
                     >
-                        Min price: {`${queryMinPrice}`} $<b></b>
+                        Min price: {`${minPrice}`} $<b></b>
                     </button>
                 </li>
             )}
-            {!!queryMaxPrice && (
+            {!!maxPrice && (
                 <li>
                     <button
                         type="button"
-                        aria-label={`Remove ${queryMaxPrice} max price filter`}
-                        data-color={queryMaxPrice}
+                        aria-label={`Remove ${maxPrice} max price filter`}
+                        data-color={maxPrice}
                         onClick={removeMaxPriceHandler}
                     >
-                        Max price: {`${queryMaxPrice}`} $<b></b>
+                        Max price: {`${maxPrice}`} $<b></b>
                     </button>
                 </li>
             )}

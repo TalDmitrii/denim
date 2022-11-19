@@ -74,24 +74,12 @@ const Filter = (props) => {
     };
 
     const priceChangeHandler = (prices) => {
-        dispatch(filterActions.setMinPrice(prices[0]));
-        dispatch(filterActions.setMaxPrice(prices[1]));
+        const newMinPrice = prices[0] === minPrice ? null : prices[0];
+        const newMaxPrice = prices[1] === maxPrice ? null : prices[1];
+
+        dispatch(filterActions.setMinPrice(newMinPrice));
+        dispatch(filterActions.setMaxPrice(newMaxPrice));
     };
-
-    // useEffect(() => {
-    //     if (items.length === 0) {
-    //         return;
-    //     }
-    //     setBtnIsHighlighted(true);
-
-    //     const timer = setTimeout(() => {
-    //         setBtnIsHighlighted(false);
-    //     }, 300);
-
-    //     return () => {
-    //         clearTimeout(timer);
-    //     };
-    // }, [items]);
 
     const btnContent = ` (${filteredItems.length} ${
         filteredItems.length === 1 ? " product" : "products"
