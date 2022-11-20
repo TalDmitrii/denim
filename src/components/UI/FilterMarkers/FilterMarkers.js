@@ -21,7 +21,7 @@ const FilterMarkers = (props) => {
 
         if (prevMarkerState === markerState) return;
         filterHandler();
-    }, [filterHandler, markerState, prevMarkerState]);
+    }, [filterHandler, markerState, prevMarkerState, isFirstRender]);
 
     const removeColorHandler = () => {
         dispatch(filterActions.setColor(null));
