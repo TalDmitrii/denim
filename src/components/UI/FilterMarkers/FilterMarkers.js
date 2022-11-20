@@ -9,10 +9,16 @@ import classes from "./FilterMarkers.module.css";
 const FilterMarkers = (props) => {
     const dispatch = useDispatch();
     const { color, size, minPrice, maxPrice, filterHandler } = props;
+    const [isFirstRender, setIsFirstRender] = useState(true);
     const [markerState, setMarkerState] = useState(false);
     const prevMarkerState = usePrevious(markerState);
 
     useEffect(() => {
+        if (isFirstRender) {
+            setIsFirstRender(false);
+            return;
+        }
+
         if (prevMarkerState === markerState) return;
         filterHandler();
     }, [filterHandler, markerState, prevMarkerState]);
