@@ -1,0 +1,33 @@
+.load-more {
+  display: flex;
+  flex-direction: column;
+}
+.load-more p {
+  padding: 0 4px;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+}
+@media (min-width: 1024px) {
+  .load-more p {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+.progress-bar {
+  display: flex;
+  height: 2px;
+  margin-top: 4px;
+  background-color: #F1F2F4;
+}
+.progress-bar span {
+  background-color: #151C22;
+}
+.load-more button {
+  margin-top: 30px;
+}
+@media (min-width: 1024px) {
+  .load-more button {
+    margin-top: 40px;
+  }
+}

@@ -19,6 +19,8 @@ const FilterMarkers = (props) => {
             return;
         }
 
+        // Call refresh URL on markerState changes only,
+        // to prevent unnecessary push to history
         if (prevMarkerState === markerState) return;
         filterHandler();
     }, [filterHandler, markerState, prevMarkerState, isFirstRender]);

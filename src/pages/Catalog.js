@@ -9,6 +9,7 @@ import CatalogList from "../components/CatalogList/CatalogList";
 import Filter from "../components/UI/Filter/Filter";
 import FilterMarkers from "../components/UI/FilterMarkers/FilterMarkers";
 import Loader from "../components/UI/Loader/Loader";
+import LoadMore from "../components/LoadMore/LoadMore";
 
 import useHttp from "../hooks/use-http";
 import { getProducts } from "../libs/api";
@@ -16,7 +17,6 @@ import { filterProducts } from "../utils/utils";
 import { filterActions } from "../store/filter";
 
 import classes from "./Catalog.module.css";
-import UIButton from "../components/UI/UIButton/UIButton";
 
 const CATALOG_STEP = 9;
 
@@ -93,8 +93,6 @@ const Catalog = () => {
         [history]
     );
 
-    const progressWidth = (shownCount / products?.length) * 100;
-
     const filterHandler = useCallback(() => {
         refreshURL(filterParams, category);
     }, [refreshURL, filterParams, category]);
@@ -147,24 +145,13 @@ const Catalog = () => {
                         products={renderedList}
                         addClass={classes["products"]}
                     />
-                    {shownCount < products.length && (
+                    {shownCount < filteredList.length && (
                         <PageContainer addClass={classes["load-more"]}>
-                            <div>
-                                <p>
-                                    Showing {shownCount} of {products.length}{" "}
-                                    items
-                                </p>
-                                <span className={classes["progress-bar"]}>
-                                    <span
-                                        style={{
-                                            width: `${progressWidth}%`,
-                                        }}
-                                    ></span>
-                                </span>
-                                <UIButton clickHandler={loadMoreHandler}>
-                                    Load more
-                                </UIButton>
-                            </div>
+                            <LoadMore
+                                shownCount={shownCount}
+                                allCount={filteredList?.length}
+                                loadMoreHandler={loadMoreHandler}
+                            />
                         </PageContainer>
                     )}
                 </>
