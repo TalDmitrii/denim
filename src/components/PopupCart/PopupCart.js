@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import Overlay from "../UI/Overlay/Overlay";
 import Popup from "../UI/Popup/Popup";
@@ -72,6 +73,10 @@ const PopupCart = (props) => {
                         data-id={item.localStorageID}
                         key={item.localStorageID}
                     >
+                        <Link
+                            onClick={props.overlayClickHandler}
+                            to={`/catalog/${item.id}`}
+                        />
                         <picture>
                             <source
                                 srcSet={`../../img/${item.imagesFolder}/1-small.jpg 1x, ../../img/${item.imagesFolder}/1-middle.jpg 2x`}

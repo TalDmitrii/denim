@@ -62,8 +62,14 @@
   background: #151C22;
 }
 .item {
+  position: relative;
   display: flex;
   margin-bottom: 20px;
+}
+.item a {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 .item picture {
   width: 130px;
@@ -133,6 +139,8 @@
   text-transform: uppercase;
 }
 .remove {
+  position: relative;
+  z-index: 2;
   width: 40px;
   height: 40px;
   margin-top: auto;
