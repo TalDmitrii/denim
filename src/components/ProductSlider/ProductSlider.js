@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import classes from "./ProductSlider.module.css";
 
 const ProductSlider = (props) => {
+    const isMobile = useSelector((state) => state.displayMode.isMobile);
     const [sliderImages, setSliderImages] = useState([...props.images]);
 
-    const sliderClickHandler = (evt) => {
+    const sliderBtnClickHandler = (evt) => {
         const direction = evt.target.dataset?.direction;
 
         if (!direction) return;
@@ -27,19 +29,34 @@ const ProductSlider = (props) => {
         });
     };
 
+    const sliderImageClickHandler = (evt) => {
+        const target = evt.target;
+        if (isMobile || target.tagName !== "IMG") return;
+
+        const previewIndex = +target.dataset.preview;
+        if (previewIndex === 0) return;
+
+        setSliderImages((prevState) => {
+            const firstPart = prevState.slice(previewIndex);
+            const secondPart = prevState.slice(0, previewIndex);
+
+            return [...firstPart, ...secondPart];
+        });
+    };
+
     const sliderClasses = `${classes["slider"]}${
         props.addClass ? " " + props.addClass : ""
     }`;
 
     return (
-        <div className={sliderClasses} onClick={sliderClickHandler}>
+        <div className={sliderClasses} onClick={sliderBtnClickHandler}>
             <button
                 className="hide-mobile"
                 type="button"
                 aria-label="Go to previous slide"
                 data-direction="backward"
             ></button>
-            <ul>
+            <ul onClick={sliderImageClickHandler}>
                 {sliderImages.map((path, index) => (
                     <li key={path}>
                         <img
@@ -47,6 +64,7 @@ const ProductSlider = (props) => {
                             alt={`Preview ${index + 1}`}
                             width="244"
                             height="310"
+                            data-preview={index}
                         />
                     </li>
                 ))}

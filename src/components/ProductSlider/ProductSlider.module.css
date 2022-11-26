@@ -48,14 +48,12 @@
 }
 @media (min-width: 768px) {
   .slider li:first-of-type {
-    grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column: 1 / -1;
     aspect-ratio: 9 / 10;
   }
 }
 @media (min-width: 1024px) {
   .slider li:first-of-type {
-    grid-column-end: 5;
     aspect-ratio: 4 / 5;
   }
 }
