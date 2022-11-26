@@ -22,7 +22,6 @@ const MainPage = () => {
     const { sendRequest: sendRequestBestsellers, data: bestsellersList } =
         useHttp(getProducts);
 
-    // console.log(productList);
     const {
         checkIntersection: checkNavIntersection,
         isIntersected: isNavInViewport,
