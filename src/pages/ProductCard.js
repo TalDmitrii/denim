@@ -120,13 +120,11 @@ const ProductCard = () => {
     const colorChangeHandler = (evt) => {
         const color = evt.target.value;
         setColor(color);
-        setIsFormTouched(true);
     };
 
     const sizeChangeHandler = (evt) => {
         const size = evt.target.value;
         setSize(size);
-        setIsFormTouched(true);
     };
 
     const addToCartHandler = (evt) => {
