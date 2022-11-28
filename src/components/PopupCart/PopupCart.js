@@ -132,7 +132,11 @@ const PopupCart = (props) => {
                 </div>
                 {popupContent && popupContent}
                 {noProducts && noProducts}
-                <UILink addClass={classes["btn-to-cart"]} to={"/"}>
+                <UILink
+                    addClass={classes["btn-to-cart"]}
+                    to={"/cart"}
+                    onClick={props.overlayClickHandler}
+                >
                     Go to Cart
                 </UILink>
             </Popup>

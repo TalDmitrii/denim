@@ -4,7 +4,11 @@ const UILink = (props) => {
     const linkClasses = `button${props.addClass ? " " + props.addClass : ""}`;
 
     return (
-        <Link className={linkClasses} to={`${props.to}`}>
+        <Link
+            className={linkClasses}
+            to={`${props.to}`}
+            onClick={props.onClick}
+        >
             {props.children}
         </Link>
     );
