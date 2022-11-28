@@ -6,7 +6,6 @@ import MainNavigation from "../MainNavigation/MainNavigation";
 import UserNavigation from "../UserNavigation/UserNavigation";
 import Menu from "../Menu/Menu";
 import BurgerMenu from "../../UI/BurgerMenu/BurgerMenu";
-import Popup from "../../UI/Popup/Popup";
 import Logo from "../../UI/Icons/Logo";
 
 import classes from "./Header.module.css";
@@ -45,11 +44,7 @@ const Header = () => {
                         <UserNavigation />
                     </div>
                 )}
-                {showMenu && (
-                    <Popup>
-                        <Menu onCloseHandler={closeModal} />
-                    </Popup>
-                )}
+                {showMenu && <Menu onCloseHandler={closeModal} />}
             </header>
         </PageContainer>
     );

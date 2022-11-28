@@ -1,6 +1,11 @@
 .page-wrap {
   margin-bottom: 60px;
 }
+@media (min-width: 1024px) {
+  .page-wrap {
+    margin-bottom: 100px;
+  }
+}
 @media (min-width: 768px) {
   .wrap {
     display: flex;

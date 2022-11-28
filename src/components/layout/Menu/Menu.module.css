@@ -1,7 +1,12 @@
+.popup {
+  display: flex;
+}
 .content {
+  width: 100%;
   display: grid;
   grid-template-areas: "empty title close" "nav nav nav";
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: min-content 1fr;
 }
 .title {
   grid-area: title;
@@ -34,8 +39,34 @@
 }
 .nav {
   grid-area: nav;
+  margin: 0 -16px;
+  overflow-y: auto;
 }
-.nav ul {
-  flex-direction: column;
-  text-align: center;
+.nav li {
+  position: relative;
+  border-top: 1px solid #F1F2F4;
+}
+.nav li:last-of-type {
+  border-bottom: 1px solid #F1F2F4;
+}
+.nav li::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%) rotate(-135deg);
+  transform-origin: center;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #151C22;
+  border-bottom: 2px solid #151C22;
+}
+.nav a {
+  display: block;
+  padding: 12px 16px;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+  color: #151C22;
 }

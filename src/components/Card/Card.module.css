@@ -10,9 +10,31 @@
   left: 0;
   z-index: 1;
 }
-.card picture {
+.card__new {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  padding: 2px 4px;
+  background-color: #0cb477;
+  border-radius: 4px;
+}
+@media (min-width: 768px) {
+  .card__new {
+    top: 8px;
+    left: 8px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+.card__img-wrap {
   display: flex;
   flex-grow: 1;
+}
+.card picture {
+  display: flex;
 }
 .card img {
   width: 100%;
