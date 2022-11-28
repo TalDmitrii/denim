@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import useIntersection from "../../hooks/use-intersection";
 
 import classes from "./CategoriesList.module.css";

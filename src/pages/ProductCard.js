@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 import PageContainer from "../components/layout/PageContainer/PageContainer";
 import ProductSlider from "../components/ProductSlider/ProductSlider";
+import ProductCardNews from "../components/ProductCardNews/ProductCardNews";
 import FieldsetColor from "../components/UI/FieldsetColor/FieldsetColor";
 import FieldsetSize from "../components/UI/FieldsetSize/FieldsetSize";
 import UIButton from "../components/UI/UIButton/UIButton";
@@ -13,7 +14,6 @@ import NotFound from "./NotFound";
 
 import useHttp from "../hooks/use-http";
 import { cartActions } from "../store/cart";
-
 import { getSingleProduct } from "../libs/api";
 
 import classes from "./ProductCard.module.css";
@@ -149,72 +149,80 @@ const ProductCard = () => {
     };
 
     return (
-        <PageContainer>
-            <div className={classes["wrap"]}>
-                <ProductSlider
-                    addClass={classes["slider"]}
-                    images={productImages}
-                />
-                <div className={classes["details"]}>
-                    <h1 className={classes["title"]}>{product.title}</h1>
-                    <p
-                        className={`${classes["description"]} ${
-                            !descriptionIsOpen ? classes["closed"] : ""
-                        } j-description`}
-                    >
-                        {product.description}
-                    </p>
-                    {limitIsNeeded && (
-                        <button
-                            className={classes["description-toggle"]}
-                            type="button"
-                            onClick={descriptionToggle}
+        <div className={classes["page-wrap"]}>
+            <PageContainer>
+                <div className={classes["wrap"]}>
+                    <ProductSlider
+                        addClass={classes["slider"]}
+                        images={productImages}
+                    />
+                    <div className={classes["details"]}>
+                        <h1 className={classes["title"]}>{product.title}</h1>
+                        <p
+                            className={`${classes["description"]} ${
+                                !descriptionIsOpen ? classes["closed"] : ""
+                            } j-description`}
                         >
-                            Show {descriptionIsOpen ? "less" : "more"}
-                        </button>
-                    )}
-                    <form
-                        action=""
-                        onSubmit={addToCartHandler}
-                        className={`${classes["form"]} j-form`}
-                    >
-                        <FieldsetColor
-                            addClass={classes["fieldset"]}
-                            colors={colors}
-                            checkedColor={color}
-                            changeHandler={colorChangeHandler}
-                        />
-                        <FieldsetSize
-                            addClass={classes["fieldset"]}
-                            sizes={sizes}
-                            checkedSize={size}
-                            changeHandler={sizeChangeHandler}
-                        />
-                        {isNotificationShown && (
-                            <p className={classes["notification"]}>
-                                Choose color and size
-                            </p>
+                            {product.description}
+                        </p>
+                        {limitIsNeeded && (
+                            <button
+                                className={classes["description-toggle"]}
+                                type="button"
+                                onClick={descriptionToggle}
+                            >
+                                Show {descriptionIsOpen ? "less" : "more"}
+                            </button>
                         )}
-                        <p className={classes["price"]}>$ {product.price}</p>
-                        <div className={classes["btn-wrap"]}>
-                            {!isInCart && (
-                                <UIButton
-                                    addClass={classes["btn"]}
-                                    type="submit"
-                                >
-                                    Add to cart
-                                </UIButton>
+                        <form
+                            action=""
+                            onSubmit={addToCartHandler}
+                            className={`${classes["form"]} j-form`}
+                        >
+                            <FieldsetColor
+                                addClass={classes["fieldset"]}
+                                colors={colors}
+                                checkedColor={color}
+                                changeHandler={colorChangeHandler}
+                            />
+                            <FieldsetSize
+                                addClass={classes["fieldset"]}
+                                sizes={sizes}
+                                checkedSize={size}
+                                changeHandler={sizeChangeHandler}
+                            />
+                            {isNotificationShown && (
+                                <p className={classes["notification"]}>
+                                    Choose color and size
+                                </p>
                             )}
-                            {isInCart && (
-                                <UILink addClass={classes["btn"]} to={"/cart"}>
-                                    In cart
-                                </UILink>
-                            )}
-                        </div>
-                    </form>
+                            <p className={classes["price"]}>
+                                $ {product.price}
+                            </p>
+                            <div className={classes["btn-wrap"]}>
+                                {!isInCart && (
+                                    <UIButton
+                                        addClass={classes["btn"]}
+                                        type="submit"
+                                    >
+                                        Add to cart
+                                    </UIButton>
+                                )}
+                                {isInCart && (
+                                    <UILink
+                                        addClass={classes["btn"]}
+                                        to={"/cart"}
+                                    >
+                                        In cart
+                                    </UILink>
+                                )}
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </PageContainer>
+            </PageContainer>
+            <ProductCardNews />
+        </div>
     );
 };
 

@@ -1,16 +1,16 @@
 @import "../style/config.less";
 
-.wrap {
-    margin-bottom: 100px;
+.page-wrap {
+    margin-bottom: 60px;
+}
 
+.wrap {
     .from(@break-tablet, {
         display: flex;
-        margin-top: 40px;
     });
 
     .from(@break-desktop, {
         align-items: flex-start;
-        margin-top: 60px;
     });
 }
 
@@ -28,7 +28,7 @@
 
 .details {
     padding: 40px @padding;
-    margin: 40px -@padding;
+    margin: 40px -@padding 0;
     background-color: @grey;
 
     .from(@break-tablet, {
@@ -164,6 +164,7 @@
         right: 0;
         bottom: 0;
         left: 0;
+        z-index: @zi-header;
         padding: 12px 16px;
         background-color: @white;
         border-top: 1px solid @grey;
