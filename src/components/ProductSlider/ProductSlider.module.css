@@ -67,6 +67,16 @@
     aspect-ratio: 3 / 4;
   }
 }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .slider li:not(:first-of-type):hover {
+    cursor: pointer;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .slider li:not(:first-of-type):hover {
+    cursor: pointer;
+  }
+}
 .slider li:last-of-type {
   margin-right: 0;
 }

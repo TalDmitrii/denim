@@ -8,12 +8,6 @@
     grey: @product-grey;
 }
 
-each(@colors, {
-    .filter-indicators button[data-color = "@{key}"]::after {
-        background-color: @value;
-    }
-});
-
 .filter-indicators {
     display: flex;
     align-items: baseline;
@@ -46,12 +40,27 @@ each(@colors, {
 
 .filter-indicators button {
     position: relative;
-    display: flex;
-    padding: 10px 34px 10px 10px;
-    font-size: 18px;
-    line-height: 24px;
-    color: @grey-dark;
-    border: 2px solid currentColor;
+    padding: 8px 34px 8px 8px;
+    font-size: 16px;
+    line-height: 22px;
+    color: @black;
+    border: 1px solid currentColor;
+    
+    .from(@break-tablet, {
+        padding: 10px 34px 10px 10px;
+        font-size: 18px;
+        line-height: 24px;
+        color: @grey-dark;
+        border-width: 2px;
+    });
+
+    &::first-letter {
+        text-transform: uppercase;
+    }
+}
+
+.filter-indicators .btn-color {
+    padding-right: 48px;
 
     &::after {
         content: "";
@@ -63,46 +72,55 @@ each(@colors, {
         height: 18px;
         border-radius: 50%;
     }
+}
 
-    b {
+each(@colors, {
+    .filter-indicators button[data-color = "@{key}"]::after {
+        background-color: @value;
+    }
+});
+
+.btn-text {
+    .to(@break-tablet, {
+        .m-visually-hidden();
+    });
+}
+
+.btn-cross {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%) rotate(45deg);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+
+    &::before,
+    &::after {
+        content: "";
         position: absolute;
+        background-color: currentColor;
+    }
+
+    &::before {
         top: 50%;
-        right: 4px;
-        transform: translateY(-50%) rotate(45deg);
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 100%;
+        height: 2px;
+    }
 
-        &::before,
-        &::after {
-            content: "";
-            position: absolute;
-            background-color: currentColor;
-        }
-
-        &::before {
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            width: 100%;
-            height: 2px;
-        }
-
-        &::after {
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 100%;
-            width: 2px;
-        }
+    &::after {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
+        width: 2px;
     }
 }
 
-.filter-indicators .btn-color {
-    padding-right: 48px;
-}
-
-.filter-indicators .btn-size span {
+.filter-indicators .btn-size span:nth-of-type(2) {
     margin-left: 4px;
     text-transform: uppercase;
 }

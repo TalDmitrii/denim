@@ -56,8 +56,9 @@ const FilterMarkers = (props) => {
                         data-color={color}
                         onClick={removeColorHandler}
                     >
-                        Color: {`${color}`}
-                        <b></b>
+                        <span className={classes["btn-text"]}>Color: </span>
+                        {`${color}`}
+                        <span className={classes["btn-cross"]}></span>
                     </button>
                 </li>
             )}
@@ -70,8 +71,9 @@ const FilterMarkers = (props) => {
                         data-color={size}
                         onClick={removeSizeHandler}
                     >
-                        Size: <span>{`${size}`}</span>
-                        <b></b>
+                        <span className={classes["btn-text"]}>Size:</span>
+                        <span>{`${size}`}</span>
+                        <span className={classes["btn-cross"]}></span>
                     </button>
                 </li>
             )}
@@ -79,11 +81,13 @@ const FilterMarkers = (props) => {
                 <li>
                     <button
                         type="button"
-                        aria-label={`Remove ${minPrice} min price filter`}
+                        aria-label={`Remove ${minPrice} $ min price filter`}
                         data-color={minPrice}
                         onClick={removeMinPriceHandler}
                     >
-                        Min price: {`${minPrice}`} $<b></b>
+                        Min<span className={classes["btn-text"]}> price</span>:{" "}
+                        {`${minPrice}`} $
+                        <span className={classes["btn-cross"]}></span>
                     </button>
                 </li>
             )}
@@ -91,11 +95,13 @@ const FilterMarkers = (props) => {
                 <li>
                     <button
                         type="button"
-                        aria-label={`Remove ${maxPrice} max price filter`}
+                        aria-label={`Remove ${maxPrice} $ max price filter`}
                         data-color={maxPrice}
                         onClick={removeMaxPriceHandler}
                     >
-                        Max price: {`${maxPrice}`} $<b></b>
+                        Max<span className={classes["btn-text"]}> price</span>:{" "}
+                        {`${maxPrice}`} $
+                        <span className={classes["btn-cross"]}></span>
                     </button>
                 </li>
             )}

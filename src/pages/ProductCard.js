@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import PageContainer from "../components/layout/PageContainer/PageContainer";
@@ -7,22 +7,50 @@ import ProductSlider from "../components/ProductSlider/ProductSlider";
 import FieldsetColor from "../components/UI/FieldsetColor/FieldsetColor";
 import FieldsetSize from "../components/UI/FieldsetSize/FieldsetSize";
 import UIButton from "../components/UI/UIButton/UIButton";
+import UILink from "../components/UI/UILink/UILink";
 import Loader from "../components/UI/Loader/Loader";
 import NotFound from "./NotFound";
 
 import useHttp from "../hooks/use-http";
+import { cartActions } from "../store/cart";
+
 import { getSingleProduct } from "../libs/api";
 
 import classes from "./ProductCard.module.css";
 
 const ProductCard = () => {
+    const filterColor = useSelector((state) => state.filter.color);
+    const filterSize = useSelector((state) => state.filter.size);
+    const [color, setColor] = useState(filterColor ?? null);
+    const [size, setSize] = useState(filterSize ?? null);
+    const [isFormTouched, setIsFormTouched] = useState(false);
+    const isFormValid = color && size;
+    const isNotificationShown = isFormTouched && !isFormValid;
+
     const [descriptionIsOpen, setDescriptionIsOpen] = useState(true);
     const [limitIsNeeded, setLimitIsNeeded] = useState(false);
+
+    const cartProducts = useSelector((state) => state.cart.products);
+    const [isInCart, setIsInCart] = useState(false);
+
+    const isMobile = useSelector((state) => state.displayMode.isMobile);
     const params = useParams();
     const productID = params.productID;
+    const dispatch = useDispatch();
 
-    const chosenColor = useSelector((state) => state.filter.color); // ???????
-    const chosenSize = useSelector((state) => state.filter.size); // ???????
+    useEffect(() => {
+        if (!(color && size)) return;
+
+        const isFound = cartProducts.find((item) => {
+            return (
+                item.id === productID &&
+                item.color === color &&
+                item.size === size
+            );
+        });
+
+        isFound ? setIsInCart(true) : setIsInCart(false);
+    }, [color, size, productID, cartProducts]);
 
     const {
         sendRequest,
@@ -75,8 +103,49 @@ const ProductCard = () => {
         productImages.push(img);
     }
 
+    const scrollToForm = () => {
+        const form = document.querySelector(".j-form");
+        if (!form) return;
+
+        form.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+        });
+    };
+
     const descriptionToggle = () => {
         setDescriptionIsOpen((prevState) => !prevState);
+    };
+
+    const colorChangeHandler = (evt) => {
+        const color = evt.target.value;
+        setColor(color);
+        setIsFormTouched(true);
+    };
+
+    const sizeChangeHandler = (evt) => {
+        const size = evt.target.value;
+        setSize(size);
+        setIsFormTouched(true);
+    };
+
+    const addToCartHandler = (evt) => {
+        evt.preventDefault();
+
+        if (!color || !size) {
+            isMobile && scrollToForm();
+            setIsFormTouched(true);
+            return;
+        }
+
+        dispatch(
+            cartActions.addToCart({
+                id: productID,
+                color,
+                size,
+                localStorageID: [productID, color, size].join("&"),
+            })
+        );
     };
 
     return (
@@ -104,21 +173,44 @@ const ProductCard = () => {
                             Show {descriptionIsOpen ? "less" : "more"}
                         </button>
                     )}
-                    <form action="" className={classes["form"]}>
+                    <form
+                        action=""
+                        onSubmit={addToCartHandler}
+                        className={`${classes["form"]} j-form`}
+                    >
                         <FieldsetColor
                             addClass={classes["fieldset"]}
                             colors={colors}
-                            checkedColor={chosenColor}
+                            checkedColor={color}
+                            changeHandler={colorChangeHandler}
                         />
                         <FieldsetSize
                             addClass={classes["fieldset"]}
                             sizes={sizes}
-                            checkedSize={chosenSize}
+                            checkedSize={size}
+                            changeHandler={sizeChangeHandler}
                         />
+                        {isNotificationShown && (
+                            <p className={classes["notification"]}>
+                                Choose color and size
+                            </p>
+                        )}
                         <p className={classes["price"]}>$ {product.price}</p>
-                        <UIButton addClass={classes["btn"]} type="submit">
-                            Add to cart
-                        </UIButton>
+                        <div className={classes["btn-wrap"]}>
+                            {!isInCart && (
+                                <UIButton
+                                    addClass={classes["btn"]}
+                                    type="submit"
+                                >
+                                    Add to cart
+                                </UIButton>
+                            )}
+                            {isInCart && (
+                                <UILink addClass={classes["btn"]} to={"/cart"}>
+                                    In cart
+                                </UILink>
+                            )}
+                        </div>
                     </form>
                 </div>
             </div>
