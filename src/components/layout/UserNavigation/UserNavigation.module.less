@@ -27,6 +27,7 @@
         position: absolute;
         right: 4px;
         top: 8px;
+        z-index: 1;
         min-width: 20px;
         max-width: 30px;
         padding: 0 4px;
@@ -43,4 +44,10 @@
         width: 20px;
         height: auto;
     }
+}
+
+.btn-fav svg {
+    .from(@break-desktop, {
+        transform: translateX(2px);
+    });
 }

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import PopupFavorites from "../../PopupFavorites/PopupFavorites";
 import IconBasket from "../../UI/Icons/IconBasket";
 import IconHeart from "../../UI/Icons/IconHeart";
+
 import classes from "./UserNavigation.module.css";
 
 const UserNavigation = (props) => {
@@ -41,6 +42,7 @@ const UserNavigation = (props) => {
             <ul className={navClasses}>
                 <li>
                     <button
+                        className={classes["btn-fav"]}
                         type="button"
                         onClick={openCartPopup}
                         disabled={favoritesLength === 0}
