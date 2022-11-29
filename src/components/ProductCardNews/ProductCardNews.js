@@ -42,7 +42,7 @@ const ProductCardNews = () => {
                 <PageContainer addClass={`${classes["news"]}`}>
                     <ProductsList
                         title={"News"}
-                        viewAllHref={"/catalog/categories/news"}
+                        viewAllHref={"/catalog/categories/new"}
                         products={newsList}
                         addClass={classes["products"]}
                         path={"../img/"}
