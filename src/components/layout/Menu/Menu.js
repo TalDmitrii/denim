@@ -28,6 +28,24 @@ const Menu = (props) => {
                         </NavLink>
                     </li>
                     <li>
+                        <NavLink to="/catalog/categories/jeans">Jeans</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/catalog/categories/shirts">
+                            Shirts
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/catalog/categories/jackets">
+                            Jackets
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/catalog/categories/overalls">
+                            Overalls
+                        </NavLink>
+                    </li>
+                    <li>
                         <NavLink to="/catalog/categories/all">All</NavLink>
                     </li>
                 </ul>
