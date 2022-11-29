@@ -196,8 +196,18 @@
         width: 64px;
     });
 
-    &.active path {
-        fill: @orange;
-        stroke: @orange;
+    .m-pointer-only({
+        &:hover path {
+            stroke: @orange;
+        }
+    });
+
+    &.active {
+        cursor: default;
+
+        path {
+            fill: @orange;
+            stroke: @orange;
+        }
     }
 }

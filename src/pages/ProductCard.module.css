@@ -197,6 +197,19 @@
     width: 64px;
   }
 }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .btn-like:hover path {
+    stroke: #FFB400;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-like:hover path {
+    stroke: #FFB400;
+  }
+}
+.btn-like.active {
+  cursor: default;
+}
 .btn-like.active path {
   fill: #FFB400;
   stroke: #FFB400;

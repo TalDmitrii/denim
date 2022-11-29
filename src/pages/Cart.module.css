@@ -1,6 +1,11 @@
 .page {
   padding: 16px 0 40px;
 }
+@media (min-width: 768px) {
+  .page {
+    padding: 20px 0 60px;
+  }
+}
 .header-wrap {
   display: flex;
   align-items: flex-start;
