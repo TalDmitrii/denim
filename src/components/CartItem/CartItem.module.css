@@ -1,0 +1,144 @@
+.item {
+  display: flex;
+  position: relative;
+}
+.item ~ .item {
+  margin-top: 32px;
+}
+@media (min-width: 1024px) {
+  .item ~ .item {
+    margin-top: 40px;
+  }
+}
+.item a {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.img-wrap {
+  display: flex;
+  align-self: flex-start;
+  flex-shrink: 0;
+  width: 40%;
+  max-width: 240px;
+  margin-right: 12px;
+  aspect-ratio: 3 / 4;
+}
+@media (min-width: 1024px) {
+  .img-wrap {
+    margin-right: 20px;
+  }
+}
+.img-wrap img {
+  width: 100%;
+  object-fit: cover;
+}
+.info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 16px;
+  line-height: 22px;
+}
+.title {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 22px;
+}
+@media (min-width: 768px) {
+  .title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+.description {
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (max-width: 767.98px) {
+  .description {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+  }
+}
+.price {
+  margin-bottom: 8px;
+}
+@media (min-width: 768px) {
+  .price {
+    margin-bottom: 12px;
+  }
+}
+.color {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  color: #727A82;
+  text-transform: capitalize;
+}
+@media (min-width: 768px) {
+  .color {
+    margin-bottom: 12px;
+  }
+}
+.color::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+.color[data-color="black"]::before {
+  background-color: #2D2E2E;
+}
+.color[data-color="turquoise"]::before {
+  background-color: #B0C3C7;
+}
+.color[data-color="blue"]::before {
+  background-color: #3B6392;
+}
+.color[data-color="bluelight"]::before {
+  background-color: #4193DA;
+}
+.color[data-color="grey"]::before {
+  background-color: #BFC3C8;
+}
+.size {
+  color: #727A82;
+  margin-bottom: 8px;
+}
+@media (min-width: 768px) {
+  .size {
+    margin-bottom: 12px;
+  }
+}
+.size span {
+  text-transform: uppercase;
+}
+.remove {
+  position: relative;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  margin-top: auto;
+  margin-left: auto;
+  transform: translateY(8px);
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .remove:hover path {
+    fill: #151C22;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .remove:hover path {
+    fill: #151C22;
+  }
+}

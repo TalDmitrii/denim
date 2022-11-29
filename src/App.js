@@ -15,6 +15,7 @@ const Catalog = React.lazy(() => import("./pages/Catalog"));
 const MainPage = React.lazy(() => import("./pages/MainPage"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 const ProductCard = React.lazy(() => import("./pages/ProductCard"));
+const Cart = React.lazy(() => import("./pages/Cart"));
 
 function App() {
     const dispatch = useDispatch();
@@ -257,6 +258,9 @@ function App() {
                         </Route>
                         <Route path="/catalog/:productID">
                             <ProductCard />
+                        </Route>
+                        <Route path="/cart">
+                            <Cart />
                         </Route>
                         <Route path="*">
                             <NotFound />

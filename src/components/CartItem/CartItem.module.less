@@ -1,0 +1,142 @@
+@import "../../style/config.less";
+
+@colors: {
+    black: @product-black;
+    turquoise: @product-turquoise;
+    blue: @product-blue;
+    bluelight: @product-blue-light;
+    grey: @product-grey;
+}
+
+.item {
+    display: flex;
+    position: relative;
+
+    & ~ .item {
+        margin-top: 32px;
+
+        .from(@break-desktop, {
+            margin-top: 40px;
+        });
+    }
+}
+
+.item a {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.img-wrap {
+    display: flex;
+    align-self: flex-start;
+    flex-shrink: 0;
+    width: 40%;
+    max-width: 240px;
+    margin-right: 12px;
+    aspect-ratio: 3 / 4;
+
+    .from(@break-desktop, {
+        margin-right: 20px;
+    });
+
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.title {
+    margin-bottom: 8px;
+    font-size: 16px;
+    line-height: 22px;
+
+    .from(@break-tablet, {
+        font-size: 18px;
+        line-height: 24px;
+    });
+}
+
+.description {
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    .to(@break-tablet, {
+        .m-visually-hidden();
+    });
+}
+
+.price {
+    margin-bottom: 8px;
+
+    .from(@break-tablet, {
+        margin-bottom: 12px;
+    });
+}
+
+.color {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    color: @grey-dark;
+    text-transform: capitalize;
+
+    .from(@break-tablet, {
+        margin-bottom: 12px;
+    });
+
+    &::before {
+        content: "";
+        width: 22px;
+        height: 22px;
+        margin-right: 8px;
+        border-radius: 50%;
+    }
+}
+
+each(@colors, {
+    .color[data-color = "@{key}"]::before {
+        background-color: @value;
+    }
+});
+
+.size {
+    color: @grey-dark;
+    margin-bottom: 8px;
+
+    .from(@break-tablet, {
+        margin-bottom: 12px;
+    });
+
+    span {
+        text-transform: uppercase;
+    }
+}
+
+.remove {
+    position: relative;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    margin-top: auto;
+    margin-left: auto;
+    transform: translateY(8px);
+    
+    .m-pointer-only({
+        &:hover path {
+            fill: @black;
+        }
+    });
+}
