@@ -5,18 +5,17 @@ import { Link } from "react-router-dom";
 import Overlay from "../UI/Overlay/Overlay";
 import Popup from "../UI/Popup/Popup";
 import IconTrash from "../UI/Icons/IconTrash";
-import UILink from "../UI/UILink/UILink";
 import Loader from "../UI/Loader/Loader";
 
 import useHttp from "../../hooks/use-http";
 import { getProducts } from "../../libs/api";
-import { cartActions } from "../../store/cart";
+import { favoritesActions } from "../../store/favorites";
 
-import classes from "./PopupCart.module.css";
+import classes from "./PopupFavorites.module.css";
 
-const PopupCart = (props) => {
+const PopupFavorites = (props) => {
     const dispatch = useDispatch();
-    const cartProducts = useSelector((state) => state.cart.products);
+    const favorites = useSelector((state) => state.favorites.favorites);
 
     const {
         sendRequest,
@@ -29,11 +28,12 @@ const PopupCart = (props) => {
         sendRequest({ type: "all" }); //Need to fetch defined products only
     }, [sendRequest]);
 
-    const removeFromCartHandler = (evt) => {
+    const removeHandler = (evt) => {
         const parent = evt.target.closest("li");
-        const localStorageID = parent.dataset.id;
+        const id = parent.dataset.id;
+        console.log(id);
 
-        dispatch(cartActions.removeFromCart(localStorageID));
+        dispatch(favoritesActions.removeFromFavorites(id));
     };
 
     let noProducts;
@@ -53,25 +53,25 @@ const PopupCart = (props) => {
     let popupContent;
 
     if (products && products.length) {
-        const updatedList = cartProducts.map((item) => {
+        const updatedList = favorites.map((id) => {
             // Find the obect with full data
-            const foundItem = products.find(
-                (product) => product.id === item.id
-            );
+            const foundItem = products.find((product) => product.id === id);
             const title = foundItem.title;
             const price = foundItem.price;
             const imagesFolder = foundItem.imagesFolder;
 
-            return { ...item, title, price, imagesFolder };
+            return { id, title, price, imagesFolder };
         });
+
+        console.log(updatedList);
 
         popupContent = (
             <ul className={classes["list"]}>
                 {updatedList.map((item) => (
                     <li
                         className={classes["item"]}
-                        data-id={item.localStorageID}
-                        key={item.localStorageID}
+                        data-id={item.id}
+                        key={item.id}
                     >
                         <Link
                             onClick={props.overlayClickHandler}
@@ -91,20 +91,11 @@ const PopupCart = (props) => {
                         <div className={classes["info"]}>
                             <h3>{item.title}</h3>
                             <p className={classes["price"]}>{item.price} $</p>
-                            <p
-                                className={classes["color"]}
-                                data-color={item.color}
-                            >
-                                {item.color}
-                            </p>
-                            <p className={classes["size"]}>
-                                Size: <span>{item.size}</span>
-                            </p>
                             <button
                                 className={classes["remove"]}
                                 type="button"
                                 aria-label="Remove product from cart"
-                                onClick={removeFromCartHandler}
+                                onClick={removeHandler}
                             >
                                 <IconTrash />
                             </button>
@@ -120,28 +111,21 @@ const PopupCart = (props) => {
             <Overlay onOverlayClick={props.overlayClickHandler} />
             <Popup addClass={classes["popup"]}>
                 <div className={classes["title-wrap"]}>
-                    <h2 className={classes["title"]}>Cart</h2>
+                    <h2 className={classes["title"]}>Favorites</h2>
                     <button
                         className={classes["btn-close"]}
                         type="button"
                         onClick={props.overlayClickHandler}
-                        aria-label="Close cart popup"
+                        aria-label="Close favorites popup"
                     >
                         Close
                     </button>
                 </div>
                 {popupContent && popupContent}
                 {noProducts && noProducts}
-                <UILink
-                    addClass={classes["btn-to-cart"]}
-                    to={"/cart"}
-                    onClick={props.overlayClickHandler}
-                >
-                    Go to Cart
-                </UILink>
             </Popup>
         </>
     );
 };
 
-export default PopupCart;
+export default PopupFavorites;

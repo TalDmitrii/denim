@@ -3,26 +3,31 @@
   flex-wrap: wrap;
   justify-content: flex-end;
 }
-.user-navigation button {
+.user-navigation button,
+.user-navigation a {
   position: relative;
   display: flex;
   align-items: center;
   padding: 22px 12px;
 }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .user-navigation button:not(:disabled):hover path {
+  .user-navigation button:not(:disabled):hover path,
+  .user-navigation a:not(:disabled):hover path {
     stroke: #FFB400;
   }
 }
 @media (hover: hover) and (pointer: fine) {
-  .user-navigation button:not(:disabled):hover path {
+  .user-navigation button:not(:disabled):hover path,
+  .user-navigation a:not(:disabled):hover path {
     stroke: #FFB400;
   }
 }
-.user-navigation button:disabled {
+.user-navigation button:disabled,
+.user-navigation a:disabled {
   cursor: default;
 }
-.user-navigation button span {
+.user-navigation button span,
+.user-navigation a span {
   position: absolute;
   right: 4px;
   top: 8px;
@@ -38,4 +43,9 @@
   white-space: nowrap;
   background-color: #FFB400;
   border-radius: 20px;
+}
+.user-navigation button svg,
+.user-navigation a svg {
+  width: 20px;
+  height: auto;
 }

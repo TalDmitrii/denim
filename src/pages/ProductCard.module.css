@@ -162,6 +162,10 @@
     margin-bottom: 48px;
   }
 }
+.btn-wrap {
+  display: flex;
+  align-self: stretch;
+}
 @media (max-width: 767.98px) {
   .btn-wrap {
     position: fixed;
@@ -175,12 +179,25 @@
   }
 }
 .btn {
-  min-width: 200px;
-  display: inline-block;
-  vertical-align: middle;
+  flex-grow: 1;
 }
-@media (max-width: 767.98px) {
+@media (min-width: 768px) {
   .btn {
-    width: 100%;
+    max-width: 200px;
   }
+}
+.btn-like {
+  width: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .btn-like {
+    width: 64px;
+  }
+}
+.btn-like.active path {
+  fill: #FFB400;
+  stroke: #FFB400;
 }

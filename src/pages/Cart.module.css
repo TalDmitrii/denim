@@ -92,12 +92,23 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+}
+@media (min-width: 768px) {
+  .total__header-wrap {
+    margin-bottom: 20px;
+  }
 }
 .total__header {
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 22px;
   margin-right: 8px;
+}
+@media (min-width: 768px) {
+  .total__header {
+    font-size: 18px;
+    line-height: 24px;
+  }
 }
 @media (min-width: 1024px) {
   .total__header {
@@ -107,9 +118,15 @@
   }
 }
 .total__price {
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 22px;
   font-weight: 600;
+}
+@media (min-width: 768px) {
+  .total__price {
+    font-size: 18px;
+    line-height: 24px;
+  }
 }
 .total button {
   width: 100%;

@@ -1,31 +1,35 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-import PopupCart from "../../PopupCart/PopupCart";
+import PopupFavorites from "../../PopupFavorites/PopupFavorites";
 import IconBasket from "../../UI/Icons/IconBasket";
-import IconSearch from "../../UI/Icons/IconSearch";
-
+import IconHeart from "../../UI/Icons/IconHeart";
 import classes from "./UserNavigation.module.css";
 
 const UserNavigation = (props) => {
-    const [isCartShown, setIsCartShown] = useState(false);
+    const [isFavoritesShown, setIsFavoritesShown] = useState(false);
+
+    const favoritesLength = useSelector(
+        (state) => state.favorites.favorites?.length
+    );
 
     const cartProductsLength = useSelector(
         (state) => state.cart.products?.length
     );
 
     useEffect(() => {
-        if (cartProductsLength === 0) {
-            setIsCartShown(false);
+        if (favoritesLength === 0) {
+            setIsFavoritesShown(false);
         }
-    }, [cartProductsLength]);
+    }, [favoritesLength]);
 
     const openCartPopup = () => {
-        setIsCartShown(true);
+        setIsFavoritesShown(true);
     };
 
     const closeCartPopup = () => {
-        setIsCartShown(false);
+        setIsFavoritesShown(false);
     };
 
     const navClasses = `
@@ -36,25 +40,26 @@ const UserNavigation = (props) => {
         <>
             <ul className={navClasses}>
                 <li>
-                    <button type="button">
-                        <IconSearch />
-                    </button>
-                </li>
-                <li>
                     <button
                         type="button"
                         onClick={openCartPopup}
-                        disabled={cartProductsLength === 0}
+                        disabled={favoritesLength === 0}
                     >
+                        {favoritesLength > 0 && <span>{favoritesLength}</span>}
+                        <IconHeart />
+                    </button>
+                </li>
+                <li>
+                    <Link to={"/cart"}>
                         {cartProductsLength > 0 && (
                             <span>{cartProductsLength}</span>
                         )}
                         <IconBasket />
-                    </button>
+                    </Link>
                 </li>
             </ul>
-            {isCartShown && cartProductsLength !== 0 && (
-                <PopupCart overlayClickHandler={closeCartPopup} />
+            {isFavoritesShown && favoritesLength !== 0 && (
+                <PopupFavorites overlayClickHandler={closeCartPopup} />
             )}
         </>
     );

@@ -163,6 +163,9 @@
 }
 
 .btn-wrap {
+    display: flex;
+    align-self: stretch;
+
     .to(@break-tablet, {
         position: fixed;
         right: 0;
@@ -176,11 +179,25 @@
 }
 
 .btn {
-    min-width: 200px;
-    display: inline-block;
-    vertical-align: middle;
-
-    .to(@break-tablet, {
-        width: 100%;
+    flex-grow: 1;
+    
+    .from(@break-tablet, {
+        max-width: 200px;
     });
+}
+
+.btn-like {
+    width: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .from(@break-tablet, {
+        width: 64px;
+    });
+
+    &.active path {
+        fill: @orange;
+        stroke: @orange;
+    }
 }

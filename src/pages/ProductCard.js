@@ -11,9 +11,11 @@ import UIButton from "../components/UI/UIButton/UIButton";
 import UILink from "../components/UI/UILink/UILink";
 import Loader from "../components/UI/Loader/Loader";
 import NotFound from "./NotFound";
+import IconHeart from "../components/UI/Icons/IconHeart";
 
 import useHttp from "../hooks/use-http";
 import { cartActions } from "../store/cart";
+import { favoritesActions } from "../store/favorites";
 import { getSingleProduct } from "../libs/api";
 
 import classes from "./ProductCard.module.css";
@@ -37,6 +39,9 @@ const ProductCard = () => {
     const params = useParams();
     const productID = params.productID;
     const dispatch = useDispatch();
+
+    const favorites = useSelector((state) => state.favorites.favorites);
+    const isFavorite = favorites.find((id) => id === productID);
 
     useEffect(() => {
         if (!(color && size)) return;
@@ -146,6 +151,10 @@ const ProductCard = () => {
         );
     };
 
+    const addToFavoritesHandler = () => {
+        dispatch(favoritesActions.addToFavorites(productID));
+    };
+
     return (
         <div className={classes["page-wrap"]}>
             <PageContainer>
@@ -214,6 +223,19 @@ const ProductCard = () => {
                                         In cart
                                     </UILink>
                                 )}
+                                <button
+                                    className={`${classes["btn-like"]}${
+                                        isFavorite
+                                            ? " " + classes["active"]
+                                            : ""
+                                    }`}
+                                    type="button"
+                                    aria-label="Add to favorites"
+                                    disabled={isFavorite ? true : false}
+                                    onClick={addToFavoritesHandler}
+                                >
+                                    <IconHeart />
+                                </button>
                             </div>
                         </form>
                     </div>
