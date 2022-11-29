@@ -27,6 +27,16 @@ const Cart = () => {
         sendRequest({ type: "all" }); //Need to fetch defined products only
     }, [sendRequest]);
 
+    useEffect(() => {
+        const footer = document.querySelector(".j-footer");
+        if (!footer) return;
+        footer.style.paddingBottom = "120px";
+
+        return () => {
+            footer.removeAttribute("style");
+        };
+    }, []);
+
     const removeFromCartHandler = (evt) => {
         const parent = evt.target.closest("li");
         const localStorageID = parent.dataset.id;

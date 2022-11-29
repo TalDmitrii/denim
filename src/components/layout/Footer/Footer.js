@@ -14,7 +14,7 @@ import classes from "./Footer.module.css";
 
 const Footer = () => {
     return (
-        <footer className={classes.footer}>
+        <footer className={`${classes.footer} j-footer`}>
             <PageContainer>
                 <ul className={classes.navigation}>
                     <li>

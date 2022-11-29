@@ -57,6 +57,16 @@ const ProductCard = () => {
         isFound ? setIsInCart(true) : setIsInCart(false);
     }, [color, size, productID, cartProducts]);
 
+    useEffect(() => {
+        const footer = document.querySelector(".j-footer");
+        if (!footer) return;
+        footer.style.paddingBottom = "90px";
+
+        return () => {
+            footer.removeAttribute("style");
+        };
+    }, []);
+
     const {
         sendRequest,
         status,
