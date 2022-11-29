@@ -172,7 +172,9 @@
         bottom: 0;
         left: 0;
         z-index: @zi-header;
-        padding: 12px 16px;
+        padding: 12px @padding;
+        margin-bottom: constant(safe-area-inset-bottom);
+        margin-bottom: env(safe-area-inset-bottom);
         background-color: @white;
         border-top: 1px solid @grey;
     });
