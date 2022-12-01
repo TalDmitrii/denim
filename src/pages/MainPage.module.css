@@ -210,6 +210,7 @@
 .collection {
   margin-top: 40px;
   margin-bottom: 40px;
+  scroll-margin-top: 80px;
 }
 @media (max-width: 767.98px) {
   .collection {

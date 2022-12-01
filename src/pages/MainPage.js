@@ -51,6 +51,15 @@ const MainPage = () => {
         });
     }, [sendRequestBestsellers]);
 
+    const scrollToNew = () => {
+        const newCollection = document.querySelector(".j-new");
+        if (!newCollection) return;
+
+        newCollection.scrollIntoView({
+            behavior: "smooth",
+        });
+    };
+
     return (
         <>
             <h1 className={"hide-vis"}>Online market Nimes</h1>
@@ -71,7 +80,8 @@ const MainPage = () => {
                         <button
                             className={classes["quick-nav"]}
                             type="button"
-                            aria-label="Scroll to next section"
+                            aria-label="Scroll to New collection"
+                            onClick={scrollToNew}
                         >
                             <span></span>
                         </button>
@@ -92,7 +102,7 @@ const MainPage = () => {
                     />
                 </PageContainer>
             )}
-            <PageContainer addClass={classes["collection"]}>
+            <PageContainer addClass={`${classes["collection"]} j-new`}>
                 <Collection />
             </PageContainer>
             <PageContainer addClass={classes["categories"]}>
