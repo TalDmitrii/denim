@@ -41,7 +41,7 @@ const ProductCardNews = () => {
             {!!(newsList && newsList.length) && (
                 <PageContainer addClass={`${classes["news"]}`}>
                     <ProductsList
-                        title={"News"}
+                        title={"New"}
                         viewAllHref={"/catalog/categories/new"}
                         products={newsList}
                         addClass={classes["products"]}

@@ -161,8 +161,10 @@ const ProductCard = () => {
         );
     };
 
-    const addToFavoritesHandler = () => {
-        dispatch(favoritesActions.addToFavorites(productID));
+    const toggleFavorites = () => {
+        isFavorite
+            ? dispatch(favoritesActions.removeFromFavorites(productID))
+            : dispatch(favoritesActions.addToFavorites(productID));
     };
 
     return (
@@ -241,8 +243,7 @@ const ProductCard = () => {
                                     }`}
                                     type="button"
                                     aria-label="Add to favorites"
-                                    disabled={isFavorite ? true : false}
-                                    onClick={addToFavoritesHandler}
+                                    onClick={toggleFavorites}
                                 >
                                     <IconHeart />
                                 </button>

@@ -31,7 +31,6 @@ const PopupFavorites = (props) => {
     const removeHandler = (evt) => {
         const parent = evt.target.closest("li");
         const id = parent.dataset.id;
-        console.log(id);
 
         dispatch(favoritesActions.removeFromFavorites(id));
     };
@@ -62,8 +61,6 @@ const PopupFavorites = (props) => {
 
             return { id, title, price, imagesFolder };
         });
-
-        console.log(updatedList);
 
         popupContent = (
             <ul className={classes["list"]}>

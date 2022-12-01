@@ -187,10 +187,21 @@
 }
 
 .btn-like {
-    width: 54px;
+    position: relative;
+    width: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    .to(@break-tablet, {
+        margin-left: 16px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0 -13px;
+        }
+    });
 
     .from(@break-tablet, {
         width: 64px;
@@ -203,8 +214,6 @@
     });
 
     &.active {
-        cursor: default;
-
         path {
             fill: @orange;
             stroke: @orange;

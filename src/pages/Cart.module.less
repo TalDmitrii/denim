@@ -78,12 +78,13 @@
         bottom: 0;
         left: 0;
         z-index: @zi-header;
-        padding: 12px @padding-tablet;
+        padding: 12px @padding-tablet calc(12px + env(safe-area-inset-bottom));
         border-top: 1px solid @grey;
     });
     
     .to(@break-tablet, {
-        padding: 12px @padding;
+        padding-right: @padding;
+        padding-left: @padding;
     });
 
     .from(@break-desktop, {

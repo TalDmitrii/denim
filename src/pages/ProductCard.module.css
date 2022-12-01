@@ -187,10 +187,21 @@
   }
 }
 .btn-like {
-  width: 54px;
+  position: relative;
+  width: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media (max-width: 767.98px) {
+  .btn-like {
+    margin-left: 16px;
+  }
+  .btn-like::after {
+    content: "";
+    position: absolute;
+    inset: 0 -13px;
+  }
 }
 @media (min-width: 768px) {
   .btn-like {
@@ -206,9 +217,6 @@
   .btn-like:hover path {
     stroke: #FFB400;
   }
-}
-.btn-like.active {
-  cursor: default;
 }
 .btn-like.active path {
   fill: #FFB400;
