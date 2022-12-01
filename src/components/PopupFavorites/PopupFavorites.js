@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import Overlay from "../UI/Overlay/Overlay";
 import Popup from "../UI/Popup/Popup";
 import IconTrash from "../UI/Icons/IconTrash";
 import Loader from "../UI/Loader/Loader";
@@ -71,7 +70,7 @@ const PopupFavorites = (props) => {
                         key={item.id}
                     >
                         <Link
-                            onClick={props.overlayClickHandler}
+                            onClick={props.closeCartPopup}
                             to={`/catalog/${item.id}`}
                         />
                         <picture>
@@ -104,24 +103,27 @@ const PopupFavorites = (props) => {
     }
 
     return (
-        <>
-            <Overlay onOverlayClick={props.overlayClickHandler} />
-            <Popup addClass={classes["popup"]}>
-                <div className={classes["title-wrap"]}>
-                    <h2 className={classes["title"]}>Favorites</h2>
-                    <button
-                        className={classes["btn-close"]}
-                        type="button"
-                        onClick={props.overlayClickHandler}
-                        aria-label="Close favorites popup"
-                    >
-                        Close
-                    </button>
-                </div>
-                {popupContent && popupContent}
-                {noProducts && noProducts}
-            </Popup>
-        </>
+        <Popup
+            isShown={props.isShown}
+            closePopup={props.closeCartPopup}
+            addClass={classes["popup"]}
+            title="Favorites products"
+            description="Check you favorites products"
+        >
+            <div className={classes["title-wrap"]}>
+                <h2 className={classes["title"]}>Favorites</h2>
+                <button
+                    className={classes["btn-close"]}
+                    type="button"
+                    onClick={props.closeCartPopup}
+                    aria-label="Close favorites popup"
+                >
+                    Close
+                </button>
+            </div>
+            {popupContent && popupContent}
+            {noProducts && noProducts}
+        </Popup>
     );
 };
 

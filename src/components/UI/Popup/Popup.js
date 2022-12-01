@@ -1,16 +1,21 @@
-import ReactDOM from "react-dom";
+import { Modal } from "@mui/material";
 
 import classes from "./Popup.module.css";
 
 const Popup = (props) => {
-    const modalRoot = document.getElementById("modal-root");
     const popupClasses = `${classes.popup} ${
         props.addClass ? " " + props.addClass : ""
     }`;
 
-    return ReactDOM.createPortal(
-        <div className={popupClasses}>{props.children}</div>,
-        modalRoot
+    return (
+        <Modal
+            open={props.isShown}
+            onClose={props.closePopup}
+            aria-labelledby={props.title}
+            aria-describedby={props.description}
+        >
+            <div className={popupClasses}>{props.children}</div>
+        </Modal>
     );
 };
 

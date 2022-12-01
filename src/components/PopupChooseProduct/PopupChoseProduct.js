@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
-import Overlay from "../UI/Overlay/Overlay";
 import Popup from "../UI/Popup/Popup";
 import FieldsetColor from "../UI/FieldsetColor/FieldsetColor";
 import FieldsetSize from "../UI/FieldsetSize/FieldsetSize";
@@ -61,38 +60,38 @@ const PopupChooseProduct = (props) => {
     };
 
     return (
-        <>
-            <Overlay onOverlayClick={props.toggleParamsPopup} />
-            <Popup addClass={classes["popup"]}>
-                <div className={classes["header-wrap"]}>
-                    <h2>Choose color and size</h2>
-                    <button
-                        className={classes["close"]}
-                        onClick={props.toggleParamsPopup}
-                        aria-label="Close popup"
-                    >
-                        <span></span>
-                    </button>
-                </div>
-                <form action="" onSubmit={addToCartHandler}>
-                    <FieldsetColor
-                        colors={colors}
-                        changeHandler={colorChangeHandler}
-                    />
-                    <FieldsetSize
-                        sizes={sizes}
-                        changeHandler={sizeChangeHandler}
-                    />
-                    <UIButton
-                        addClass={classes["submit"]}
-                        type={"submit"}
-                        disabled={!(productColor && productSize) || isInCart}
-                    >
-                        {isInCart ? "In cart" : "Add to cart"}
-                    </UIButton>
-                </form>
-            </Popup>
-        </>
+        <Popup
+            isShown={props.isShown}
+            closePopup={props.toggleParamsPopup}
+            addClass={classes["popup"]}
+            title="Choose color and size"
+            description="Choose color and size in order to add the product to cart"
+        >
+            <div className={classes["header-wrap"]}>
+                <h2>Choose color and size</h2>
+                <button
+                    className={classes["close"]}
+                    onClick={props.toggleParamsPopup}
+                    aria-label="Close popup"
+                >
+                    <span></span>
+                </button>
+            </div>
+            <form action="" onSubmit={addToCartHandler}>
+                <FieldsetColor
+                    colors={colors}
+                    changeHandler={colorChangeHandler}
+                />
+                <FieldsetSize sizes={sizes} changeHandler={sizeChangeHandler} />
+                <UIButton
+                    addClass={classes["submit"]}
+                    type={"submit"}
+                    disabled={!(productColor && productSize) || isInCart}
+                >
+                    {isInCart ? "In cart" : "Add to cart"}
+                </UIButton>
+            </form>
+        </Popup>
     );
 };
 

@@ -59,9 +59,10 @@ const ProductsList = (props) => {
                     ))}
                 </ul>
             </section>
-            {isParamsPopupShown && productParams && (
+            {productParams && (
                 <PopupChooseProduct
                     productParams={productParams}
+                    isShown={isParamsPopupShown}
                     toggleParamsPopup={toggleParamsPopup}
                 />
             )}

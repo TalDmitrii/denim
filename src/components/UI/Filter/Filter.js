@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Popup from "../Popup/Popup";
-import Overlay from "../Overlay/Overlay";
 import UIButton from "../UIButton/UIButton";
 import FieldsetColor from "../FieldsetColor/FieldsetColor";
 import FieldsetSize from "../FieldsetSize/FieldsetSize";
@@ -90,10 +89,22 @@ const Filter = (props) => {
 
     const isDropdownRangeOpen = chosenMinPrice || chosenMaxPrice ? true : false;
 
-    const content = (
+    return (
         <>
-            <Overlay onOverlayClick={filterShownToggle} />
-            <Popup addClass={classes["popup"]}>
+            <button
+                className={classes["btn"]}
+                type="button"
+                onClick={filterShownToggle}
+            >
+                Filter by
+            </button>
+            <Popup
+                addClass={classes["popup"]}
+                isShown={isFilterShown}
+                closePopup={filterShownToggle}
+                title="Filter"
+                description="Apply filters"
+            >
                 <section className={classes["filter"]}>
                     <form className={classes["form"]} onSubmit={submitHandler}>
                         <button
@@ -160,19 +171,6 @@ const Filter = (props) => {
                     </form>
                 </section>
             </Popup>
-        </>
-    );
-
-    return (
-        <>
-            <button
-                className={classes["btn"]}
-                type="button"
-                onClick={filterShownToggle}
-            >
-                Filter by
-            </button>
-            {isFilterShown && content}
         </>
     );
 };

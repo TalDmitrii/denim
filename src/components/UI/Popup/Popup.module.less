@@ -2,18 +2,11 @@
 
 .popup {
     position: fixed;
-    z-index: @zi-popup;
     background-color: @white;
 
-    @transform-value: 70px;
-
     .to(@break-tablet, {
-        top: -@transform-value;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        padding: @padding @padding calc(@transform-value + @padding) @padding;
-    	transform: translateY(@transform-value);
+        inset: 0;
+        padding: @padding;
     });
 
     .from(@break-tablet, {
