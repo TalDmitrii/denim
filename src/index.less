@@ -89,16 +89,30 @@ legend {
   text-align: center;
   color: @white;
   background-color: @black;
-  padding: 16px;
+  border: 2px solid @black;
+  padding: 14px;
 
   .from(@break-tablet, {
-      padding: 21px 24px;
+      padding: 19px 22px;
   });
 
   &:disabled {
     color: @grey-dark;
     background-color: @grey;
+    border-color: @grey;
     cursor: default;
+  }
+
+  .m-pointer-only({
+    &:hover {
+      background-color: @grey;
+      color: @black;
+    }
+  });
+
+  &:focus {
+    background-color: @grey;
+    color: @black;
   }
 }
 

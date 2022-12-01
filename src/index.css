@@ -72,17 +72,35 @@ legend {
   text-align: center;
   color: #ffffff;
   background-color: #151C22;
-  padding: 16px;
+  border: 2px solid #151C22;
+  padding: 14px;
 }
 @media (min-width: 768px) {
   .button {
-    padding: 21px 24px;
+    padding: 19px 22px;
   }
 }
 .button:disabled {
   color: #727A82;
   background-color: #F1F2F4;
+  border-color: #F1F2F4;
   cursor: default;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .button:hover {
+    background-color: #F1F2F4;
+    color: #151C22;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background-color: #F1F2F4;
+    color: #151C22;
+  }
+}
+.button:focus {
+  background-color: #F1F2F4;
+  color: #151C22;
 }
 .page-container {
   width: 100%;
