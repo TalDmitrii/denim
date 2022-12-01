@@ -11,6 +11,10 @@
     display: grid;
     grid-template-areas: "empty title close";
     grid-template-columns: 1fr 195px 1fr;
+
+    .from(@break-desktop, {
+        grid-template-columns: 1fr 280px 1fr;
+    });
 }
 
 .header-wrap h2 {

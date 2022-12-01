@@ -80,12 +80,6 @@ legend {
     padding: 19px 22px;
   }
 }
-.button:disabled {
-  color: #727A82;
-  background-color: #F1F2F4;
-  border-color: #F1F2F4;
-  cursor: default;
-}
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .button:hover {
     background-color: #F1F2F4;
@@ -101,6 +95,12 @@ legend {
 .button:focus-visible {
   background-color: #F1F2F4;
   color: #151C22;
+}
+.button:disabled {
+  color: #727A82;
+  background-color: #F1F2F4;
+  border-color: #F1F2F4;
+  cursor: default;
 }
 .page-container {
   width: 100%;

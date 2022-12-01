@@ -9,6 +9,11 @@
   grid-template-areas: "empty title close";
   grid-template-columns: 1fr 195px 1fr;
 }
+@media (min-width: 1024px) {
+  .header-wrap {
+    grid-template-columns: 1fr 280px 1fr;
+  }
+}
 .header-wrap h2 {
   grid-area: title;
   text-align: center;

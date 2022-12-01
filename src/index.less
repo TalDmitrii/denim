@@ -96,13 +96,6 @@ legend {
       padding: 19px 22px;
   });
 
-  &:disabled {
-    color: @grey-dark;
-    background-color: @grey;
-    border-color: @grey;
-    cursor: default;
-  }
-
   .m-pointer-only({
     &:hover {
       background-color: @grey;
@@ -113,6 +106,13 @@ legend {
   &:focus-visible {
     background-color: @grey;
     color: @black;
+  }
+
+  &:disabled {
+    color: @grey-dark;
+    background-color: @grey;
+    border-color: @grey;
+    cursor: default;
   }
 }
 

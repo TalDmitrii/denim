@@ -48,6 +48,8 @@ const PopupChooseProduct = (props) => {
             })
         );
 
+        setProductColor(null);
+        setProductSize(null);
         props.toggleParamsPopup();
     };
 
