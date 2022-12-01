@@ -98,7 +98,7 @@ legend {
     color: #151C22;
   }
 }
-.button:focus {
+.button:focus-visible {
   background-color: #F1F2F4;
   color: #151C22;
 }

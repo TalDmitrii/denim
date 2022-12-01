@@ -30,7 +30,7 @@ const Cart = () => {
     useEffect(() => {
         const footer = document.querySelector(".j-footer");
         if (!footer) return;
-        footer.style.paddingBottom = "120px";
+        footer.style.paddingBottom = "140px";
 
         return () => {
             footer.removeAttribute("style");
