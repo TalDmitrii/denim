@@ -30,8 +30,18 @@
   border-left: 2px solid #151C22;
   border-bottom: 2px solid #151C22;
 }
-.btn.open::after {
-  transform: translateY(-50%) rotate(-225deg);
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .btn:hover {
+    background-color: #F1F2F4;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    background-color: #F1F2F4;
+  }
+}
+.btn:focus-visible {
+  background-color: #F1F2F4;
 }
 .popup {
   display: flex;

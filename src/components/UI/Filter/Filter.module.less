@@ -60,10 +60,14 @@
         border-bottom: 2px solid @black;
     }
 
-    &.open {
-        &::after {
-            transform: translateY(-50%) rotate(-225deg);
+    .m-pointer-only({
+        &:hover {
+            background-color: @grey;
         }
+    });
+
+    &:focus-visible {
+        background-color: @grey;
     }
 }
 
