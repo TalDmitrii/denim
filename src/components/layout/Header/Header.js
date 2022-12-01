@@ -12,15 +12,15 @@ import classes from "./Header.module.css";
 import PageContainer from "../PageContainer/PageContainer";
 
 const Header = () => {
-    const [showMenu, setShowMenu] = useState(false);
+    const [isMenuShown, setIsMenuShown] = useState(false);
     const isNavVisible = useSelector((state) => state.header.isNavVisible);
 
     const openModal = () => {
-        setShowMenu(true);
+        setIsMenuShown(true);
     };
 
     const closeModal = () => {
-        setShowMenu(false);
+        setIsMenuShown(false);
     };
 
     return (
@@ -44,7 +44,7 @@ const Header = () => {
                         <UserNavigation />
                     </div>
                 )}
-                {showMenu && <Menu onCloseHandler={closeModal} />}
+                <Menu isShown={isMenuShown} onCloseHandler={closeModal} />
             </header>
         </PageContainer>
     );

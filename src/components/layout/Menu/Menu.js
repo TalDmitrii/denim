@@ -6,13 +6,23 @@ import classes from "./Menu.module.css";
 
 const Menu = (props) => {
     return (
-        <Popup addClass={classes["popup"]}>
-            <div className={classes["content"]} onClick={props.onCloseHandler}>
+        <Popup
+            isShown={props.isShown}
+            closePopup={props.onCloseHandler}
+            addClass={classes["popup"]}
+            title="Site navigation"
+            description="Site navigation"
+        >
+            <div className={classes["content"]}>
                 <h2 className={classes["title"]}>Menu</h2>
-                <button className={classes["close"]} aria-label="Close menu">
+                <button
+                    className={classes["close"]}
+                    onClick={props.onCloseHandler}
+                    aria-label="Close menu"
+                >
                     Close
                 </button>
-                <ul className={classes["nav"]}>
+                <ul className={classes["nav"]} onClick={props.onCloseHandler}>
                     <li>
                         <NavLink to="/catalog/categories/woman">Woman</NavLink>
                     </li>
