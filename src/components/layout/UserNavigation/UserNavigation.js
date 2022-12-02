@@ -60,10 +60,12 @@ const UserNavigation = (props) => {
                     </Link>
                 </li>
             </ul>
-            <PopupFavorites
-                isShown={isFavoritesShown}
-                closeCartPopup={closeCartPopup}
-            />
+            {isFavoritesShown && favoritesLength !== 0 && (
+                <PopupFavorites
+                    isShown={isFavoritesShown}
+                    closeCartPopup={closeCartPopup}
+                />
+            )}
         </>
     );
 };
