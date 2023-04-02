@@ -1,4 +1,4 @@
-This is my first React project since taking Udemy's "React - The Complete Guide" course by Maximilian Schwarzmuller.
+This is my first React pet-project.
 
 Technologies used: React(functional components), Redux, MUI, Firebase, LESS.
 
